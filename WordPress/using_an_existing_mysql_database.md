@@ -1,4 +1,4 @@
-# How to point WordPress on Linux AppService to an existing MySQL Database
+# How to configure WordPress on Linux AppService to an existing MySQL Database
 
 Prerequisite:  WordPress database is already preexisted on your database server
 
