@@ -4,13 +4,13 @@ WordPress is hosted as a managed offering on Linux AppService.
 
 ## How to Configurations
 
-* [Change MySQL Database Password for WordPress on Linux AppService](./changing_mysql_database_password.md)
-* [Change WordPress Admin Credentials of the WordPress hosted on Linux AppService](./changing_wordpress_admin_credentials.md)
-* [Setup Startup scripts for WordPress running on Linux AppService](./running_post_startup_scripts.md)
-* [A view of Application Settings of WordPress on Linux AppService](./wordpress_application_settings.md)
-* [Connect to database with phpmyadmin of WordPress on Linux AppService](./wordpress_application_settings.md)
-* [Configure WordPress on Linux AppService with existing MySQL database](./using_an_existing_mysql_database.md)
-* [Migrate any WordPress site to WordPress on Linux App Service](./wordpress_migration_linux_appservices.md)
+* [Change MySQL Database Password for WordPress on Linux AppService](./WordPress/changing_mysql_database_password.md)
+* [Change WordPress Admin Credentials of the WordPress hosted on Linux AppService](./WordPress/changing_wordpress_admin_credentials.md)
+* [Setup Startup scripts for WordPress running on Linux AppService](./WordPress/running_post_startup_scripts.md)
+* [A view of Application Settings of WordPress on Linux AppService](./WordPress/wordpress_application_settings.md)
+* [Connect to database with phpmyadmin of WordPress on Linux AppService](./WordPress/wordpress_application_settings.md)
+* [Configure WordPress on Linux AppService with existing MySQL database](./WordPress/using_an_existing_mysql_database.md)
+* [Migrate any WordPress site to WordPress on Linux App Service](./WordPress/wordpress_migration_linux_appservices.md)
 
 
 
