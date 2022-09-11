@@ -41,7 +41,7 @@ WordPress on Linux App Service offering is based on alpine linux distro. You can
 
 pecl install imagick
 
-**How Startup script works?**
+## How Startup script works?
 
 It is a bash script (in /home/dev/startup.sh) that is executed each time an app container starts and the changes made by startup commands remain constant even upon restart or scaling out to multiple app instances. The reason is that when an app container starts, it's file system in non-persistent storage has a default initial state defined by the underlying docker image. When, startup script is executed, it may update files in non-persistent storage and upon restarting the app, these files revert back to the original state and startup script is executed which provides the same final state of files in non-persistent storage.
 
