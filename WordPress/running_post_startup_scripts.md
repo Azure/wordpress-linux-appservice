@@ -1,94 +1,63 @@
 # Configure custom startup scripts on WordPress Linux App Services
 
-A startup script is a file that performs tasks during the startup process of your app.Azure App Service on Linux runs on Docker. You can create a custom startup script if any additional steps/configurtaions to applied and persisted after site restarts.Start-up commands or script can be added to a pre-defined bash shell file **(/home/dev/startup.sh)** which is executed after the webapp container starts.
+A startup script is a file that performs tasks during the startup process of your app.Azure App Service on Linux runs on Docker. You can create a custom startup script if any additional steps/configurations to be applied and persisted after site restarts.Start-up commands or script can be added to a pre-defined bash shell file **(/home/dev/startup.sh)** which is executed after the webapp container starts.
 
-In this article, you learn about running a startup file, if needed, for a WordPress site hosted on Linux App Service. For running locally, you don't need a startup file. However, when you deploy a web app to Azure App Service, your code is run in Docker container that can use any startup commands if they are present. 
+In this article, you learn about running a startup file, if needed, for a WordPress site hosted on Linux App Service. For running locally, you don't need a startup file. However, when you deploy a web app to Azure App Service, your code is run in Docker container that can use any startup commands if they are present.
 
-You can navigate to your app's webssh portal as described in 'configure startup script' section to run commands within the container. There are two ways you can run scripts: 
+You can navigate to your app's WEBSSH portal as described in 'configure startup script' section to run commands within the container. There are two ways you can run scripts:
 
-You can create and run a script from webssh directly. Write operations to non-persistent storage by such scripts are temporary and are reverted upon restart. 
+1. You can create and run a script from WEBSSH directly. Write operations to non-persistent storage by such scripts are temporary and are reverted upon restart.
 
-You can edit /home/dev/startup.sh file to add the required commands. The changes made by this script persist across app restarts. You can look at 'How startup script works section' for more details. 
-
- 
+2. You can edit /home/dev/startup.sh file to add the required commands. The changes made by this script persist across app restarts. You can look at 'How startup script works section' for more details.
 
 Linux App Service architecture inherently has non-persistent storage i.e. file changes do not sustain after app restart. It uses App Service Storage which is a remote and persistent storage mounted onto /home directory where WordPress code is hosted. A majority of system config files are stored in /etc directory which is non-persistent storage. Changing system configuration by simply updating config files in non-persistent storage since they would revert back when the app restarts. Startup script enables you to add startup commands that are executed after an app container starts to make file changes that sustain through app restarts.  
 
- 
-
 A custom script has many use cases. The following are some scenarios for which you need a custom startup file  
 
- 
+## Update Nginx configuration
 
-Update Nginx configuration 
+Specifications for nginx are defined in /etc/nginx/conf.d/spec-settings.conf. You can update any of these settings using a startup script. The following command in startup script changes nginx configuration of max simultaneous connections to 15000.
 
-Specifications for nginx are defined in /etc/nginx/conf.d/spec-settings.conf. You can update any of these settings using a startup script. The following command in startup script changes nginx configuration of max simultaneous connections to 15000. 
+Code snippet:
 
-Code snippet: 
+sed -i "s/keepalive_requests .*/keepalive_requests 20000/g" /etc/nginx/conf.d/spec-settings.conf
+killall -9 nginx
 
-sed -i "s/keepalive_requests .*/keepalive_requests 20000/g" /etc/nginx/conf.d/spec-settings.conf 
+Nginx process is set to auto restart so killall command restarts nginx. You can notice new nginx processes created after killall command.  Similarly, you can use the sed command to update any file.
 
-killall -9 nginx 
+Alternatively, you can upload a custom configuration file to /home directory using file manager and replace default configuration files in non-persistent storage.
 
- 
+## Run WP-CLI commands
 
-Nginx process is set to auto restart so killall command restarts nginx. You can notice new nginx processes created after killall command. 
+WP-CLI is installed by default. You can add any wp-cli command to be executed in startup script. This example code runs cron events that are due.
 
-Similarly, you can use the sed command to update any file. 
+Code snippet
 
-Alternatively, you can upload a custom configuration file to /home directory using file manager and replace default configuration files in non-persistent storage. 
+wp cron event run --due-now
 
- 
+## Install system packages
 
-Run WP-CLI commands 
+WordPress on Linux App Service offering is based on alpine linux distro. You can use the default apk add command to install required packages or package manager. The following command uses pecl to install imagick library for PHP
 
-WP-CLI is installed by default. You can add any wp-cli command to be executed in startup script. This example code runs cron events that are due. 
+pecl install imagick
 
- 
+**How Startup script works?**
 
-Code snippet 
+It is a bash script (in /home/dev/startup.sh) that is executed each time an app container starts and the changes made by startup commands remain constant even upon restart or scaling out to multiple app instances. The reason is that when an app container starts, it's file system in non-persistent storage has a default initial state defined by the underlying docker image. When, startup script is executed, it may update files in non-persistent storage and upon restarting the app, these files revert back to the original state and startup script is executed which provides the same final state of files in non-persistent storage.
 
-wp cron event run --due-now 
+## App Service Storage
 
-  
+WordPress App Services (Linux) use a central App Service Storage which is a remote storage volume mounted onto the '/home' directory in the app container. App Service Storage is persistent storage and used to host the WordPress code (in /home/site/wwwroot). It is shared across containers when the app service is scaled out to multiple instances.
 
-Install system packages 
+## Configure Startup script
 
-WordPress on Linux App Service offering is based on alpine linux distro. You can use the default apk add command to install required packages or package manager. The following command uses pecl to install imagick library for PHP 
+The startup script is an empty file by default. Navigate to WEBSSH in scm portal of your WordPress app to update the startup script using the defaults vim/vi editors as shown below.
 
- 
+Navigate to **WebSSH/Bash** shell in SCMportal of your WordPress App. You can access the SCM site either from Azure Portal or using the following URL **https://\<sitename\>.scm.azurewebsites.net/newui**
 
-pecl install imagick 
-
- 
-
-How Startup script works? 
-
-It is a bash script (in /home/dev/startup.sh) that is executed each time an app container starts and the changes made by startup commands remain constant even upon restart or scaling out to multiple app instances. The reason is that when an app container starts, it's file system in non-persistent storage has a default initial state defined by the underlying docker image. When, startup script is executed, it may update files in non-persistent storage and upon restarting the app, these files revert back to the original state and startup script is executed which provides the same final state of files in non-persistent storage. 
-
-  
-
-App Service Storage 
-
-WordPress App Services (Linux) use a central App Service Storage which is a remote storage volume mounted onto the '/home' directory in the app container. App Service Storage is persistent storage and used to host the WordPress code (in /home/site/wwwroot). It is shared across containers when the app service is scaled out to multiple instances. 
-
- 
-Configure Startup script 
-
-The startup script is an empty file by default. Navigate to Webssh in scm portal of your WordPress app to update the startup script using the defaults vim/vi editors as shown below. 
-<br>
-
-Navigate to **WebSSH/Bash** shell in scm portal of your WordPress App. You can access the SCM site either from Azure Protal or using the following URL **https://\<sitename\>.scm.azurewebsites.net/newui**
-
-<kbd><img src="./media/post_startup_script_1.png" width="700" /></kbd><br>
-<br>
-
-<kbd><img src="./media/post_startup_script_2.png" width="700" /></kbd><br>
-<br>
-
-<kbd><img src="./media/post_startup_script_3.png" width="700" /></kbd><br>
-<br>
+<kbd><img src="./media/post_startup_script_1.png" width="700" /></kbd>
+<kbd><img src="./media/post_startup_script_2.png" width="700" /></kbd>
+<kbd><img src="./media/post_startup_script_3.png" width="700" /></kbd>
 
 Add your start-up commands to **/home/dev/startup.sh** file. And restart your app for the changes to get reflected.
-<kbd><img src="./media/post_startup_script_4.png" width="700" /></kbd><br>
-
+<kbd><img src="./media/post_startup_script_4.png" width="700" /></kbd>
