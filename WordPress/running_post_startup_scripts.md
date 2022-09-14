@@ -23,8 +23,10 @@ Specifications for nginx are defined in /etc/nginx/conf.d/spec-settings.conf. Yo
 
 Code snippet:
 
+``` 
 sed -i "s/keepalive_requests .*/keepalive_requests 20000/g" /etc/nginx/conf.d/spec-settings.conf
-killall -9 nginx
+/usr/sbin/nginx -s reload
+``` 
 
 Nginx process is set to auto restart so killall command restarts nginx. You can notice new nginx processes created after killall command.  Similarly, you can use the sed command to update any file.
 
