@@ -21,8 +21,6 @@ A custom script has many use cases. The following are some scenarios for which y
 
 Specifications for nginx are defined in /etc/nginx/conf.d/spec-settings.conf. You can update any of these settings using a startup script. The following command in startup script changes nginx configuration of max simultaneous connections to 15000.
 
-Code snippet:
-
 ``` 
 sed -i "s/keepalive_requests .*/keepalive_requests 20000/g" /etc/nginx/conf.d/spec-settings.conf
 /usr/sbin/nginx -s reload
@@ -41,7 +39,6 @@ cp /home/custom-spec-settings.conf /etc/nginx/conf.d/spec-settings.conf
 
 WP-CLI is installed by default. You can add any wp-cli command to be executed in startup script. This example code runs cron events that are due.
 
-Code snippet
 
 ``` 
 wp cron event run --due-now
