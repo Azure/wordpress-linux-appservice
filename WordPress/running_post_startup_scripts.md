@@ -20,7 +20,7 @@ A custom startup script has many use cases. The following are some scenarios for
 
 ## Update Nginx configuration
 
-Specifications for nginx are defined in /etc/nginx/conf.d/spec-settings.conf. You can update any of these settings using a startup script. The following command in startup script changes nginx configuration of max simultaneous connections to 15000.
+Configurations for nginx are defined in **/etc/nginx/conf.d/default.conf** and **/etc/nginx/conf.d/spec-settings.conf** files. You can update any of these files using a startup script. For instance, the following commands in startup script changes the nginx configuration for max simultaneous connections to 15000.
 
 ``` 
 sed -i "s/keepalive_requests .*/keepalive_requests 20000/g" /etc/nginx/conf.d/spec-settings.conf
