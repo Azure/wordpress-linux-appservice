@@ -28,7 +28,7 @@ sed -i "s/keepalive_requests .*/keepalive_requests 20000/g" /etc/nginx/conf.d/sp
 
 Nginx process is set to auto restart so killall command restarts nginx. You can notice new nginx processes created after killall command.  Similarly, you can use the sed command to update any file.
 
-Alternatively, you can navigate to file manager through this URL : _\<wordpressAppName\>.scm.azurewebsites.net/newui/fileManager_. Upload a custom configuration file (ex: /home/custom-spec-settings.conf) and run the following code snippet
+Alternatively, you can navigate to file manager through this URL : _\<wordpressAppName\>.scm.azurewebsites.net/newui/fileManager_. Upload a custom configuration file in /home directory (ex: /home/custom-spec-settings.conf) and run the following code snippet
 
 ```
 cp /home/custom-spec-settings.conf /etc/nginx/conf.d/spec-settings.conf
