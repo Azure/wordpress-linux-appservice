@@ -15,7 +15,8 @@ Linux App Service architecture inherently has non-persistent storage i.e. file c
 ## How Startup script works?
 
 It is a bash script (in /home/dev/startup.sh) that is executed each time an app container starts and the changes made by startup commands remain constant even upon restart or scaling out to multiple app instances. The reason is that when an app container starts, it's file system in non-persistent storage has a default initial state defined by the underlying docker image. When startup script is executed, it may update files in non-persistent storage and upon restarting the app, these files revert back to the original state and startup script is executed which provides the same final state of files in non-persistent storage.
-A custom script has many use cases. The following are some scenarios for which you need a custom startup file  
+
+A custom startup script has many use cases. The following are some scenarios for which you need a startup script. Please note that your app service must be restarted for any changes in startup script to take affect.
 
 ## Update Nginx configuration
 
@@ -25,10 +26,17 @@ Specifications for nginx are defined in /etc/nginx/conf.d/spec-settings.conf. Yo
 sed -i "s/keepalive_requests .*/keepalive_requests 20000/g" /etc/nginx/conf.d/spec-settings.conf
 /usr/sbin/nginx -s reload
 ``` 
-
-
-* Alternatively, you can navigate to file manager through this URL : _\<wordpressAppName\>.scm.azurewebsites.net/newui/fileManager_. Upload a custom configuration file in /home directory (ex: /home/custom-spec-settings.conf) and run the following code snippet
-
+Alternatively, you can follow these steps for the same result
+* Copy the required config file to /home directory
+```
+cp /etc/nginx/conf.d/spec-settings.conf /home/custom-spec-settings.conf
+```
+* Edit /home/custom-spec-settings.conf using vi/vim editors to add custom settings.
+ 
+NOTE: you can also upload a custom config file to /home directory using file manager. Navigate to file manager through this URL : _\<Wordpress_App_Name\>.scm.azurewebsites.net/newui/fileManager_. Upload the custom configuration file in /home directory (ex: /home/custom-spec-settings.conf)
+ 
+* Copy the following code snippet to /home/dev/startup.sh.
+ 
 ```
 cp /home/custom-spec-settings.conf /etc/nginx/conf.d/spec-settings.conf
 /usr/sbin/nginx -s reload
