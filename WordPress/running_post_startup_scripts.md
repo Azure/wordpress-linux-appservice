@@ -38,13 +38,17 @@ WP-CLI is installed by default. You can add any wp-cli command to be executed in
 
 Code snippet
 
+``` 
 wp cron event run --due-now
+``` 
 
 ## Install system packages
 
 WordPress on Linux App Service offering is based on alpine linux distro. You can use the default apk add command to install required packages or package manager. The following command uses pecl to install imagick library for PHP
 
+``` 
 pecl install imagick
+``` 
 
 ## App Service Storage
 
