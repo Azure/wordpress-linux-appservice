@@ -2,6 +2,8 @@
 
 A startup script is a file that performs tasks during the startup process of your app. Azure App Services on Linux runs on Docker. You can create a custom startup script if any additional steps/configurations to be applied and persisted after site restarts. Start-up commands or script can be added to a pre-defined bash shell file **(/home/dev/startup.sh)** which is executed after the webapp container starts.
 
+Note: As of September 2022, the startup script MUST exist at **(/home/dev/startup.sh)**. Further, the value of the Startup Command field in the Azure Portal found under [**App Service for Linux**] >  **Configuration** > **General Settings** > **Startup Command** is ignored. The Azure team is aware of this and working to make this flow more natural.
+
 In this article, you will learn about running a startup file, if needed, for a WordPress site hosted on Linux App Service. For running locally, you don't need a startup file. However, when you deploy a web app to Azure App Service, your code is run in Docker container that can use any startup commands if they are present.
 
 You can navigate to your app's WEBSSH portal as described in 'configure startup script' section to run commands within the container. There are two ways you can run scripts:
