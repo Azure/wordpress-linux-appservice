@@ -1,6 +1,6 @@
 # Adding PHP extensions for WordPress Linux App Services
 
-Customers who need to install PHP extensions that are not available on the 'WordPress Linux App Services image can do so by following the below steps. Here we will take an example and show how to add soap extension for PHP version 8, and please note that the process would be similar for other extensions.
+Customers who need to install PHP extensions that are not available on the WordPress Linux App Services image can do so by following the below steps. Here we will take an example and show how to add soap extension for PHP version 8, and please note that the process would be similar for other extensions.
 
 
 ## Adding PHP Extensions
