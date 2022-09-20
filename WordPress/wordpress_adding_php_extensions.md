@@ -55,7 +55,7 @@ Customers who need to install PHP extensions that are not available on the WordP
 
 2.	You should now see the extension is enabled by going to **https://\<sitename\>.azurewebsites.net/phpinfo.php**
 
-3.	Do not forget to emove the phpinfo.php page once you’re done using the page.
+3.	Do not forget to remove the phpinfo.php page once you’re done using it.
     ```
     rm /home/site/wwwroot/phpinfo.php
     ```
