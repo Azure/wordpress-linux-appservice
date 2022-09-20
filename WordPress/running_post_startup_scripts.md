@@ -1,4 +1,4 @@
-# Configure custom startup scripts on WordPress Linux App Services
+# How to run Bash scripts in WordPress on Linux App Services
 
 A startup script is a file that performs tasks during the startup process of your app. Azure App Services on Linux runs on Docker. You can create a custom startup script if any additional steps/configurations to be applied and persisted after site restarts. Start-up commands or script can be added to a pre-defined bash shell file **(/home/dev/startup.sh)** which is executed after the webapp container starts.
 
