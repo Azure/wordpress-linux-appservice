@@ -3,7 +3,7 @@
 Customers who need to install PHP extensions that are not available on the WordPress Linux App Services image can do so by following the below steps. Here we will take an example and show how to add soap extension for PHP version 8, and please note that the process would be similar for other extensions.
 
 
-## Adding PHP Extensions
+## Installing PHP Extensions
 
 1. Go to your KUDU site using the following URL **https://\<sitename\>.scm.azurewebsites.net/newui** and select WebSSH.
 
