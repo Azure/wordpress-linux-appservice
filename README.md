@@ -1,6 +1,12 @@
 # WordPress on Linux App Service
 
-WordPress is hosted as a managed offering on Linux AppService.
+Whether you’re shuffling a couple thousand visitors a day through an eCommerce shopping experience or attracting thousands of visitors to your content per day, your digital experience must be available and load fast to engage and wow your audiences. Our cloud-based solutions give your sites high availability, speed, scalability, and security, so you can press ahead with confidence.
+
+WordPress hosted on Azure App Service is a fully managed Azure PaaS offering with built-in infrastructure maintenance, security patching and scaling. It also supports virtual networks, and the ability to run in an isolated and dedicated App Service Environment. WordPress updates and patches, threat detection and blocking, and traffic encryption with free SSL certificates are part of what we offer to all of our customers.
+
+There are several forms of WordPress running on Azure, but we recommend WordPress on Azure AppService  from the Azure Marketplace as your start point. Because these Marketplace offerings are optimized for Linux App Service, they are designed to be easy-to-install and come with up-to-date software packages, fine tuned SKU sizes for both App Service & Azure MySQL DB and also with support from App Service team. 
+
+![image](https://user-images.githubusercontent.com/46513504/192804043-ab8a7d0d-cd7d-4688-b7e4-598fa7c2e8b4.png)
 
 ## How to Configurations
 
