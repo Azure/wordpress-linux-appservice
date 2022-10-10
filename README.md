@@ -10,15 +10,15 @@ There are several forms of WordPress running on Azure, but we recommend WordPres
 
 ## How to Configurations
 
-* [Change MySQL Database Password for WordPress on Linux AppService](./WordPress/changing_mysql_database_password.md)
-* [Change WordPress Admin Credentials of the WordPress hosted on Linux AppService](./WordPress/changing_wordpress_admin_credentials.md)
-* [Setup Startup scripts for WordPress running on Linux AppService](./WordPress/running_post_startup_scripts.md)
-* [A view of Application Settings of WordPress on Linux AppService](./WordPress/wordpress_application_settings.md)
+* [Change MySQL Database Password for WordPress on Linux App Service](./WordPress/changing_mysql_database_password.md)
+* [Change WordPress Admin Credentials of the WordPress hosted on Linux App Service](./WordPress/changing_wordpress_admin_credentials.md)
+* [Setup Startup scripts for WordPress running on Linux App Service](./WordPress/running_post_startup_scripts.md)
+* [A view of Application Settings of WordPress on Linux App Service](./WordPress/wordpress_application_settings.md)
 * [Connect to database with phpmyadmin of WordPress on Linux AppService](./WordPress/wordpress_phpmyadmin.md)
 * [Configure WordPress on Linux AppService with existing MySQL database](./WordPress/using_an_existing_mysql_database.md)
 * [Migrate any WordPress site to WordPress on Linux App Service](./WordPress/wordpress_migration_linux_appservices.md)
-* [Adding PHP extensions for WordPress on Linux AppService](./WordPress/wordpress_adding_php_extensions.md)
-* [How to enable AFD Integration for WordPress sites](./WordPress/Configuring%20AFD%20with%20your%20WordPress%20site.md)
+* [Adding PHP extensions for WordPress on Linux App Service](./WordPress/wordpress_adding_php_extensions.md)
+* [AFD Integration with WordPress on Azure App Service](./WordPress/Configuring%20AFD%20with%20your%20WordPress%20site.md)
 
 
 
