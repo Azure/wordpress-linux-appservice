@@ -18,6 +18,7 @@ There are several forms of WordPress running on Azure, but we recommend WordPres
 * [Configure WordPress on Linux AppService with existing MySQL database](./WordPress/using_an_existing_mysql_database.md)
 * [Migrate any WordPress site to WordPress on Linux App Service](./WordPress/wordpress_migration_linux_appservices.md)
 * [Adding PHP extensions for WordPress on Linux AppService](./WordPress/wordpress_adding_php_extensions.md)
+* [How to enable AFD Integration for WordPress sites](./WordPress/Configuring%20AFD%20with%20your%20WordPress%20site.md)
 
 
 
