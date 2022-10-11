@@ -4,6 +4,9 @@ This document describes two approaches for migrating your WordPress sites from W
 
 **Note:** Migrate the content to a test instance first, validate all E2E scenarios of your website, and if everything works as expected, swap this instance to the production slot.
  
+ You can migrate your site to WordPress on Auzre App Service in two ways:
+ 1. With WordPress plugin All-In-One WP Migration
+ 2. Manual process of migration
 
 ## 	1. All-In-One WP Migration Plugin
 
