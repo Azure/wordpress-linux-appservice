@@ -24,22 +24,26 @@ A custom startup script has many use cases. The following are some scenarios for
 
 Configurations for nginx are defined in **/etc/nginx/conf.d/default.conf** and **/etc/nginx/conf.d/spec-settings.conf** files. You can update any of these files using a startup script. For instance, the following commands in startup script changes the nginx configuration for max simultaneous connections to 20000.
 
-``` 
+``` bash
 sed -i "s/keepalive_requests .*/keepalive_requests 20000;/g" /etc/nginx/conf.d/spec-settings.conf
 /usr/sbin/nginx -s reload
-``` 
-Alternatively, you can follow these steps for the same result
-* Copy the required config file to /home directory
 ```
+
+Alternatively, you can follow these steps for the same result
+
+* Copy the required config file to /home directory
+
+``` bash
 cp /etc/nginx/conf.d/spec-settings.conf /home/custom-spec-settings.conf
 ```
+
 * Edit /home/custom-spec-settings.conf using vi/vim editors to add custom settings.
- 
-NOTE: you can also upload a custom config file to /home directory using file manager. Navigate to file manager through this URL : _\<Wordpress_App_Name\>.scm.azurewebsites.net/newui/fileManager_. Upload the custom configuration file in /home directory (ex: /home/custom-spec-settings.conf)
- 
+
+>**NOTE**: you can also upload a custom config file to /home directory using file manager. Navigate to file manager through this URL :`_\<Wordpress_App_Name\>.scm.azurewebsites.net/newui/fileManager_`. Upload the custom configuration file in /home directory (ex: /home/custom-spec-settings.conf)
+
 * Copy the following code snippet to /home/dev/startup.sh.
- 
-```
+
+```bash
 cp /home/custom-spec-settings.conf /etc/nginx/conf.d/spec-settings.conf
 /usr/sbin/nginx -s reload
 ```
@@ -48,32 +52,30 @@ cp /home/custom-spec-settings.conf /etc/nginx/conf.d/spec-settings.conf
 
 WP-CLI is installed by default. You can add any wp-cli command to be executed in startup script. This example code runs cron events that are due.
 
-
-``` 
+```bash
 wp cron event run --due-now
-``` 
+```
 
 ## Install system packages
 
-WordPress on Linux App Service offering is based on alpine linux distro. You can use the default **apk add _\<packagename\>_** command to install required packages or package manager. The following command uses pecl to install imagick library for PHP
+WordPress on Linux App Service offering is based on alpine linux distro. You can use the default `apk add <packagename>` command to install required packages or package manager. The following command uses `pecl` to install `imagick` library for PHP
 
-``` 
+```bash
 pecl install imagick
-``` 
+```
 
 ## App Service Storage
 
-WordPress App Services (Linux) use a central App Service Storage which is a remote storage volume mounted onto the '/home' directory in the app container. App Service Storage is persistent storage and used to host the WordPress code (in /home/site/wwwroot). It is shared across containers when the app service is scaled out to multiple instances.
+WordPress on App Services (Linux) use a central App Service Storage which is a remote storage volume mounted onto the '/home' directory in the app container. App Service Storage is persistent storage and used to host the WordPress code (in /home/site/wwwroot). It is shared across containers when the app service is scaled out to multiple instances.
 
 ## Configure Startup script
 
-The startup script is an empty file by default. Navigate to WEBSSH in scm portal of your WordPress app to update the startup script using the defaults vim/vi editors as shown below.
+The startup script is an empty file by default. You can modify this script through  **WebSSH** from the Azure portal.
 
-Navigate to **WebSSH/Bash** shell in SCMportal of your WordPress App. You can access the SCM site either from Azure Portal or using the following URL **https://\<sitename\>.scm.azurewebsites.net/newui**
-
-<kbd><img src="./media/post_startup_script_1.png" width="700" /></kbd>
-<kbd><img src="./media/post_startup_script_2.png" width="700" /></kbd>
-<kbd><img src="./media/post_startup_script_3.png" width="700" /></kbd>
+![Web SSH](./media/post_startup_script_1.png)
 
 Add your start-up commands to **/home/dev/startup.sh** file. And restart your app for the changes to get reflected.
-<kbd><img src="./media/post_startup_script_4.png" width="700" /></kbd>
+
+<!TODO: Update Screenshot>
+
+![Edit start-up command](./media/post_startup_script_4.png)
