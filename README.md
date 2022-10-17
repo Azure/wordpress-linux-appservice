@@ -4,7 +4,7 @@ Whether you’re shuffling a couple thousand visitors a day through an eCommerce
 
 WordPress hosted on Azure App Service is a fully managed Azure PaaS offering with built-in infrastructure maintenance, security patching and scaling. It also supports virtual networks, and the ability to run in an isolated and dedicated App Service Environment. WordPress updates and patches, threat detection and blocking, and traffic encryption with free SSL certificates are part of what we offer to all of our customers.
 
-There are several forms of WordPress running on Azure, but we recommend WordPress on Azure AppService  from the Azure Marketplace as your start point. Because these Marketplace offerings are optimized for Linux App Service, they are designed to be easy-to-install and come with up-to-date software packages, fine tuned SKU sizes for both App Service & Azure MySQL DB and also with support from App Service team. 
+There are several forms of WordPress running on Azure, but we recommend WordPress on Azure AppService  from the Azure Marketplace as your start point. Because these Marketplace offerings are optimized for Linux App Service, they are designed to be easy-to-install and come with up-to-date software packages, fine tuned SKU sizes for both App Service & Azure MySQL DB and also with support from App Service team.
 
 ![image](https://user-images.githubusercontent.com/46513504/192804043-ab8a7d0d-cd7d-4688-b7e4-598fa7c2e8b4.png)
 
@@ -20,13 +20,11 @@ There are several forms of WordPress running on Azure, but we recommend WordPres
 * [Adding PHP extensions for WordPress on Linux App Service](./WordPress/wordpress_adding_php_extensions.md)
 * [AFD Integration with WordPress on Azure App Service](./WordPress/Configuring%20AFD%20with%20your%20WordPress%20site.md)
 
-
-
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+the rights to use your contribution. For details, visit <https://cla.opensource.microsoft.com>.
 
 When you submit a pull request, a CLA bot will automatically determine whether you need to provide
 a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
@@ -38,8 +36,6 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 ## Trademarks
 
-This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft 
-trademarks or logos is subject to and must follow 
-[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
+This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft trademarks or logos is subject to and must follow [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
 Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
 Any use of third-party trademarks or logos are subject to those third-party's policies.
