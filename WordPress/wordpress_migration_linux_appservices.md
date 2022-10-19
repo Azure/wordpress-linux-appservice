@@ -89,7 +89,7 @@ The prerequisite is that the WordPress on Linux Azure App Service must have been
 
 ### Install Recommended Plugins
 
-Usually it is not required, but after the site migration, it is better to validate that you have the default recommended/equivalent plugins activated and configured properly as before. If you are strictly bound to not using them, then you can remove the plugins.
+It is an optional step, after the site migration it is recommended to validate that you have the default recommended/equivalent plugins activated and configured accurate as before. If you are prohibited from not configuring them as per your organization governing policies, then you can uninstall the plugins.
 
 - The W3TC plugin should be activated and configured properly to use the local Redis cache server and Azure CDN/Blob Storage (if it was configured to use them originally). For more information on how to configure these, please refer to the following documentations:
 
