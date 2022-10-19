@@ -1,8 +1,10 @@
 # WordPress Application Settings
 
-## Persistent Application Settings
+This document described the set of application settings that are configured and used in running your wordpress site created from Azure Marketplace offering.
 
-**Fixed Application Settings** - Configuration that can be changed and have an affect  on your WordPress site through the lifetime of your app. Any changes to these settings will update the same in your WordPress application.
+## Fixed Application Settings
+
+Configuration that can be changed and have an affect  on your WordPress site through the lifetime of your app. Any changes to these settings will update the same in your WordPress application.
 
 | Application Setting  | Scope | Default Value | Max Value  | Description                      |
 |----------------------|-------------|---------------|-------------|---------------------------|
@@ -24,9 +26,7 @@
 
 ## One-time Application Settings
 
-**One-time Application Settings** - Configurations that are used as a 'one-time' change and will be in affect during the installation process. Once the App is deployed, the changes to these App Settings  will not have any impact to your WordPress site.
-
-<!TODO: We probably need a better name than *non-persistent* we should also clarify if these can be deleted, or should be deleted as a best practice after initial setup.>
+Configurations that are used as a 'one-time' change and will be in affect during the installation process. Once the App is deployed, the changes to these App Settings  will not have any impact to your WordPress site. These are shown for your reference only.
 
 | Application Setting  | Scope        | Default Value | Max Value  | Description                      |
 |----------------------|-------------------|---------------|-------------|----------------------------------|
