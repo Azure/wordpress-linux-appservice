@@ -32,7 +32,8 @@ You can deploy AFD resources to an existing AFD profile in addition to creating 
 
 Configuring AFD with WordPress
 
-1. In the Advanced tab of WordPress create, CDN maybe selected by default. Disable CDN to enable AFD options.
+1. From the [WordPress Create page](https://ms.portal.azure.com/#create/WordPress.WordPress), navigate to the Advanced tab. Default Azure CDN will be selected and AFD is shown in disabled mode as shown in the below screenshot:
+
 ![Advanced Tab](./media/WP-Advancedtab.jpg)
 
 2. Select Enable AFD check box
@@ -41,7 +42,7 @@ Configuring AFD with WordPress
 3. You can either select an existing AFD profile (Standard SKU) from the dropdown or create a new profile as shown below
 ![AFD profiles](./media/WP-AFDProfiles.jpg)
 
-4. Go to Review and Create Tab  and choose create
+4. Go to Review and Create Tab and choose Create to deploy the WordPress
 
 **Custom Domain:**
 
