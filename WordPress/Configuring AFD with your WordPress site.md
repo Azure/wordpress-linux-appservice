@@ -18,10 +18,47 @@ When AFD endpoint comes up, the following constants are updated in wp-config fil
 WP_HOME: <AFD_Endpoint_Hostname>
 WP_SITEURL: <AFD_Endpoint_Hostname>
 
->**NOTE**: It may take up to 15 minutes or more in case of app restarts to configure AFD since it leads to a reset of the cron job that configures AFD.
+**NOTE**: It may take up to 15 minutes or more in case of app restarts to configure AFD since it leads to a reset of the cron job that configures AFD.
 
 Front Door acts as a reverse proxy for WordPress on Azure App Service and in the entry point to the application. So when user makes a request, it is served by the nearest edge server (following anycast method) which in turn retrieves the response from app service and returns back to the user.
 
-AFD is configured to cache and compress static content at the edge server for 3 days unless 'cache-control: private' header is present in response. You can look at the ruleset created in AFD profile for details.
+AFD is configured to cache and compress static content at the edge server for 3 days unless 'cache-control: private' header is present in response. You can look at the rule-set created in AFD profile for details.
 
-For a Linux WordPress deployment with AFD and Blob Storage enabled, an additional origin group is created for blob container used to host WordPress uploads. The Ruleset created during deployment is updated to override origin group to blob container for uploads (wp-content/uploads). Learn More about WordPress with Blob Storage.
+For a Linux WordPress deployment with AFD and Blob Storage enabled, an additional origin group is created for blob container used to host WordPress uploads. The rules created during deployment is updated to override origin group to blob container for uploads (wp-content/uploads). Learn More about WordPress with Blob Storage.
+
+## Deploy to an existing AFD Profile
+
+You can deploy AFD resources to an existing AFD profile in addition to creating a new profile. Deploying to an existing AFD profile helps in sharing the cost associated with AFD profile across resources. Currently, only AFD Standard SKU is supported with WordPress deployment.
+
+Configuring AFD with WordPress
+
+1. In the Advanced tab of WordPress create, CDN maybe selected by default. Disable CDN to enable AFD options.
+![Advanced Tab](./media/WP-Advancedtab.jpg)
+
+2. Select Enable AFD check box
+![AFD Checkbox](./media/WP-EnableAFD.jpg)
+
+3. You can either select an existing AFD profile (Standard SKU) from the dropdown or create a new profile as shown below
+![AFD profiles](./media/WP-AFDProfiles.jpg)
+
+4. Go to Review and Create Tab  and choose create
+
+**Custom Domain:**
+
+WordPress deployment with AFD doesn't add a custom domain by default. Since, Front Door replaces the app service as your WordPress application's entry point, you do not use a custom domain for your app service. If you want to configure the custom domain then refer to [Configure a custom domain on AFD](https://learn.microsoft.com/en-us/azure/frontdoor/standard-premium/how-to-add-custom-domain). In addition to this, add the following App setting in your app service.
+
+```bash
+AFD_CUSTOM_DOMAIN: <Custom_Domain> 
+```
+
+**Purge AFD cache**
+When you deploy updates to existing files in your WordPress app, Azure Front Door may continue to serve older versions of your files until their time-to-live expires. Purge the Azure Front Door cache for the affected paths to ensure the latest files are served. Follow this guide for steps to purge AFD cache for an AFD endpoint.
+
+**Resources Deployed**
+WordPress with AFD enabled deploys the following resources to AFD profile
+• AFD Endpoint
+• AFD Route
+• Origin group
+• Rule-set (2 Rules)
+    o First rule defines caching and compression behavior for wp-content/uploads files and the origin source (blob storage / app service).
+    o Second rule defines caching and compression behavior for other static files of specific extension.
