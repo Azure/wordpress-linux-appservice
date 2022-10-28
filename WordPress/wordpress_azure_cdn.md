@@ -14,8 +14,8 @@ The following Application Settings used at deployment time to configure WordPres
 To change the CDN endpoint after deployment, please go to W3TC plugin in Admin dashboard of WordPress and update it manually. Also, remember to purge the local cache in W3TC plugin after the configuration.
 
 ![Wordpress Performance](./media/wp_azure_cdn_1.png)
-![General Settings](./media/wp_azure_cdn_1.png)
-![Wordpress CDN](./media/wp_azure_cdn_1.png)
+![General Settings](./media/wp_azure_cdn_2.png)
+![Wordpress CDN](./media/wp_azure_cdn_3.png)
 
 ## Learn More
 
