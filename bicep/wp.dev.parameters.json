@@ -1,0 +1,88 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "appServiceWebAppName": {
+            "value": "wp-app-web"
+        },       
+        "appServicePlanName": {
+            "value": "wp-appsvc-plan"
+        },
+        "appSvcSku": {
+            "value": "PremiumV2"
+        },
+        "appSvcSkuCode": {
+            "value": "P1v2"
+        },
+        "storageSizeGB": {
+            "value": 128
+        },
+        "storageIops": {
+            "value": 700
+        },
+        "storageAutoGrow": {
+            "value": "Enabled"
+        },
+        "backupRetentionDays": {
+            "value": 7
+        },
+        "geoRedundantBackup": {
+            "value": "Disabled"
+        },
+        "vmName": {
+            "value": "Standard_D2ds_v4"
+        },
+        "serverName": {
+            "value": "wp-app-dbserver"
+        },
+        "serverUsername": {
+            "value": "bmyxrfwahx"
+        },
+        "serverPassword": {
+            "value": "<CHANGEME>"
+        },
+        "databaseName": {
+            "value": "wp-app-database"
+        },
+        "wordpressTitle": {
+            "value": "WordPress On Azure App services"
+        },
+        "wordpressAdminEmail": {
+            "value": "<CHANGEME>"
+        },
+        "wordpressUsername": {
+            "value": "devwpadmin"
+        },
+        "wordpressPassword": {
+            "value": "<CHANGEME>"
+        },
+        "cdnProfileName": {
+            "value": "wp-appsvc-cdnprofile"
+        },
+        "cdnEndpointName": {
+            "value": "wp-appsvc-endpoint"
+        },
+        "vnetName": {
+            "value": "wp-app-vnet"
+        },
+        "subnetForApp": {
+            "value": "wp-app-subnet"
+        },
+        "subnetForDb": {
+            "value": "wp-db-subnet"
+        },
+        "privateDnsZoneNameForDb": {
+            "value": "wp-appsvc-privatelink.mysql.database.azure.com"
+        },
+        "vnetAddress": {
+            "value": "10.0.0.0/16"
+        },
+        "subnetAddressForApp": {
+            "value": "10.0.0.0/24"
+        },
+        "subnetAddressForDb": {
+            "value": "10.0.1.0/24"
+        }
+
+    }
+}
