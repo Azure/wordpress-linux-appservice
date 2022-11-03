@@ -1,24 +1,25 @@
-# WordPress on Linux App Service
+# WordPress on Linux App Service Bicep Deployment
 
-Whether you’re shuffling a couple thousand visitors a day through an eCommerce shopping experience or attracting thousands of visitors to your content per day, your digital experience must be available and load fast to engage and wow your audiences. Our cloud-based solutions give your sites high availability, speed, scalability, and security, so you can press ahead with confidence.
+This is the Bicep template that deploys the resources for running a WordPress site on a Linux App service.
+It deploys the following resources:
+* App Service Hosting Plan - Provisoned to use a WordPress container image based on the alpine latest build.
+* App Service - Configured to use a WordPress container image based on the alpine latest build.
+* MySQL Server running on the Flexible server SKU with a database deployed and configured for use with WordPress.
+* Virtual Network - with a 10.0.0.0/16 CIDR block.
+* Private DNS Zone for the MySQL database.
+* CDN Profile (Azure Frontdoor) with a CDN profile endpoint with compression enabled.
 
-WordPress hosted on Azure App Service is a fully managed Azure PaaS offering with built-in infrastructure maintenance, security patching and scaling. It also supports virtual networks, and the ability to run in an isolated and dedicated App Service Environment. WordPress updates and patches, threat detection and blocking, and traffic encryption with free SSL certificates are part of what we offer to all of our customers.
 
-There are several forms of WordPress running on Azure, but we recommend WordPress on Azure AppService  from the Azure Marketplace as your start point. Because these Marketplace offerings are optimized for Linux App Service, they are designed to be easy-to-install and come with up-to-date software packages, fine tuned SKU sizes for both App Service & Azure MySQL DB and also with support from App Service team.
+## Overview
+The main Bicep template (main.bicep) is broken up into easy to read and modify sections and is very configurable via custom parameters that are well documented. You can deploy this template without changing any parameters but will be promped for database server admin name, database server password, wordpress email, wordpress initial administrator and wordpress password.
+There is also a bicep template file (wp.dev.parameters.json) included in the repository which you can change the values to suit your deployment. Please remember to **NOT** store usernames or passwords in this file. The parameters file should be self expanatory as the parameters are names in accordance with their purpose.
 
-![image](https://user-images.githubusercontent.com/46513504/192804043-ab8a7d0d-cd7d-4688-b7e4-598fa7c2e8b4.png)
-
-## How to Configurations
-
-* [Change MySQL Database Password for WordPress on Linux App Service](./WordPress/changing_mysql_database_password.md)
-* [Change WordPress Admin Credentials of the WordPress hosted on Linux App Service](./WordPress/changing_wordpress_admin_credentials.md)
-* [Setup Startup scripts for WordPress running on Linux App Service](./WordPress/running_post_startup_scripts.md)
-* [A view of Application Settings of WordPress on Linux App Service](./WordPress/wordpress_application_settings.md)
-* [Connect to database with phpmyadmin of WordPress on Linux AppService](./WordPress/wordpress_phpmyadmin.md)
-* [Configure WordPress on Linux AppService with existing MySQL database](./WordPress/using_an_existing_mysql_database.md)
-* [Migrate any WordPress site to WordPress on Linux App Service](./WordPress/wordpress_migration_linux_appservices.md)
-* [Adding PHP extensions for WordPress on Linux App Service](./WordPress/wordpress_adding_php_extensions.md)
-* [AFD Integration with WordPress on Azure App Service](./WordPress/Configuring%20AFD%20with%20your%20WordPress%20site.md)
+## How to deploy
+Firstly, modify the bicep template file (wp.dev.parameters.json) with the parameter input values for your environment, its accepted practice to have a parameters file per environment/deployment as needed.
+Modify the deployment scripts (deploy.azcli and deploy.ps1) and change the input parameters such as resource group name and location to suit your deployment needs.
+You can then run the deployment scripts as follows:
+* ./deploy.azcli for Bash script
+* ./deploy.ps1 for Powershell script
 
 ## Contributing
 
