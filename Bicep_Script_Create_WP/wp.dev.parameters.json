@@ -36,10 +36,10 @@
             "value": "wp-app-dbserver"
         },
         "serverUsername": {
-            "value": "bmyxrfwahx"
+            "value": "<<CHANGEME>>" //CHANGE THIS
         },
         "serverPassword": {
-            "value": "<CHANGEME>"
+            "value": "<<CHANGEME>>" //CHANGE THIS
         },
         "databaseName": {
             "value": "wp-app-database"
@@ -48,13 +48,13 @@
             "value": "WordPress On Azure App services"
         },
         "wordpressAdminEmail": {
-            "value": "<CHANGEME>"
+            "value": "<<CHANGEME>>" //CHANGE THIS
         },
         "wordpressUsername": {
-            "value": "devwpadmin"
+            "value": "<<CHANGEME>>" //CHANGE THIS
         },
         "wordpressPassword": {
-            "value": "<CHANGEME>"
+            "value": "<<CHANGEME>>" //CHANGE THIS
         },
         "cdnProfileName": {
             "value": "wp-appsvc-cdnprofile"
