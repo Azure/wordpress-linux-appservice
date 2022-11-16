@@ -57,26 +57,26 @@ The prerequisite is that the WordPress on Linux Azure App Service must have been
 
 1. Create a new Wordpress app using our [WordPress on Linux App Service template](https://aka.ms/linux-wordpress)
 
-1. Open an SSH session using **WebSSH** from the Azure portal.
+2. Open an SSH session using **WebSSH** from the Azure portal.
 ![Web SSH](./media/post_startup_script_1.png)
 
-1. Delete the existing content of **/home/site/wwwroot/wp-content** folder using the following command.
+3. Delete the existing content of **/home/site/wwwroot/wp-content** folder using the following command.
 
    ```bash
    rm -rf /home/site/wwwroot/wp-content/* 
    ```
 
-1. Upload the new contents of **wp-content** folder using the File Manager. Click on the label that says '**Drag a File/Folder here to upload, or click to select one**'. Please note that if you are not able to upload everything at once, then you can try dividing your upload into multiple smaller ones.
+4. Upload the new contents of **wp-content** folder using the File Manager. Click on the label that says '**Drag a File/Folder here to upload, or click to select one**'. Please note that if you are not able to upload everything at once, then you can try dividing your upload into multiple smaller ones.
 
    <!TODO: we should prob recomend doing this over FTP, it's more reliable than web upload through SCM site?>
 
-1. You can either point your WordPress to [use an existing MySQL database](./using_an_existing_mysql_database.md), or use the steps below to migrate the content to the new database server (an Azure Database for MySQL flexible server) created by the WordPress on Linux App Services offering.
+5. You can either point your WordPress to [use an existing MySQL database](./using_an_existing_mysql_database.md), or use the steps below to migrate the content to the new database server (an Azure Database for MySQL flexible server) created by the WordPress on Linux App Services offering.
 
 >**NOTE:** Azure Database for MySQL - Single Server is on the road to retirement by 16 September 2024. If your existing MySQL database is hosted on Azure Database for MySQL - Single Server, please consider migrating to Azure Database for MySQL - Flexible Server using the following steps, or using [Azure Database Migration Service (DMS)](https://learn.microsoft.com/azure/mysql/single-server/whats-happening-to-mysql-single-server#migrate-from-single-server-to-flexible-server).
 
-1. If you chose to migrate the database, import the SQL file downloaded from the source database into the database of your newly created WordPress site. You can do it via the PhpMyAdmin dashboard available at **\<sitename\>.azurewebsites.net/phpmyadmin**. Please note that if you are unable to one single large SQL file, please try to break it into multiple smaller parts and try uploading. Steps to import the database through phpmyadmin are described [here](https://docs.phpmyadmin.net/en/latest/import_export.html#import).
+6. If you chose to migrate the database, import the SQL file downloaded from the source database into the database of your newly created WordPress site. You can do it via the PhpMyAdmin dashboard available at **\<sitename\>.azurewebsites.net/phpmyadmin**. Please note that if you are unable to one single large SQL file, please try to break it into multiple smaller parts and try uploading. Steps to import the database through phpmyadmin are described [here](https://docs.phpmyadmin.net/en/latest/import_export.html#import).
 
-1. Launch the Azure Portal and navigate to your **App Service -> Configuration** blade. Update the database name in the **Application Settings** of App Service and save it. This will restart your App and the new changes will get reflected.  [Learn more: WordPress Application Settings](./wordpress_application_settings.md)
+7. Launch the Azure Portal and navigate to your **App Service -> Configuration** blade. Update the database name in the **Application Settings** of App Service and save it. This will restart your App and the new changes will get reflected.  [Learn more: WordPress Application Settings](./wordpress_application_settings.md)
 
     |    Application Setting Name    | Update Required?                         |
     |--------------------------------|------------------------------------------|
