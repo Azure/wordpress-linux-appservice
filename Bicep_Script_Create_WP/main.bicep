@@ -5,9 +5,12 @@ REFERENCE:    https://techcommunity.microsoft.com/t5/apps-on-azure-blog/a-lowere
               https://github.com/Azure/wordpress-linux-appservice/blob/main/WordPress/wordpress_migration_linux_appservices.md
               https://github.com/Azure/wordpress-linux-appService
 AUTHOR/S:     aaron.saikovski@microsoft.com
-VERSION: 1.0.0
-*/
+VERSION:      1.1.0
 
+VERSION HISTORY:
+  1.0.0 - Initial version release
+  1.1.0 - Added storage account to host content external to WordPress instance, tags and param switches
+*/
 
 // ================ //
 // Input Parameters //
@@ -18,6 +21,13 @@ Location
 */
 param location string = resourceGroup().location
 
+
+/*
+Tags
+*/
+param tags object = {
+  AppProfile: 'Wordpress'
+}
 
 /*
 App Service Parameters
@@ -77,6 +87,14 @@ CDN Parameters
 */
 param cdnProfileName string
 param cdnEndpointName string
+param originResponseTimeoutSeconds int = 60 //Send and receive timeout on forwarding request to the origin
+
+
+// @allowed([
+//   'Standard_Microsoft' 
+//   'Standard_AzureFrontDoor'
+//   'Premium_AzureFrontDoor']
+// )
 param cdnType string = 'Standard_Microsoft'
 
 
@@ -94,27 +112,105 @@ param subnetAddressForDb string = '10.0.1.0/24'
 
 
 
+/*
+WordPress App Storage Account
+*/
+param appServiceStorageAcctPrefix string = 'wpstg'
+var appServiceStorageAcctName = '${appServiceStorageAcctPrefix}${uniqueString(resourceGroup().id)}'
+
+param appServiceStorageBlobPrefix string = 'blobstg'
+var appServiceStorageContainerName = '${appServiceStorageBlobPrefix}${uniqueString(resourceGroup().id)}'
+
+@allowed(['Premium_LRS'
+'Premium_ZRS'
+'Standard_GRS'
+'Standard_GZRS'
+'Standard_LRS'
+'Standard_RAGRS'
+'Standard_RAGZRS'
+'Standard_ZRS'])
+param appServiceStorageSku string = 'Standard_LRS'
+
+
+/*
+Conditional Deployment Params
+*/
+param deployCDN bool = true
+param deployAzureStorage bool = true
+param deployAFD bool = false
+
+
+/*
+Local Variables
+*/
+var blobStorageUrl     = deployAzureStorage ? '${appServiceStorageAccount.name}.blob.${environment().suffixes.storage}' : 'null'
+var storageAccountKey  = deployAzureStorage ? '${listKeys(appServiceStorageAccount.id, appServiceStorageAccount.apiVersion).keys[0].value}' : 'null'
+var storageAccountName = deployAzureStorage ? appServiceStorageAccount.name : 'null'
+
+
 // =========== //
 // Deployments //
 // =========== //
 
-@description('Wordpress Web App')
+@description('Wordpress Web App Storage Account')
+resource appServiceStorageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' = if (deployAzureStorage) {
+  name: appServiceStorageAcctName
+  kind: 'StorageV2'
+  location: location
+  tags: tags
+
+  sku: {
+    name: appServiceStorageSku
+  }
+
+  properties: {
+    allowCrossTenantReplication: true
+    minimumTlsVersion: 'TLS1_2'
+    allowBlobPublicAccess: true
+    allowSharedKeyAccess: true
+    networkAcls: {
+      bypass: 'AzureServices'
+      virtualNetworkRules: []
+      ipRules: []
+      defaultAction: 'Allow'
+    }
+    supportsHttpsTrafficOnly: true
+    encryption: {
+      requireInfrastructureEncryption: false
+      services: {
+        file: {
+          keyType: 'Account'
+          enabled: true
+        }
+        blob: {
+          keyType: 'Account'
+          enabled: true
+        }
+      }
+      keySource: 'Microsoft.Storage'
+    }
+    accessTier: 'Hot'
+  }
+}
+
+@description('Wordpress Web App Storage Account Blob Container')
+resource appServiceStorageContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2022-05-01' = if (deployAzureStorage) {
+  name: '${appServiceStorageAccount.name}/default/${appServiceStorageContainerName}'
+}
+
+
+@description('Wordpress Web App Settings')
 resource appServiceWebApp 'Microsoft.Web/sites@2022-03-01' = {
   name: appServiceWebAppName
   location: location
-  tags: {
-  }
+  tags: tags
   properties: {
     siteConfig: {
       appSettings: [
         {
           name: 'DOCKER_REGISTRY_SERVER_URL'
           value: dockerRegistryUrl
-        }
-        {
-          name: 'WEBSITES_ENABLE_APP_SERVICE_STORAGE'
-          value: 'true'
-        }
+        }  
         {
           name: 'DATABASE_HOST'
           value: '${serverName}.mysql.database.azure.com'
@@ -161,11 +257,35 @@ resource appServiceWebApp 'Microsoft.Web/sites@2022-03-01' = {
         }
         {
           name: 'CDN_ENABLED'
-          value: 'true'
+          value: '${deployCDN}'
         }
         {
           name: 'CDN_ENDPOINT'
           value: '${cdnEndpointName}.azureedge.net'
+        }
+        {
+          name: 'BLOB_CONTAINER_NAME'
+          value: appServiceStorageContainerName
+        }
+        {
+          name: 'BLOB_STORAGE_ENABLED'
+          value: '${deployAzureStorage}'
+        }
+        {
+          name: 'BLOB_STORAGE_URL'
+          value: blobStorageUrl
+        }
+        {
+          name: 'STORAGE_ACCOUNT_KEY'
+          value: storageAccountKey
+        }
+        {
+          name: 'STORAGE_ACCOUNT_NAME'
+          value: storageAccountName
+        }
+        {
+          name: 'WEBSITES_ENABLE_APP_SERVICE_STORAGE'
+          value: '${deployAzureStorage}'
         }
       ]
       connectionStrings: []
@@ -186,8 +306,7 @@ resource appServiceHostingPlan 'Microsoft.Web/serverfarms@2022-03-01' = {
   name: appServicePlanName
   location: location
   kind: kind
-  tags: {
-  }
+  tags: tags
   properties: {
     targetWorkerCount:numberOfWorkers
     targetWorkerSizeId:workerSizeId
@@ -206,14 +325,11 @@ resource appServiceHostingPlan 'Microsoft.Web/serverfarms@2022-03-01' = {
 resource mySQLserver 'Microsoft.DBforMySQL/flexibleServers@2021-05-01' = {
   location: location
   name: serverName
-  tags: {
-    AppProfile: 'Wordpress'
-  }
+  tags: tags
   properties: {
     version: databaseVersion
     administratorLogin: serverUsername
     administratorLoginPassword: serverPassword
-    //publicNetworkAccess: publicNetworkAccess
     storage: {
       storageSizeGB: storageSizeGB
       iops: storageIops
@@ -250,7 +366,7 @@ resource wordpressDatabase 'Microsoft.DBforMySQL/flexibleServers/databases@2021-
 }
 
 @description('Virtual network')
-resource vnet 'Microsoft.Network/virtualNetworks@2022-05-01' = {
+resource virtualNetwork 'Microsoft.Network/virtualNetworks@2022-05-01' = {
   location: location
   name: vnetName
   properties: {
@@ -305,7 +421,7 @@ resource privateDnsZoneMySqlVnetlink 'Microsoft.Network/privateDnsZones/virtualN
   location: 'global'
   properties: {
     virtualNetwork: {
-      id: vnet.id
+      id: virtualNetwork.id
     }
     registrationEnabled: true
   }
@@ -335,17 +451,17 @@ resource appServiceSiteConfig 'Microsoft.Web/sites/config@2022-03-01' = {
   ]
 }
 
-@description('CDN Profile')
-resource cdnProfile 'Microsoft.Cdn/profiles@2021-06-01' = {
+@description('CDN or Azure FrontDoor Profile')
+resource cdnProfile 'Microsoft.Cdn/profiles@2022-05-01-preview' = if (deployCDN || deployAFD) {
   name: cdnProfileName
   location: 'Global'
   sku: {
     name: cdnType
   }
-  tags: {
-    AppProfile: 'Wordpress'
-  }
+  //kind: 'cdn' Or 'frontdoor'
+  tags: tags
   properties: {
+    originResponseTimeoutSeconds: originResponseTimeoutSeconds
   }
   dependsOn: [
     mySQLserver
@@ -353,7 +469,7 @@ resource cdnProfile 'Microsoft.Cdn/profiles@2021-06-01' = {
 }
 
 @description('CDN Endpoint Config')
-resource cdnProfileEndPoint 'Microsoft.Cdn/profiles/endpoints@2021-06-01' = {
+resource cdnProfileEndPoint 'Microsoft.Cdn/profiles/endpoints@2022-05-01-preview' = if (deployCDN) {
   parent: cdnProfile
   name: cdnEndpointName
   location: 'Global'
@@ -434,4 +550,4 @@ resource cdnProfileEndPoint 'Microsoft.Cdn/profiles/endpoints@2021-06-01' = {
 output defaultHostname string = appServiceWebApp.properties.defaultHostName
 
 @description('CDN Host name')
-output cdnEndPoint string = cdnProfileEndPoint.properties.hostName
+output cdnEndPoint string = deployCDN ? cdnProfileEndPoint.properties.hostName : ''
