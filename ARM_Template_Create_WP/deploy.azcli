@@ -1,0 +1,18 @@
+#!/bin/sh
+resourceGroupName="AppService_RG"
+location="West US"
+
+##Create resource group
+az group create --name $resourceGroupName --location $location
+
+###########################
+
+##Deploy resource group and provision resources
+az deployment group create \
+    --resource-group $resourceGroupName \
+    --name "wpappsvcdeploy" \
+    --template-file "azuredeploy.json" \
+    --parameters "azuredeploy.parameters.json" ##--what-if
+
+##Cleanup Resourcegroup
+##az group delete --name $resourceGroupName --yes --no-wait
