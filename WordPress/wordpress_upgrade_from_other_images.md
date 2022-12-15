@@ -24,10 +24,20 @@ It is recommended to migrate the image first in staging environment, test it tho
     |    DATABASE_USERNAME                   | *\<actual value\>* |
 
 5. Take a back-up of your wp-config.php
-6. Replace the wp-config.php file in **/home/site/wwwroot** with [this](https://github.com/Azure-App-Service/ImageBuilder/blob/master/GenerateDockerFiles/wordpress/wordpress/wordpress_src/wordpress-azure/wp-config.php). 
-7. Reapply any additional configurations from your backup wp-config.php file, add any other additional customizations you may want
+6. Replace the wp-config.php file located at **/home/site/wwwroot** with the new file located [here](https://github.com/Azure-App-Service/ImageBuilder/blob/master/GenerateDockerFiles/wordpress/wordpress/wordpress_src/wordpress-azure/wp-config.php). 
+7. Add the additional configurations from your backup wp-config.php file if any, and add any other additional custom configurations you may want to include and save the file.
 8. Now Lanunch the Azure Portal and navigate to your App Service definition page.  
-9. Navigate to Deployment Center blade and update the new image details  with appropriate **tag** value as shown in the below screen shot.
+9. Navigate to Configuration blade and verify the Application Settings. Make sure the following Application Settings are present and configured correctly.
+
+    |    Application Setting Name            |  Value   |
+    |----------------------------------------|----------|
+    |    WEBSITES_ENABLE_APP_SERVICE_STORAGE |  true    |
+    |    DATABASE_HOST                       | *\<actual value\>* |
+    |    DATABASE_NAME                       | *\<actual value\>* |
+    |    DATABASE_PASSWORD                   | *\<actual value\>* |
+    |    DATABASE_USERNAME                   | *\<actual value\>* |
+
+10. Navigate to Deployment Center blade and update the new image details  with appropriate **tag** value as shown in the below screen shot.
 ![Deployment Center](./media/wordpress_deployment_center_update.png)
 10. Restart your App Service to take the changes in affect. 
 11. To cross verify, Launch (**https://_\<appname\>_.scm.azurewebsites.net/newui/webssh**)
