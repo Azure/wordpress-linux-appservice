@@ -4,7 +4,6 @@ This document describes the approach to upgrade WordPress instances running on L
 
 
 **Old Image:** https://hub.docker.com/r/appsvcorg/wordpress-alpine-php
-
 **New Image:** https://mcr.microsoft.com/appsvc/wordpress-alpine-php
 
 **Note-1:** Please note that the following process to upgrade the image will only refresh the underlying tools such as Nginx, PHP, Redis etc., And it doesn't upgrade/refresh the existing WordPress version or source code. As a result, sometimes there can be compatibility issue between PHP version and existing WordPress code. It is recommended to test the changes thoroughly in a staging environment before making any changes to the production. And it is responsbility of the users to upgarde their WordPress source code to make it compatible with the PHP version.
@@ -26,5 +25,5 @@ This document describes the approach to upgrade WordPress instances running on L
 	|    DATABASE_USERNAME                   | *\<actual value\>* |
 
 
-4. Update the new image details in the deployment centre and restart your App. 
+4. Update the new image details in the deployment centre with appropriate **tag** and restart your App. 
 <kbd><img src="./media/wordpress_deployment_center_update.png" width="750" /></kbd>
