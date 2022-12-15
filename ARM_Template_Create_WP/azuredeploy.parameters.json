@@ -1,0 +1,132 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "subscriptionId": {
+            "value": null
+        },
+        "name": {
+            "value": "armtemplatwplinux"
+        },
+        "location": {
+            "value": "Australia East"
+        },
+        "hostingPlanName": {
+            "value": "ASP-AppServiceRG-9397"
+        },
+        "serverFarmResourceGroup": {
+            "value": "AppService_RG"
+        },
+        "sku": {
+            "value": "PremiumV2"
+        },
+        "skuCode": {
+            "value": "P1v2"
+        },
+        "workerSize": {
+            "value": "3"
+        },
+        "workerSizeId": {
+            "value": "3"
+        },
+        "numberOfWorkers": {
+            "value": "1"
+        },
+        "kind": {
+            "value": "linux"
+        },
+        "reserved": {
+            "value": true
+        },
+        "alwaysOn": {
+            "value": true
+        },
+        "linuxFxVersion": {
+            "value": "DOCKER|mcr.microsoft.com/appsvc/wordpress-alpine-php:latest"
+        },
+        "dockerRegistryUrl": {
+            "value": "https://mcr.microsoft.com"
+        },
+        "storageSizeGB": {
+            "value": 128
+        },
+        "storageIops": {
+            "value": 700
+        },
+        "storageAutoGrow": {
+            "value": "Enabled"
+        },
+        "backupRetentionDays": {
+            "value": 7
+        },
+        "geoRedundantBackup": {
+            "value": "Disabled"
+        },
+        "vmName": {
+            "value": "Standard_D2ds_v4"
+        },
+        "serverEdition": {
+            "value": "GeneralPurpose"
+        },
+        "vCores": {
+            "value": 2
+        },
+        "charset": {
+            "value": "utf8"
+        },
+        "collation": {
+            "value": "utf8_general_ci"
+        },
+        "serverName": {
+            "value": "armtemplat-743e177ac2154235bbbec3fc661e8dc8-dbserver"
+        },
+        "serverUsername": {
+            "value": null
+        },
+        "serverPassword": {
+            "value": null
+        },
+        "databaseName": {
+            "value": "armtemplat_743e177ac2154235bbbec3fc661e8dc8_database"
+        },
+        "publicNetworkAccess": {
+            "value": "Disabled"
+        },
+        "wordpressTitle": {
+            "value": "WordPress On Azure"
+        },
+        "wordpressAdminEmail": {
+            "value": null
+        },
+        "wordpressUsername": {
+            "value": null
+        },
+        "wordpressPassword": {
+            "value": null
+        },
+        "wpLocaleCode": {
+            "value": "en_US"
+        },
+        "cdnProfileName": {
+            "value": "armtemplat-f60a59fdd903c23d5822-cdnprofile"
+        },
+        "cdnEndpointName": {
+            "value": "armtemplat-f60a59fdd903c23d5822-endpoint"
+        },
+        "cdnType": {
+            "value": "Standard_Microsoft"
+        },
+        "vnetName": {
+            "value": "armtemplat-2f07eb663a-vnet"
+        },
+        "subnetForApp": {
+            "value": "armtemplat-2f07eb663a-appsubnet"
+        },
+        "subnetForDb": {
+            "value": "armtemplat-2f07eb663a-dbsubnet"
+        },
+        "privateDnsZoneNameForDb": {
+            "value": "armtemplat-2f07eb663a-privatelink.mysql.database.azure.com"
+        }
+    }
+}

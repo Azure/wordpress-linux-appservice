@@ -1,6 +1,6 @@
 #!/bin/sh
-resourceGroupName="wordpress-appsvc-rg"
-location="US East"
+resourceGroupName="AppService_RG"
+location="West US"
 
 ##Create resource group
 az group create --name $resourceGroupName --location $location
@@ -11,8 +11,8 @@ az group create --name $resourceGroupName --location $location
 az deployment group create \
     --resource-group $resourceGroupName \
     --name "wpappsvcdeploy" \
-    --template-file "main.bicep" \
-    --parameters "wp.dev.parameters.json" ##--what-if
+    --template-file "azuredeploy.json" \
+    --parameters "azuredeploy.parameters.json" ##--what-if
 
 ##Cleanup Resourcegroup
 ##az group delete --name $resourceGroupName --yes --no-wait
