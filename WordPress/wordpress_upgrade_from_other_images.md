@@ -1,4 +1,4 @@
-# Upgrading from Other WordPress Images
+# Upgrading From Other WordPress Images
 
 This document describes the approach to upgrade WordPress instances running on Linux App Service (using other images) to the new WordPress image **(mcr.microsoft.com/appsvc/wordpress-alpine-php)**.
 
@@ -7,7 +7,7 @@ This document describes the approach to upgrade WordPress instances running on L
 **Note-2:** Another approach for migration would be to create a new instance of WordPress on Linux App Service from Azure Marketplace and then migrate the old WordPress by following the steps mentioned [here](./wordpress_migration_linux_appservices.md). 
 
 
-## Steps for Upgrading
+## Steps for upgrading
 1. Make sure your WordPress code is in **/home/site/wwwroot** path.
 2. Create the following folder **/home/wp-locks** using SCM site (**https://_\<appname\>_.scm.azurewebsites.net/newui**).
 3. Upload [wp_deployment_status.txt](./files/wp_deployment_status.txt) file to /home/wp-locks folder. This will prevent re-installation of WordPress and deletion of any old data when you switch to the new image.
