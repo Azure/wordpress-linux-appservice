@@ -9,7 +9,7 @@ This document describes the approach to upgrade WordPress instances running on L
 
 ## Steps for Upgrading
 1. Create the following folder **/home/wp-locks** using SCM site (**https://_\<appname\>_.scm.azurewebsites.net/newui**).
-2. Upload [wp_deployment_status.txt](./files/wp_deployment_status.txt) file to /home/wp-locks folder.
+2. Upload [wp_deployment_status.txt](./files/wp_deployment_status.txt) file to /home/wp-locks folder. This will prevent re-installation of WordPress and deletion of any old data when you switch to the new image.
 3. Make sure the following Application Settings are present and configured correctly.
 
     |    Application Setting Name            |  Value   |
