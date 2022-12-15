@@ -1,9 +1,8 @@
 # Upgrading from Other WordPress Images
 
 This document describes the approach to upgrade WordPress instances running on Linux App Service with other images to the newer WordPress image.
-<br>
 
-**Old Image:** https://hub.docker.com/r/appsvcorg/wordpress-alpine-php
+<br>
 
 **New Image:** https://mcr.microsoft.com/appsvc/wordpress-alpine-php
 
