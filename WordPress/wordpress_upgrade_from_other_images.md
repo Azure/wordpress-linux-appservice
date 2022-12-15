@@ -32,6 +32,6 @@ It is recommended to migrate the image first in staging environment, test it tho
 10. Restart your App Service to take the changes in affect. 
 11. To cross verify, Launch (**https://_\<appname\>_.scm.azurewebsites.net/newui/webssh**)
 12. In webssh console, Run cat /etc/os-release command. It should show the Alpine version as shown in below screenshot
-![Alpine Version](./media/WP-PHP-Version.png)
+![Alpine Version](./media/WP-Alpine-Version.png)
 14. Run php --version command to validate the image is on latest php version as shown below
-![PHP Version](./media/WP-Alpine-Version.png)
+![PHP Version](./media/WP-PHP-Version.png)
