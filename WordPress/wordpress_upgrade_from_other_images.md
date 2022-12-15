@@ -1,4 +1,4 @@
-# Migrate the WordPress Images running on a different docker container to Microsoft supported containers
+# Migrate the WordPress Images running on a different container to Microsoft supported containers
 
 This document describes the approach to migrate WordPress instances running on Linux App Service (using different container) to the latest new WordPress image **(mcr.microsoft.com/appsvc/wordpress-alpine-php)**.
 
