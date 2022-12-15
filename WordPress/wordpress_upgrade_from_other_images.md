@@ -27,8 +27,11 @@ It is recommended to migrate the image first in staging environment, test it tho
 6. Replace the wp-config.php file in **/home/site/wwwroot** with [this](https://github.com/Azure-App-Service/ImageBuilder/blob/master/GenerateDockerFiles/wordpress/wordpress/wordpress_src/wordpress-azure/wp-config.php). 
 7. Reapply any additional configurations from your backup wp-config.php file, add any other additional customizations you may want
 8. Now Lanunch the Azure Portal and navigate to your App Service definition page.  
-9. Navigate to Deployment Center blade and update the new image details  with appropriate **tag** value as shown in the below screen shot.  
-<kbd><img src="./media/wordpress_deployment_center_update.png" width="750" /></kbd>
+9. Navigate to Deployment Center blade and update the new image details  with appropriate **tag** value as shown in the below screen shot.
+![Deployment Center](./media/wordpress_deployment_center_update.png)
 10. Restart your App Service to take the changes in affect. 
 11. To cross verify, Launch (**https://_\<appname\>_.scm.azurewebsites.net/newui/webssh**)
-12. 
+12. In webssh console, Run cat /etc/os-release command. It should show the Alpine version as shown in below screenshot
+![Alpine Version](./media/WP-PHP-Version.png)
+14. Run php --version command to validate the image is on latest php version as shown below
+![PHP Version](./media/WP-Alpine-Version.png)
