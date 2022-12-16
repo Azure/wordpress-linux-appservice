@@ -35,5 +35,5 @@ It is recommended to migrate the image first in staging environment, test it tho
 ![Alpine Version](./media/WP-Alpine-Version.png)
 13. Run php --version command to validate the image is on latest php version as shown below
 ![PHP Version](./media/WP-PHP-Version.png)
-14. Now launch WP-Admin and upgrade WordPress version to latest recommended version as hinted in the Admin UI
-15. Alternatively, you can follow the steps described in Manual Updates section of this [document](https://wordpress.org/support/article/updating-wordpress/). 
+14. Now launch WP-Admin (**https://_\<appname\>_azurewebsites.net/wp-admin**)and upgrade WordPress version to latest recommended version as hinted in the Admin UI
+15. Alternatively, if you run into any challenged with upgrade in the above step, you can follow the steps described in **Manual Updates** section of this [document](https://wordpress.org/support/article/updating-wordpress/). 
