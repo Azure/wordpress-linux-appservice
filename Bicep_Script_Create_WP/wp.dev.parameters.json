@@ -8,6 +8,15 @@
         "appServicePlanName": {
             "value": "wp-appsvc-plan"
         },
+        "deployAzureStorage": {
+            "value": false
+        },
+        "deployCDN": {
+            "value": false
+        },
+        "deployFrontDoor": {
+            "value": false
+        },
         "appSvcSku": {
             "value": "PremiumV2"
         },
@@ -36,10 +45,10 @@
             "value": "wp-app-dbserver"
         },
         "serverUsername": {
-            "value": "<<CHANGEME>>" //CHANGE THIS
+            "value": null
         },
         "serverPassword": {
-            "value": "<<CHANGEME>>" //CHANGE THIS
+            "value": null
         },
         "databaseName": {
             "value": "wp-app-database"
@@ -48,19 +57,34 @@
             "value": "WordPress On Azure App services"
         },
         "wordpressAdminEmail": {
-            "value": "<<CHANGEME>>" //CHANGE THIS
+            "value": null
         },
         "wordpressUsername": {
-            "value": "<<CHANGEME>>" //CHANGE THIS
+            "value": null
         },
         "wordpressPassword": {
-            "value": "<<CHANGEME>>" //CHANGE THIS
+            "value": null
         },
         "cdnProfileName": {
             "value": "wp-appsvc-cdnprofile"
         },
         "cdnEndpointName": {
-            "value": "wp-appsvc-endpoint"
+            "value": "wp-appsvc-cdnendpoint"
+        },
+        "afdProfileName": {
+            "value": "wp-appsvc-afdprofile"
+        },
+        "afdEndpointName": {
+            "value": "wp-appsvc-afdEndPoint"
+        },
+        "afdOriginGroupName": {
+            "value": "wp-appsvc-afdOriginGroup"
+        },       
+        "afdOriginsName": {
+            "value": "wp-appsvc-afdOrigins"
+        },
+        "afdRulesetName": {
+            "value": "wpappsvcruleset"
         },
         "vnetName": {
             "value": "wp-app-vnet"
@@ -83,6 +107,5 @@
         "subnetAddressForDb": {
             "value": "10.0.1.0/24"
         }
-
     }
 }

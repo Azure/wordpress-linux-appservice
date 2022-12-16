@@ -5,11 +5,12 @@ REFERENCE:    https://techcommunity.microsoft.com/t5/apps-on-azure-blog/a-lowere
               https://github.com/Azure/wordpress-linux-appservice/blob/main/WordPress/wordpress_migration_linux_appservices.md
               https://github.com/Azure/wordpress-linux-appService
 AUTHOR/S:     aaron.saikovski@microsoft.com
-VERSION:      1.1.0
+VERSION:      1.2.0
 
 VERSION HISTORY:
   1.0.0 - Initial version release
   1.1.0 - Added storage account to host content external to WordPress instance, tags and param switches
+  1.2.0 - Added Azure Front Door and CDN modules
 */
 
 // ================ //
@@ -20,7 +21,6 @@ VERSION HISTORY:
 Location
 */
 param location string = resourceGroup().location
-
 
 /*
 Tags
@@ -87,15 +87,15 @@ CDN Parameters
 */
 param cdnProfileName string
 param cdnEndpointName string
-param originResponseTimeoutSeconds int = 60 //Send and receive timeout on forwarding request to the origin
 
-
-// @allowed([
-//   'Standard_Microsoft' 
-//   'Standard_AzureFrontDoor'
-//   'Premium_AzureFrontDoor']
-// )
-param cdnType string = 'Standard_Microsoft'
+/*
+Azure Front Door Policy vars
+*/
+param afdProfileName string = 'wp-appsvc-afdprofile'
+param afdEndpointName string = 'wp-appsvc-afdEndPoint'
+param afdOriginGroupName string = 'wp-appsvc-afdOriginGroup'
+param afdOriginsName string = 'wp-appsvc-afdOrigins'
+param afdRulesetName string = 'wpappsvcruleset'
 
 
 /*
@@ -110,8 +110,6 @@ param vnetAddress string = '10.0.0.0/16'
 param subnetAddressForApp string = '10.0.0.0/24'
 param subnetAddressForDb string = '10.0.1.0/24'
 
-
-
 /*
 WordPress App Storage Account
 */
@@ -121,24 +119,15 @@ var appServiceStorageAcctName = '${appServiceStorageAcctPrefix}${uniqueString(re
 param appServiceStorageBlobPrefix string = 'blobstg'
 var appServiceStorageContainerName = '${appServiceStorageBlobPrefix}${uniqueString(resourceGroup().id)}'
 
-@allowed(['Premium_LRS'
-'Premium_ZRS'
-'Standard_GRS'
-'Standard_GZRS'
-'Standard_LRS'
-'Standard_RAGRS'
-'Standard_RAGZRS'
-'Standard_ZRS'])
+@description('Storage Sku')
 param appServiceStorageSku string = 'Standard_LRS'
-
 
 /*
 Conditional Deployment Params
 */
-param deployCDN bool = true
-param deployAzureStorage bool = true
-param deployAFD bool = false
-
+param deployAzureStorage bool = false
+param deployCDN bool          = false //If true then FrontDoor MUST be false
+param deployFrontDoor bool    = false //If true then CDN MUST be false
 
 /*
 Local Variables
@@ -151,10 +140,9 @@ var storageAccountName = deployAzureStorage ? appServiceStorageAccount.name : 'n
 // =========== //
 // Deployments //
 // =========== //
-
 @description('Wordpress Web App Storage Account')
 resource appServiceStorageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' = if (deployAzureStorage) {
-  name: appServiceStorageAcctName
+  name: appServiceStorageAcctName 
   kind: 'StorageV2'
   location: location
   tags: tags
@@ -197,7 +185,6 @@ resource appServiceStorageAccount 'Microsoft.Storage/storageAccounts@2022-05-01'
 resource appServiceStorageContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2022-05-01' = if (deployAzureStorage) {
   name: '${appServiceStorageAccount.name}/default/${appServiceStorageContainerName}'
 }
-
 
 @description('Wordpress Web App Settings')
 resource appServiceWebApp 'Microsoft.Web/sites@2022-03-01' = {
@@ -451,103 +438,41 @@ resource appServiceSiteConfig 'Microsoft.Web/sites/config@2022-03-01' = {
   ]
 }
 
-@description('CDN or Azure FrontDoor Profile')
-resource cdnProfile 'Microsoft.Cdn/profiles@2022-05-01-preview' = if (deployCDN || deployAFD) {
+@description('CDN Profile and Endpoint Module')
+module cdnProfile './modules/cdn.bicep' = if (deployCDN) {
   name: cdnProfileName
-  location: 'Global'
-  sku: {
-    name: cdnType
-  }
-  //kind: 'cdn' Or 'frontdoor'
-  tags: tags
-  properties: {
-    originResponseTimeoutSeconds: originResponseTimeoutSeconds
+  params:{
+    tags: tags
+    cdnProfileName:cdnProfileName
+    cdnEndpointName:cdnEndpointName
+    appServiceWebAppName:appServiceWebAppName
   }
   dependsOn: [
     mySQLserver
-  ]
-}
-
-@description('CDN Endpoint Config')
-resource cdnProfileEndPoint 'Microsoft.Cdn/profiles/endpoints@2022-05-01-preview' = if (deployCDN) {
-  parent: cdnProfile
-  name: cdnEndpointName
-  location: 'Global'
-  properties: {
-    isHttpAllowed: true
-    isHttpsAllowed: true
-    originHostHeader: '${appServiceWebAppName}.azurewebsites.net'
-    origins: [
-      {
-        name: '${appServiceWebAppName}-azurewebsites-net'
-        properties: {
-          hostName: '${appServiceWebAppName}.azurewebsites.net'
-          httpPort: 80
-          httpsPort: 443
-          originHostHeader: '${appServiceWebAppName}.azurewebsites.net'
-          priority: 1
-          weight: 1000
-          enabled: true
-        }
-      }
-    ]
-    isCompressionEnabled: true
-    contentTypesToCompress: [
-      'application/eot'
-      'application/font'
-      'application/font-sfnt'
-      'application/javascript'
-      'application/json'
-      'application/opentype'
-      'application/otf'
-      'application/pkcs7-mime'
-      'application/truetype'
-      'application/ttf'
-      'application/vnd.ms-fontobject'
-      'application/xhtml+xml'
-      'application/xml'
-      'application/xml+rss'
-      'application/x-font-opentype'
-      'application/x-font-truetype'
-      'application/x-font-ttf'
-      'application/x-httpd-cgi'
-      'application/x-javascript'
-      'application/x-mpegurl'
-      'application/x-opentype'
-      'application/x-otf'
-      'application/x-perl'
-      'application/x-ttf'
-      'font/eot'
-      'font/ttf'
-      'font/otf'
-      'font/opentype'
-      'image/svg+xml'
-      'text/css'
-      'text/csv'
-      'text/html'
-      'text/javascript'
-      'text/js'
-      'text/plain'
-      'text/richtext'
-      'text/tab-separated-values'
-      'text/xml'
-      'text/x-script'
-      'text/x-component'
-      'text/x-java-source'
-    ]
-  }
-  dependsOn: [
     appServiceWebApp
   ]
 }
 
+@description('Create Azure Front Door WAF Profile')
+module afdProfile 'modules/afd.bicep' = if (deployFrontDoor) {
+  name:afdProfileName
+  params:{
+    tags: tags
+    afdProfileName:afdProfileName
+    afdEndpointName:afdEndpointName
+    afdOriginGroupName:afdOriginGroupName
+    afdOriginsName:afdOriginsName
+    afdRulesetName:afdRulesetName
+    appServiceWebAppName:appServiceWebAppName
+  }
+  dependsOn: [
+    mySQLserver
+    appServiceWebApp
+  ]
+}
 
 // ================  //
 // Output Parameters //
 // ================  //
-
 @description('Default hostname of the app.')
 output defaultHostname string = appServiceWebApp.properties.defaultHostName
-
-@description('CDN Host name')
-output cdnEndPoint string = deployCDN ? cdnProfileEndPoint.properties.hostName : ''
