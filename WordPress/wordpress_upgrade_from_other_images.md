@@ -28,15 +28,14 @@ It is recommended to migrate the WordPress container image first in staging envi
     |    DATABASE_USERNAME                   | *\<actual value\>* |
 
 9. Navigate to Deployment Center blade and update the new image details  with appropriate **tag** value as shown in the below screen shot.
-[Deployment Center](./media/wordpress_deployment_center_update.png)
+![Deployment Center](./media/wordpress_deployment_center_update.png)
 10. Restart your App Service to take the changes into effect.
 11. To cross verify, launch (**https://_\<appname\>_.scm.azurewebsites.net/newui/webssh**)
-12. In webssh console, run **cat /etc/os-release** command. It should show the Alpine version as shown in below screenshot [Alpine Version](./media/WP-Alpine-Version.png)
+12. In webssh console, run **cat /etc/os-release** command. It should show the Alpine version as shown in below screenshot ![Alpine Version](./media/WP-Alpine-Version.png)
 13. Run php --version command to validate the image is on latest php version as shown below
-[PHP Version][def2]
+![PHP Version](./media/WP-PHP-Version.png)
 14. Now launch the WP-Admin with the [URL:](**https://_\<appname\>_azurewebsites.net/wp-admin**)
 15. Upgrade WordPress version to latest recommended version as hinted in the Admin UI
 16. Alternatively, if you run into any challenges with upgrade in the above step, you can follow the steps described in **Manual Updates** section of this [document](https://wordpress.org/support/article/updating-wordpress/).
 
 [def]: https://github.com/Azure-App-Service/ImageBuilder/blob/master/GenerateDockerFiles/wordpress/wordpress/wordpress_src/wordpress-azure/wp-config.php
-[def2]: ./media/WP-PHP-Version.png
