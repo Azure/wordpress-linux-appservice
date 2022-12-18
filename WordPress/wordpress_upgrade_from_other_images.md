@@ -34,7 +34,7 @@ It is recommended to migrate the WordPress container image first in staging envi
 12. In webssh console, run **cat /etc/os-release** command. It should show the Alpine version as shown in below screenshot ![Alpine Version](./media/WP-Alpine-Version.png)
 13. Run php --version command to validate the image is on latest php version as shown below
 ![PHP Version](./media/WP-PHP-Version.png)
-14. Now launch the WP-Admin with the [URL:](**https://_\<appname\>_azurewebsites.net/wp-admin**)
+14. Now Launch the WP-Admin (**https://_\<appname\>_azurewebsites.net/wp-admin**)
 15. Upgrade WordPress version to latest recommended version as hinted in the Admin UI
 16. Alternatively, if you run into any challenges with upgrade in the above step, you can follow the steps described in **Manual Updates** section of this [document](https://wordpress.org/support/article/updating-wordpress/).
 
