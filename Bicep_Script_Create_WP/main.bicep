@@ -1,16 +1,18 @@
 /*
 SUMMARY:      Deploys a WordPress site hosted on Azure AppServices
-DESCRIPTION:  Deploys a fully functional Wordpress site hosted on an Azure App service with a MySQL Flexible server back end with a CDN front end. - Approx. time to deploy 9 minutes.
+DESCRIPTION:  Deploys a fully functional Wordpress site hosted on an Azure App service with a MySQL Flexible server back end with a CDN front end. 
+              Approx. time to deploy 12 minutes - with AFD and Storage account.
 REFERENCE:    https://techcommunity.microsoft.com/t5/apps-on-azure-blog/a-lowered-cost-and-more-performant-wordpress-on-azure-appservice/ba-p/3647860
               https://github.com/Azure/wordpress-linux-appservice/blob/main/WordPress/wordpress_migration_linux_appservices.md
               https://github.com/Azure/wordpress-linux-appService
 AUTHOR/S:     aaron.saikovski@microsoft.com
-VERSION:      1.2.0
+VERSION:      1.2.1
 
 VERSION HISTORY:
   1.0.0 - Initial version release
   1.1.0 - Added storage account to host content external to WordPress instance, tags and param switches
   1.2.0 - Added Azure Front Door and CDN modules
+  1.2.1 - Minor AFD dependency fixes and web app parameter changes. updated readme.md
 */
 
 // ================ //
@@ -33,7 +35,11 @@ param tags object = {
 App Service Parameters
 */
 param appServicePlanName string  = 'wp-appsvc-plan'
-param appServiceWebAppName string = 'wp-app-web'
+
+//Create a unique web app name
+param appServiceWebAppPrefix string = 'wp-app-web'
+param appServiceWebAppName string = '${appServiceWebAppPrefix}${uniqueString(resourceGroup().id)}'
+
 param appSvcSku string = 'PremiumV2'
 param appSvcSkuCode string ='P1v2'
 param workerSizeId int = 3
@@ -130,7 +136,7 @@ param deployCDN bool          = false //If true then FrontDoor MUST be false
 param deployFrontDoor bool    = false //If true then CDN MUST be false
 
 /*
-Local Variables
+Local Variables for storage account
 */
 var blobStorageUrl     = deployAzureStorage ? '${appServiceStorageAccount.name}.blob.${environment().suffixes.storage}' : 'null'
 var storageAccountKey  = deployAzureStorage ? '${listKeys(appServiceStorageAccount.id, appServiceStorageAccount.apiVersion).keys[0].value}' : 'null'
