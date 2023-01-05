@@ -5,7 +5,11 @@ REFERENCE:    https://techcommunity.microsoft.com/t5/apps-on-azure-blog/a-lowere
               https://github.com/Azure/wordpress-linux-appservice/blob/main/WordPress/wordpress_migration_linux_appservices.md
               https://github.com/Azure/wordpress-linux-appService
 AUTHOR/S:     aaron.saikovski@microsoft.com
-VERSION: 1.0.0
+VERSION: 1.1.0
+
+VERSION HISTORY:
+  1.0.0 - Initial version release
+  1.1.0 - Added storage account to host content external to WordPress instance, added CDN and Azure Front door modules - conditional deployments
 */
 
 #Resource Group
@@ -13,6 +17,39 @@ resource "azurerm_resource_group" "rsg" {
   name     = var.resource_group_name
   location = var.rg_location
   tags     = var.tags
+}
+
+/*
+WordPress App Storage Account and default container
+*/
+module "appservicestorageaccount" {
+  # Deploy conditionally based on Feature Flag variable
+  count               = var.deployAzureStorage == true ? 1 : 0
+  source              = "./modules/storage"
+  location            = azurerm_resource_group.rsg.location
+  resource_group_name = azurerm_resource_group.rsg.name
+  tags                = var.tags
+}
+
+/*
+Local Variables for storage account - conditionally set if feature flags enabled
+*/
+locals {
+  storageAccountName       = var.deployAzureStorage == true ? module.appservicestorageaccount[0].name : ""
+  blobStorageUrl           = var.deployAzureStorage == true ? module.appservicestorageaccount[0].primary_blob_endpoint : ""
+  storageAccountKey        = var.deployAzureStorage == true ? module.appservicestorageaccount[0].primary_access_key : ""
+  storageBlobContainerName = var.deployAzureStorage == true ? module.appservicestorageaccount[0].storage_blob_container_name : ""
+}
+
+# Generate a random integer to create a globally unique name for the web app name
+resource "random_integer" "ri" {
+  min = 10000
+  max = 99999
+}
+
+//Generate a unique web app name
+locals {
+  web_app_name = "${var.app_service_web_app_prefix}-${random_integer.ri.result}"
 }
 
 
@@ -45,11 +82,18 @@ resource "azurerm_linux_web_app" "wp_web_app" {
     WEBSITES_CONTAINER_START_TIME_LIMIT = "900"
     WORDPRESS_LOCALE_CODE               = var.wpLocaleCode
     SETUP_PHPMYADMIN                    = "true"
-    CDN_ENABLED                         = "true"
+    CDN_ENABLED                         = var.deployCDN ? "true" : "false"
     CDN_ENDPOINT                        = "${var.cdnEndpointName}.azureedge.net"
+    BLOB_STORAGE_ENABLED                = var.deployAzureStorage ? "true" : "false"
+    WEBSITES_ENABLE_APP_SERVICE_STORAGE = var.deployAzureStorage ? "true" : "false"
+    STORAGE_ACCOUNT_NAME                = local.storageAccountName
+    BLOB_STORAGE_URL                    = local.blobStorageUrl
+    STORAGE_ACCOUNT_KEY                 = local.storageAccountKey
+    BLOB_CONTAINER_NAME                 = local.storageBlobContainerName
   }
+
   location                  = azurerm_resource_group.rsg.location
-  name                      = var.appServiceWebAppName
+  name                      = local.web_app_name 
   resource_group_name       = azurerm_resource_group.rsg.name
   service_plan_id           = azurerm_service_plan.app_svc_plan.id
   virtual_network_subnet_id = azurerm_subnet.app-subnet.id
@@ -117,8 +161,6 @@ resource "azurerm_subnet" "db-subnet" {
   ]
 }
 
-
-
 #Private DNS Zone for DB
 resource "azurerm_private_dns_zone" "private_dns_zone" {
   name                = var.privateDnsZoneNameForDb
@@ -156,7 +198,7 @@ resource "azurerm_mysql_flexible_server" "mysql_db_server" {
   administrator_login          = var.DBServerUsername
   administrator_password       = var.serverPassword
   tags                         = var.tags
-
+  zone                         = 1
   storage {
     size_gb = var.storageSizeGB
     iops    = var.storageIops
@@ -178,83 +220,45 @@ resource "azurerm_mysql_flexible_database" "wordpressDatabase" {
   ]
 }
 
-#CDN Profile
-resource "azurerm_cdn_profile" "cdn_profile" {
-  location            = "global"
-  name                = var.cdnProfileName
-  resource_group_name = azurerm_resource_group.rsg.name
-  sku                 = var.cdnType
-  tags                = var.tags
-
-  depends_on = [
-    azurerm_mysql_flexible_server.mysql_db_server
-  ]
-}
 
 
-#CDN Endpoint Config
-resource "azurerm_cdn_endpoint" "cdnProfileEndPoint" {
-  is_compression_enabled = true
-  location               = "global"
-  name                   = var.cdnEndpointName
-  origin_host_header     = "${var.appServiceWebAppName}-azurewebsites.net"
-  profile_name           = azurerm_cdn_profile.cdn_profile.name
+/*
+#CDN Profile - module - conditional deployment
+*/
+module "cdnProfile" {
+  # Deploy conditionally based on Feature Flag variable
+  count                  = var.deployCDN == true ? 1 : 0
+  source                 = "./modules/cdn"
+  cdn_profile_depends_on = [azurerm_mysql_flexible_server.mysql_db_server, azurerm_linux_web_app.wp_web_app]
   resource_group_name    = azurerm_resource_group.rsg.name
-  is_http_allowed        = true
-  is_https_allowed       = true
+  sku                    = var.cdnType
+  origin_host_header     = "${local.web_app_name}.azurewebsites.net" 
+  tags                   = var.tags
+  cdn_profile_name       = var.cdnProfileName
+  cdn_endpoint_name      = var.cdnEndpointName
 
-  origin {
-    host_name  = "${var.appServiceWebAppName}-azurewebsites.net"
-    name       = "${var.appServiceWebAppName}-azurewebsites-net"
+  origin = {
+    host_name  = "${local.web_app_name}.azurewebsites.net" 
+    name       = "${local.web_app_name}-azurewebsites.net" 
     http_port  = 80
     https_port = 443
   }
-  content_types_to_compress = [
-    "application/eot",
-    "application/font",
-    "application/font-sfnt",
-    "application/javascript",
-    "application/json",
-    "application/opentype",
-    "application/otf",
-    "application/pkcs7-mime",
-    "application/truetype",
-    "application/ttf",
-    "application/vnd.ms-fontobject",
-    "application/xhtml+xml",
-    "application/xml",
-    "application/xml+rss",
-    "application/x-font-opentype",
-    "application/x-font-truetype",
-    "application/x-font-ttf",
-    "application/x-httpd-cgi",
-    "application/x-javascript",
-    "application/x-mpegurl",
-    "application/x-opentype",
-    "application/x-otf",
-    "application/x-perl",
-    "application/x-ttf",
-    "font/eot",
-    "font/ttf",
-    "font/otf",
-    "font/opentype",
-    "image/svg+xml",
-    "text/css",
-    "text/csv",
-    "text/html",
-    "text/javascript",
-    "text/js",
-    "text/plain",
-    "text/richtext",
-    "text/tab-separated-values",
-    "text/xml",
-    "text/x-script",
-    "text/x-component",
-    "text/x-java-source"
-  ]
+}
 
-  depends_on = [
-    azurerm_linux_web_app.wp_web_app,
-    azurerm_cdn_profile.cdn_profile
-  ]
+/*
+#Azure Front Door - module - conditional deployment
+*/
+module "afdProfile" {
+  # Deploy conditionally based on Feature Flag variable
+  count                  = var.deployFrontDoor == true ? 1 : 0
+  source                 = "./modules/afd"
+  afd_profile_depends_on = [azurerm_mysql_flexible_server.mysql_db_server, azurerm_linux_web_app.wp_web_app]
+  resource_group_name    = azurerm_resource_group.rsg.name
+  origin_host_header     = "${local.web_app_name}.azurewebsites.net" 
+  tags                   = var.tags
+  afd_profile_name       = var.afd_profile_name
+  afd_endpoint_name      = var.afd_endpoint_name
+  afd_origingroup_name   = var.afd_origingroup_name
+  afd_origins_name       = var.afd_origins_name
+  afd_ruleset_name       = var.afd_ruleset_name
 }

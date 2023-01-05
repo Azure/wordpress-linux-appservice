@@ -9,6 +9,11 @@ tags = {
   AppProfile = "Wordpress"
 }
 
+#Conditional deployment flags
+deployAzureStorage = false  //Deploy storage account for use with Wordpress
+deployCDN          = false //If true then FrontDoor MUST be false
+deployFrontDoor    = false  //If true then CDN MUST be false
+
 #Resource Group
 resource_group_name = "wordpress-appsvc-rg"
 
@@ -36,8 +41,9 @@ db_subnet_cidr = "10.0.1.0/24"
 #App Service Plan Name
 appServicePlanName = "wp-appsvc-plan"
 
-#Web App Name
-appServiceWebAppName = "wp-app-web"
+#Web App Name prefix
+app_service_web_app_prefix = "wp-app-web"
+
 
 #App Svc SKU
 appSvcSkuCode = "P1v2"
@@ -85,7 +91,17 @@ backupRetentionDays = "7"
 geoRedundantBackup = "false"
 
 #CDN Endpoint Name
-cdnEndpointName = "wp-appsvc-endpoint"
+cdnEndpointName = "wp-appsvc-endpoint2"
 
 #CDN Profile Name
 cdnProfileName = "wp-appsvc-cdnprofile"
+
+
+/*
+Azure Front Door Policy vars
+*/
+afd_profile_name     = "wp-appsvc-afdprofile"
+afd_endpoint_name    = "wp-appsvc-afdEndPoint"
+afd_origingroup_name = "wp-appsvc-afdOriginGroup"
+afd_origins_name     = "wp-appsvc-afdOrigins"
+afd_ruleset_name     = "wpappsvcruleset"
