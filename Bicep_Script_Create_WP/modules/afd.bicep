@@ -176,7 +176,7 @@ resource afdRuleset 'Microsoft.Cdn/profiles/rulesets@2022-05-01-preview' = {
   ]
 }
 
-@description('defaultrule Ruleset')
+@description('Default Rule for Ruleset')
 resource afdRulesetDefault 'Microsoft.Cdn/profiles/rulesets/rules@2022-05-01-preview' = {
   parent: afdRuleset
   name: 'defaultrule'

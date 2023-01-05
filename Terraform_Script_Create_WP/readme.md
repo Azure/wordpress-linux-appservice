@@ -1,6 +1,6 @@
 # WordPress on Linux App Service Terraform Deployment
 
-* Time to deploy - Approx. 8 minutes
+* Time to deploy - Approx. 10-12 minutes
 
 This is the Terraform template that deploys the resources for running a WordPress site on a Linux App service.
 It deploys the following resources:
@@ -9,7 +9,9 @@ It deploys the following resources:
 * MySQL Server running on the Flexible server SKU with a database deployed and configured for use with WordPress.
 * Virtual Network - with a 10.0.0.0/16 CIDR block.
 * Private DNS Zone for the MySQL database.
-* CDN Profile (Azure Frontdoor) with a CDN profile endpoint with compression enabled.
+* Azure storage account - Used by Wordpress for storing assets such as images and BLOBs and Wordpress will automatically make use of this if enabled - User configurable
+* CDN Profile - Deploys a CDN profile (Standard Microsoft SKU) endpoint with compression enabled - User configurable and cannot be deployed if Azure Frontdoor is used.
+* Azure Front Door Profile - Deploys an Azure Frontdoor (Standard AzureFrontDoor SKU) CDN profile endpoint with compression enabled - User configurable and cannot be deployed if Azure CDN is used.
 
 
 ## Overview
@@ -25,6 +27,3 @@ From there run the following commands:
 * **tf plan -var-file='dev.tfvars'** - To show changes required by the current configuration, passing in the file 'dev.tfvars' as input. You will be prompted for passwords for the MySQL and Wordpress installations.
 * **tf apply -var-file='dev.tfvars'** - To deploy the infrastructure, passing in the file 'dev.tfvars' as input. You will be prompted for passwords for the MySQL and Wordpress installations. Once you have checked the deployment - Confirm creation by entering 'Yes'.
 * **tf destroy -var-file='dev.tfvars'** - To destroy previously-created infrastructure. You will be prompted for passwords for the MySQL and Wordpress installations. Once you have checked the deployment - Confirm destruction by entering 'Yes'.
-
-**KNOWN ISSUES**
-* There is an issue with the CDN Endpoint not setting the Origin hostname to an App service properly. As a Temporary fix you will need to go into the CDN Endpoint settings and change the Origin Type to Web App and change the Origin hostname and host header to the Web app url that was deployed earlier (*.azurewebsites.net). You will also need to purge all content from the endpoint to effect the change. This is being investigated and a bugfix is being worked on.
