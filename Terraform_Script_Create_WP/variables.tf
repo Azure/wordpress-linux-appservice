@@ -1,82 +1,100 @@
+/*
+General Settings
+*/
 variable "tags" {
   description = "resource tags"
-  default     = {}
+  default = {
+    AppProfile = "Wordpress"
+  }
 }
 
 variable "resource_group_name" {
-  description = "Resource Group"
+  description = "Resource Group Name"
   default     = "wordpress-appsvc-rg"
 }
 
+variable "resource_group_location" {
+  description = "Resource Group Location"
+  default     = "West US"
+}
+
+/*
+Feature Flags
+*/
 #Conditionally Deploy the Azure Storage account
-variable "deployAzureStorage" {
-  description = "Deploy Storage"
+variable "deploy_azure_storage_account" {
+  description = "Deploy Storage account for use by Wordpress"
   default     = false
   type        = bool
 }
 
 #Conditionally Deploy Azure Frontdoor
-variable "deployFrontDoor" {
-  description = "Deploy Azure Front Door"
+variable "deploy_azure_frontdoor" {
+  description = "Deploy Azure Front Door - Must not deploy CDN as well"
   default     = false
   type        = bool
 }
 
 #Conditionally Deploy the CDN
-variable "deployCDN" {
-  description = "Deploy CDN"
+variable "deploy_azure_cdn" {
+  description = "Deploy CDN - Must not deploy AFD as well"
   default     = false
   type        = bool
 }
 
+/*
+Storage Settings
+*/
 #Storage prefix
-variable "appServiceStorageAcctPrefix" {
-  description = "Storage Prefix"
+variable "app_service_storage_account_prefix" {
+  description = "Storage Account Name Prefix"
   default     = "wpstg"
 }
 
 #Storage BLOB container prefix
-variable "appServiceStorageBlobPrefix" {
+variable "app_service_storage_blob_prefix" {
   description = "Storage Container BLOB Prefix"
   default     = "blobstg"
 }
 
-variable "rg_location" {
-  description = "Location"
-  default     = "West US"
-}
 
-variable "vnet_name" {
+/*
+Network Settings
+*/
+variable "virtual_network_name" {
   description = "Virtual Network Name"
   default     = "wp-app-vnet"
 }
 
-variable "vnet_address_space" {
+variable "virtual_network_address_space" {
   description = "CIDR Block of the VNet"
   default     = "10.0.0.0/16"
 }
 
-variable "app_subnet" {
+variable "virtual_network_app_subnet_name" {
   description = "name of App Subnet"
   default     = "wp-app-subnet"
 }
 
-variable "app_subnet_cidr" {
+variable "virtual_network_app_subnet_cidr" {
   description = "cidr for App Subnet"
   default     = "10.0.0.0/24"
 }
 
-variable "db_subnet" {
+variable "virtual_network_db_subnet_name" {
   description = "name of db Subnet"
   default     = "wp-db-subnet"
 }
 
-variable "db_subnet_cidr" {
+variable "virtual_network_db_subnet_cidr" {
   description = "cidr for Db Subnet"
   default     = "10.0.1.0/24"
 }
 
-variable "appServicePlanName" {
+/*
+App Service Settings
+*/
+variable "app_service_hosting_plan_name" {
   description = "App service plan name"
   default     = "wp-appsvc-plan"
 }
@@ -86,145 +104,161 @@ variable "app_service_web_app_prefix" {
   default     = "wp-app-web"
 }
 
-variable "appSvcSkuCode" {
+variable "app_service_hosting_plan_sku" {
   description = "App service SKU"
   default     = "P1v2"
 }
 
-
-variable "numberOfWorkers" {
+variable "app_service_workers" {
   description = "App service Workers"
   default     = 1
 }
 
-variable "alwaysOn" {
+variable "app_service_alwayson" {
   description = "App service Always On"
   default     = true
 }
 
-variable "dockerRegistryUrl" {
+variable "app_service_docker_registry_url" {
   description = "Docker Registry URL"
   default     = "https://mcr.microsoft.com"
 }
 
-variable "serverEdition" {
-  description = "DB Server Edition"
+/*
+MySQL Settings
+*/
+variable "mysql_server_edition" {
+  description = "MYSQL DB Server Edition"
   default     = "GeneralPurpose"
 }
 
-
-variable "DBServerName" {
-  description = "DB Servername"
+variable "mysql_server_name" {
+  description = "MySQL DB Server name"
   default     = "wp-app-dbserver"
 }
 
-
-variable "DBServerUsername" {
+variable "mysql_server_username" {
   description = "DB Server Username"
+  default     = "wpdbadmusr"
 }
 
-variable "serverPassword" {
+variable "mysql_server_password" {
   description = "DB Server Password"
   sensitive   = true
 }
 
-variable "databaseName" {
+variable "mysql_db_storage_size_gb" {
+  description = "SQL DB Storage Size"
+  default     = "128"
+}
+
+variable "mysql_db_storage_iops" {
+  description = "SQL DB Storage IOPS"
+  default     = "700"
+}
+
+variable "mysql_db_storage_autogrow" {
+  description = "SQL DB Storage Autogrow"
+  default     = "Enabled"
+}
+
+variable "mysql_db_database_version" {
+  description = "SQL DB Version"
+  default     = "8.0.21"
+}
+
+variable "mysql_db_database_backup_retention_days" {
+  description = "how long to keep MySQL backup"
+  default     = "7"
+}
+
+variable "mysql_db_database_georedundant_backup" {
+  description = "Geo-Redundant Backup Enabled"
+  default     = "false"
+}
+
+variable "mysql_db_sql_sku" {
+  description = "SQL SKU Size"
+  default     = "GP_Standard_D2ds_v4"
+}
+
+variable "mysql_wordpress_database_name" {
   description = "WP DB name"
   default     = "wp-app-database"
 }
 
-
-variable "wordpressAdminEmail" {
+/*
+WordPress Settings
+*/
+variable "wordpress_admin_email" {
   description = "WP admin email"
-  #default     = "wp-app-database"
 }
 
-variable "wordpressUsername" {
+variable "wordpress_admin_admin_user_name" {
   description = "WP admin user"
 }
 
-variable "wordpressPassword" {
+variable "wordpress_admin_admin_password" {
   description = "WP Admin password"
   sensitive   = true
 }
 
-variable "wordpressTitle" {
+variable "wordpress_default_site_title" {
   description = "WP Default title"
   default     = "WordPress On Azure App services"
 }
 
-variable "wpLocaleCode" {
+variable "wordpress_locale_code" {
   description = "WP Locale Code"
   default     = "en_US"
 }
-
-variable "cdnEndpointName" {
-  description = "CDN Endpoint Name"
-  default     = "wp-appsvc-endpoint"
-}
-
-variable "linuxFxVersion" {
+variable "wordpress_container_linux_fx_version" {
   description = "WP Container Image version"
   default     = "mcr.microsoft.com/appsvc/wordpress-alpine-php"
 }
 
 
-variable "privateDnsZoneNameForDb" {
+variable "wordpress_container_start_time_limit" {
+  description = "WP container start time limit"
+  default     = "900"
+}
+
+variable "wordpress_setup_phpadmin" {
+  description = "WP Setup PHP admin for new installs"
+  default     = "true"
+}
+
+/*
+Private DNS Settings
+*/
+
+variable "private_dns_zone_name_for_db" {
   description = "Private DNS Zone for Database"
   default     = "wp-appsvc-privatelink.mysql.database.azure.com"
 }
 
 
-variable "MySQLSku" {
-  description = "SQL SKU Size"
-  default     = "GP_Standard_D2ds_v4"
+/*
+CDN Settings
+*/
+variable "cdn_endpoint_name" {
+  description = "CDN Endpoint Name"
+  default     = "wp-appsvc-endpoint"
 }
 
-
-variable "storageSizeGB" {
-  description = "SQL DB Storage Size"
-  default     = "128"
-}
-
-variable "storageIops" {
-  description = "SQL DB Storage IOPS"
-  default     = "700"
-}
-
-variable "storageAutoGrow" {
-  description = "SQL DB Storage Autogrow"
-  default     = "Enabled"
-}
-
-variable "databaseVersion" {
-  description = "SQL DB Version"
-  default     = "8.0.21"
-}
-
-variable "backupRetentionDays" {
-  description = "how long to keep MySQL backup"
-  default     = "7"
-}
-
-variable "geoRedundantBackup" {
-  description = "Geo-Redundant Backup Enabled"
-  default     = "false"
-}
-
-
-variable "cdnProfileName" {
+variable "cdn_profile_name" {
   description = "CDN Profile"
   default     = "wp-appsvc-cdnprofile"
 }
 
-variable "cdnType" {
+variable "cdn_type" {
   description = "CDN Profile"
-  default     = "Standard_Microsoft"
+  default     = "Standard_Microsoft" #Only allow Standard Microsoft
 }
 
 
 /*
-Azure Front Door Policy vars
+Azure Front Door Settings
 */
 variable "afd_profile_name" {
   description = "Azure Front Door Profile Name"
@@ -255,8 +289,3 @@ variable "afd_ruleset_name" {
   description = "Frontdoor Default Ruleset"
   default     = "wpappsvcruleset"
 }
-
-# variable "afd_default_route_Name" {
-#   description = "Frontdoor Default Route name"
-#   default     = "default-route"
-# }
