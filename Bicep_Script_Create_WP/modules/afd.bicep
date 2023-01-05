@@ -1,5 +1,5 @@
 /*
-SUMMARY: Module to create an Azure Front Door
+SUMMARY: Module to create an Azure Front Door resource
 DESCRIPTION: The following components will be required parameters in this deployment
    Microsoft.Cdn/profiles
    Microsoft.Cdn/profiles/afdEndpoints
@@ -9,8 +9,12 @@ DESCRIPTION: The following components will be required parameters in this deploy
    Microsoft.Cdn/profiles/rulesets
    Microsoft.Cdn/profiles/rulesets/rules
 
-AUTHOR/S: asaikovski
-VERSION: 1.0.0
+AUTHOR/S:     aaron.saikovski@microsoft.com
+VERSION:      1.0.1
+
+VERSION HISTORY:
+  1.0.0 - Initial version release
+  1.0.1 - Fixed minor dependency bugs when deploying
 */
 
 @description('Name of AFD Profile')
@@ -84,6 +88,9 @@ resource afdEndpoint 'Microsoft.Cdn/profiles/afdEndpoints@2021-06-01' = {
   properties: {
     enabledState: enableAfdEndpoint
   }
+  dependsOn:[
+    afdProfile
+  ]
 }
 
 @description('AFD Endpoint Route')
@@ -112,7 +119,10 @@ resource afdDefaultRoute 'Microsoft.Cdn/profiles/afdendpoints/routes@2022-05-01-
     httpsRedirect: 'Enabled'
     enabledState: 'Enabled'
   }
-  
+  dependsOn:[
+    afdProfile
+    afdEndpoint
+  ]
 }
 
 @description('Origin Groups')
@@ -132,7 +142,10 @@ resource afdOriginGroup 'Microsoft.Cdn/profiles/originGroups@2021-06-01' = {
       probeIntervalInSeconds: 100
     }
     sessionAffinityState: 'Disabled'
-  } 
+  }
+  dependsOn:[
+    afdProfile
+  ]
 }
 
 @description('List of origin and mapping to Origin Groups')
@@ -148,12 +161,19 @@ resource afdOrigins 'Microsoft.Cdn/profiles/originGroups/origins@2021-06-01' = {
     weight: 1000
     enabledState: originEnabledState
     enforceCertificateNameCheck: true
-  } 
+  }
+  dependsOn:[
+    afdOriginGroup
+  ]
 }
 
 resource afdRuleset 'Microsoft.Cdn/profiles/rulesets@2022-05-01-preview' = {
   parent: afdProfile
   name: afdRulesetName
+  dependsOn:[
+    afdProfile
+    afdEndpoint
+  ]
 }
 
 @description('defaultrule Ruleset')
@@ -199,7 +219,10 @@ resource afdRulesetDefault 'Microsoft.Cdn/profiles/rulesets/rules@2022-05-01-pre
       }
     ]
     matchProcessingBehavior: 'Stop'
-  }  
+  }
+  dependsOn:[
+    afdRuleset
+  ]
 }
 
 @description('CacheStaticFiles Ruleset')
@@ -263,7 +286,10 @@ resource afdRulesetCacheStaticFiles 'Microsoft.Cdn/profiles/rulesets/rules@2022-
       }
     ]
     matchProcessingBehavior: 'Stop'
-  }  
+  }
+  dependsOn:[
+    afdRulesetDefault
+  ]
 }
 
 @description('Profile Id')
