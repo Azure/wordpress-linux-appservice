@@ -10,92 +10,92 @@ tags = {
 }
 
 #Conditional deployment flags
-deployAzureStorage = false  //Deploy storage account for use with Wordpress
-deployCDN          = false //If true then FrontDoor MUST be false
-deployFrontDoor    = false  //If true then CDN MUST be false
+deploy_azure_storage_account = false //Deploy storage account for use with Wordpress
+deploy_azure_cdn             = false //If true then FrontDoor MUST be false
+deploy_azure_frontdoor       = false //If true then CDN MUST be false
 
 #Resource Group
 resource_group_name = "wordpress-appsvc-rg"
 
 #Location - set all resources to RG location as default
-rg_location = "Australia East"
+resource_group_location = "Australia East"
 
 #VNet Name
-vnet_name = "wp-app-vnet"
+virtual_network_name = "wp-app-vnet"
 
 #VNet CIDR Address Block
-vnet_address_space = "10.0.0.0/16"
+virtual_network_address_space = "10.0.0.0/16"
 
 #App Subnet name
-app_subnet = "wp-app-subnet"
+virtual_network_app_subnet_name = "wp-app-subnet"
 
 #App Subnet CIDR
-app_subnet_cidr = "10.0.0.0/24"
+virtual_network_app_subnet_cidr = "10.0.0.0/24"
 
 #DB Subnet name
-db_subnet = "wp-db-subnet"
+virtual_network_db_subnet_name = "wp-db-subnet"
 
 #DB Subnet CIDR
-db_subnet_cidr = "10.0.1.0/24"
+virtual_network_db_subnet_cidr = "10.0.1.0/24"
 
 #App Service Plan Name
-appServicePlanName = "wp-appsvc-plan"
+app_service_hosting_plan_name = "wp-appsvc-plan"
 
 #Web App Name prefix
 app_service_web_app_prefix = "wp-app-web"
 
 
 #App Svc SKU
-appSvcSkuCode = "P1v2"
+app_service_hosting_plan_sku = "P1v2"
 
 #DB ServerName
-DBServerName = "wp-app-dbserver"
+mysql_server_name = "wp-app-dbserver001"
 
 #DB Username
-DBServerUsername = "wpdbuser"
+mysql_server_username = "wpdbadmuser"
 
 #WP DB Name
-databaseName = "wp-app-database"
+mysql_wordpress_database_name = "wp-app-database"
 
 #WP Admin email
-wordpressAdminEmail = "someuser@somedomain.com"
+wordpress_admin_email = "someuser@somedomain.com"
 
 #WP UserAdmin
-wordpressUsername = "wpappuser"
+wordpress_admin_admin_user_name = "wpappuser"
 
 #WP Title
-wordpressTitle = "WordPress On Azure App services"
+wordpress_default_site_title = "WordPress On Azure App services"
 
 #WP Locale
-wpLocaleCode = "en_US"
+wordpress_locale_code = "en_US"
 
-#Private DNS Zone Name for DB
-privateDnsZoneNameForDb = "wp-appsvc-privatelink.mysql.database.azure.com"
 
 #MYSQL SKU
-MySQLSku = "GP_Standard_D2ds_v4"
+mysql_db_sql_sku = "GP_Standard_D2ds_v4"
 
 #MYSQL Storage Size
-storageSizeGB = "128"
+mysql_db_storage_size_gb = "128"
 
 #MySQL Storage IOPs
-storageIops = "700"
+mysql_db_storage_iops = "700"
 
 #MYSQL Autogrow
-storageAutoGrow = "Enabled"
+mysql_db_storage_autogrow = "Enabled"
 
 #MYSql backup retention days
-backupRetentionDays = "7"
+mysql_db_database_backup_retention_days = "7"
 
 #Enable MySQL Geo-Redundant Backup
-geoRedundantBackup = "false"
+mysql_db_database_georedundant_backup = "false"
 
 #CDN Endpoint Name
-cdnEndpointName = "wp-appsvc-endpoint2"
+cdn_endpoint_name = "wp-appsvc-endpoint2"
 
 #CDN Profile Name
-cdnProfileName = "wp-appsvc-cdnprofile"
+cdn_profile_name = "wp-appsvc-cdnprofile"
 
+#Private DNS Zone Name for DB
+private_dns_zone_name_for_db = "wp-appsvc-privatelink.mysql.database.azure.com"
 
 /*
 Azure Front Door Policy vars

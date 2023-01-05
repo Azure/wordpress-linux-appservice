@@ -14,7 +14,4 @@ Wordpress Bicep Templates and scripts
 
 ### Done ✓
 
-- [x] Bicep - Add Azure Front Door Modules  
-- [x] Bicep - Add CDN Modules  
-- [x] Bicep - update readme.md to include new AFD resources and recheck  
 
