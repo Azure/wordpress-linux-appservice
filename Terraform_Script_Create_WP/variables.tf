@@ -8,6 +8,39 @@ variable "resource_group_name" {
   default     = "wordpress-appsvc-rg"
 }
 
+#Conditionally Deploy the Azure Storage account
+variable "deployAzureStorage" {
+  description = "Deploy Storage"
+  default     = false
+  type        = bool
+}
+
+#Conditionally Deploy Azure Frontdoor
+variable "deployFrontDoor" {
+  description = "Deploy Azure Front Door"
+  default     = false
+  type        = bool
+}
+
+#Conditionally Deploy the CDN
+variable "deployCDN" {
+  description = "Deploy CDN"
+  default     = false
+  type        = bool
+}
+
+#Storage prefix
+variable "appServiceStorageAcctPrefix" {
+  description = "Storage Prefix"
+  default     = "wpstg"
+}
+
+#Storage BLOB container prefix
+variable "appServiceStorageBlobPrefix" {
+  description = "Storage Container BLOB Prefix"
+  default     = "blobstg"
+}
+
 variable "rg_location" {
   description = "Location"
   default     = "West US"
@@ -48,8 +81,8 @@ variable "appServicePlanName" {
   default     = "wp-appsvc-plan"
 }
 
-variable "appServiceWebAppName" {
-  description = "App service App name"
+variable "app_service_web_app_prefix" {
+  description = "App service prefix"
   default     = "wp-app-web"
 }
 
@@ -188,3 +221,42 @@ variable "cdnType" {
   description = "CDN Profile"
   default     = "Standard_Microsoft"
 }
+
+
+/*
+Azure Front Door Policy vars
+*/
+variable "afd_profile_name" {
+  description = "Azure Front Door Profile Name"
+  default     = ""
+}
+
+variable "afd_endpoint_name" {
+  description = "The name which should be used for this Front Door Endpoint"
+  default     = "wp-appsvc-afdEndPoint"
+}
+
+variable "enable_afd_endpoint" {
+  description = "Front Door Endpoint is enabled?"
+  default     = true
+}
+
+variable "afd_origingroup_name" {
+  description = "Front Door OriginGroup Name"
+  default     = "wp-appsvc-afdOriginGroup"
+}
+
+variable "afd_origins_name" {
+  description = "Front Door Origin Name"
+  default     = "wp-appsvc-afdOrigins"
+}
+
+variable "afd_ruleset_name" {
+  description = "Frontdoor Default Ruleset"
+  default     = "wpappsvcruleset"
+}
+
+# variable "afd_default_route_Name" {
+#   description = "Frontdoor Default Route name"
+#   default     = "default-route"
+# }
