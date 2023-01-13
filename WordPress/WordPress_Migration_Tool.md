@@ -12,7 +12,7 @@ Automated Migrations allows you to easily migrate your WordPress site to Linux A
 
 ## WordPress Migration Tool
 
-WordPress migration tool for app services is a one-click service to migrate a WordPress on Windows Azure App Service to a WordPress on Linux App Service. Download the WordPressMigrationTool.zip from [this link](https://aka.ms/WPmigration) to your local machine and extract the zip file.
+WordPress migration tool for app services is a one-click service to migrate a WordPress on Windows Azure App Service to a WordPress on Linux App Service. Download the WordPressMigrationTool.zip from [this link](./Migration_Tools/WordPressMigrationTool.zip) to your local machine and extract the zip file.
 
 **Prerequisites to launch the exe:**
 
@@ -86,7 +86,7 @@ The following WordPress settings are recommended. However, when the users migrat
 
 ## Search And Replace (paths and domains)
 
-One common issue that users face during migration is that some of the contents of their old site use absolute urls/paths instead of relative ones. To resolve this issue, you can use plugins like [Search and Replace](https://wordpress.org/plugins/search-replace/) to update the database records.
+One common issue that users face during migration is that some of the contents of their old site use absolute urls/paths instead of relative paths. To resolve this issue, you can use plugins like [Search and Replace](https://wordpress.org/plugins/search-replace/) to update the database records.
 
 ## Configuring Custom Domain
 
