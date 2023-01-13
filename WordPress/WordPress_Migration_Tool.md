@@ -61,6 +61,8 @@ If the Migration encounters any issues with the information you have entered, yo
 
 Once the physical migration has completed you will want to perform the following post migration steps as described below.
 
+For any reasons, if the migration is not succeeded then please follow the manual migration as per the steps outlined in [Migration guide](https://github.com/Azure/wordpress-linux-appservice/blob/main/WordPress/wordpress_migration_linux_appservices.md).
+
 ## Post Migration Actions
 
 ### Install Recommended Plugins
