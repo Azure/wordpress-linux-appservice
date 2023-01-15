@@ -23,31 +23,31 @@ Migrate WordPress site from Windows to Linux app service:
 
 1.To start a migration, run the exe from above extracted zip file. You will be prompted to allow azure authentication for the migration tool. Clicking the Ok button will redirect you to azure authentication page in the default browser.
 
-    ![Authentication](../media/Authentication.png)
+    ![Authentication](../WordPress/media/Authentication.png)
 
 2.Select an existing account or add a new user account.
-    ![Auth_Consent](../media/Auth_conscent.png)
+    ![Auth_Consent](../WordPress/media/Auth_conscent.png)
 
 3.The migration tool waits for authentication for 30 seconds before continuing.
-        ![Default Page](../media/Default_page.png)
+        ![Default Page](../WordPress/media/Default_page.png)
 
 4.Select the subscription, resource group and app name for a WordPress on Windows site.
-        ![Source Subscription](../media/Source_subscription.png)
+        ![Source Subscription](../WordPress/media/Source_subscription.png)
 
 5.If you do not have a target WordPress on Linux app already deployed, follow this link to create Linux site. After creating the site, come back to this step to continue the Migration.
-        ![Create Site](../media/WP_Create.png)
+        ![Create Site](../WordPress/media/WP_Create.png)
 
 6.Select subscription, resource group and app name for the target WordPress on Linux site.
-        ![Destination Subs](../media/Destination_subs.png)
+        ![Destination Subs](../WordPress/media/Destination_subs.png)
 
 7.Click the Migrate button to begin migration.
-        ![Migrate](../media/Migrate_click.png)
+        ![Migrate](../WordPress/media/Migrate_click.png)
 
 8.Below screen is loaded displaying the  migration logs in real time:  
-        ![Migrate Logs](../media/Migration_logs.png)
+        ![Migrate Logs](../WordPress/media/Migration_logs.png)
 
 9.The following prompt appears when migration is completed.
-        ![Migration Complete](../media/Migration_completion.png)
+        ![Migration Complete](../WordPress/media/Migration_completion.png)
 
 If the Migration encounters any issues with the information you have entered, you will be directed back to the migration form to correct the specified details.
 
