@@ -21,8 +21,9 @@ Note: Please refer to the **Limitations** and **Recommendations** sections below
 
 Go to your App Service and add the following Application Setting, and then wait for your App to restart.
 
-`|**WORDPRESS_LOCAL_STORAGE_CACHE_ENABLED** |**true**      |`
-`|---------------------------------------|----------|`
+|**APPLICATION SETTING** |**VALUE**     |
+|---------------------------------------|----------|
+|**WORDPRESS_LOCAL_STORAGE_CACHE_ENABLED** |**true**      |
 
 ## Limitations
 
