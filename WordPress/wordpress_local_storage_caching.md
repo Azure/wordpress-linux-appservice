@@ -33,4 +33,4 @@ Go to your App Service and add the following Application Setting, and then wait 
 ## Recommendations
 - Always remove unused plugins and themes, as it will impact the initial start up time of your App Service.
 - Do not stop/re-start the site immediately after adding some plugins/themes. Wait for atleast few minutes before doing so. Since Unison copies the files asynchronously to the remote storage, sometimes there can be a network delay in transfering the files.
-- Keep the total size of WordPress Core Code + Plugins + Themes + ..., excluding the **wp-content/uploads** folder as minimal as possible (< 10GiB). Remove any uncessary plugins, themes and files.
+- Keep the total size of **WordPress Core Code + Plugins + Themes + ...**, excluding the **wp-content/uploads** folder as minimal as possible (< 10GiB). Remove any uncessary plugins, themes and files.
