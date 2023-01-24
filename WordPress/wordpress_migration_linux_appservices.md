@@ -4,12 +4,17 @@ This document describes two approaches for migrating your WordPress sites from W
 
 >**Note:** Migrate the content to a test instance first, validate all E2E scenarios of your website, and if everything works as expected, swap this instance to the production slot.
 
- You can migrate your site to WordPress on Azure App Service in two ways:
+ You can migrate your site to WordPress on Azure App Service in three ways:
 
- 1. With WordPress plugin All-In-One WP Migration
- 2. Manual process of migration
+ 1. Migration Tool
+ 2. With All-In-One WP Migration Plugin
+ 3. Manual process of migration
 
-## 1. All-In-One WP Migration Plugin
+## 1. Migration Tool
+
+WordPress migration tool for app services is a one-click service to migrate the WordPress sites running on Windows Azure App Service to a WordPress hosted on Linux App Service. Please follow the steps described in this [document](https://github.com/Azure/wordpress-linux-appservice/blob/main/WordPress/WordPress_Migration_Tool.md)
+
+## 2. All-In-One WP Migration Plugin
 
 This is a very popular and trusted plugin used for migrating sites with ease and is also recommended by the Azure WordPress team. However, there are certain things that need to be taken care of before starting on the WordPress migration.
 
@@ -41,7 +46,7 @@ If you choose to migrate the site using this plugin, install All-In-One Migratio
     - Then click on the **Dashboard** option shown below it.
     - On the dashboard, you will see a button with the label **Empty All Caches**.
 
-## 2. Manual Migration Process
+## 3. Manual Migration Process
 
 The prerequisite is that the WordPress on Linux Azure App Service must have been created with an appropriate hosting plan from here: [WordPress on Linux App Service](https://aka.ms/linux-wordpress).
 
