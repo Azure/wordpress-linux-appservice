@@ -15,7 +15,7 @@ It is very important to note that only the part of WordPress that highly impacts
 
 However, the user uploaded static content (under **wp-content/uploads/**) is always kept on the remote file server and is never moved to local storage. Therefore any user uploaded static data is directly written to remote file storage.
 
-Note: Please refer to the **Limitations** and **Recommendations** sections below.
+**Note:** Please refer to the **Limitations** and **Recommendations** sections below.
 
 ## How to enable this feature?
 
