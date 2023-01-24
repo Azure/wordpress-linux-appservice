@@ -23,7 +23,7 @@ Go to your App Service and add the following Application Setting, and then wait 
 
 |APPLICATION SETTING |VALUE     |
 | :---------------------------------------| :----------|
-|**WORDPRESS_LOCAL_STORAGE_CACHE_ENABLED** |**true**      |
+|WORDPRESS_LOCAL_STORAGE_CACHE_ENABLED |true      |
 
 ## Limitations
 
