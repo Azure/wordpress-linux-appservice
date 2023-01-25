@@ -13,6 +13,9 @@ As I was saying earlier, in most of the cases, a single instance of App Service 
 
 It is very important to note that only the part of WordPress that highly impacts the performance is moved to the local storage. This mostly includes **WordPress Core Code + Plugins + Themes + Dropins**. Moreover, local storage is limited in size and therfore, we only move the necessary data. When the user installs a new plugin or theme, it gets stored on the local storage, and simultaneously, Unison tool detects and pushes the new changes to the remote file server in an asynchronous manner.
 
+![WordPress Directory Structure](./media/wordpress_directory_structure.jpg)
+
+
 However, the user uploaded static content (under **wp-content/uploads/**) is always kept on the remote file server and is never moved to local storage. Therefore any user uploaded static data is directly written to remote file storage.
 
 **Note:** Please refer to the **Limitations** and **Recommendations** sections below.
