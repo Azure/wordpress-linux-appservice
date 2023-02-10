@@ -71,13 +71,19 @@ The prerequisite is that the WordPress on Linux Azure App Service must have been
    rm -rf /home/site/wwwroot/wp-content/* 
    ```
 
-4. Upload the new contents of **wp-content** folder using the File Manager. Launch the SCM site https://**\<sitename\>.azurewebsites.net/newui**. Navigate to File Manager and click on the label that says '**Drag a File/Folder here to upload, or click to select one**'. Please note that if you are not able to upload everything at once, then you can try dividing your upload into multiple smaller chunks.
+4. Upload the new contents of **wp-content** folder using the File Manager. Launch the SCM site, below is sample URL:
 
-   <!it is recommended to upload the content over FTP than web upload through SCM site. Uploadig the content through FTP is more reliable and flexibe >
+  ```bash
+  https://**\<sitename\>.azurewebsites.net/newui**
+  ```
+
+Navigate to File Manager and click on the label that says '**Drag a File/Folder here to upload, or click to select one**'. Please note that if you are not able to upload the entire content at once, then you can divide your content into multiple chunks and upload.
+
+   **Note:** <!it is recommended to upload the content over FTP than web upload through SCM site. Uploading the content through FTP(may be [FileZilla](https://filezilla-project.org/download.php?type=client)) is more reliable and flexible >
 
 5. You can either point your WordPress to [use an existing MySQL database](./using_an_existing_mysql_database.md), or use the steps below to migrate the content to the new database server (an Azure Database for MySQL flexible server) created by the WordPress on Linux App Services offering.
 
-	>**NOTE:** Azure Database for MySQL - Single Server is on the road to retirement by 16 September 2024. If your existing MySQL database is hosted on Azure Database for MySQL - Single Server, please consider migrating to Azure Database for MySQL - Flexible Server using the following steps, or using [Azure Database Migration Service (DMS)](https://learn.microsoft.com/azure/mysql/single-server/whats-happening-to-mysql-single-server#migrate-from-single-server-to-flexible-server).
+	**NOTE:** Azure Database for MySQL - Single Server is on the road to retirement by 16 September 2024. If your existing MySQL database is hosted on Azure Database for MySQL - Single Server, please consider migrating to Azure Database for MySQL - Flexible Server using the following steps, or using [Azure Database Migration Service (DMS)](https://learn.microsoft.com/azure/mysql/single-server/whats-happening-to-mysql-single-server#migrate-from-single-server-to-flexible-server).
 
 6. If you chose to migrate the database, import the SQL file downloaded from the source database into the database of your newly created WordPress site. You can do it via the PhpMyAdmin dashboard available at **\<sitename\>.azurewebsites.net/phpmyadmin**. Please note that if you are unable to one single large SQL file, please try to break it into multiple smaller parts and try uploading. Steps to import the database through phpmyadmin are described [here](https://docs.phpmyadmin.net/en/latest/import_export.html#import).
 
