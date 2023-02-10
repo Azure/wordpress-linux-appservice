@@ -75,7 +75,7 @@ The prerequisite is that the WordPress on Linux Azure App Service must have been
 4. Upload the new contents of **wp-content** folder using the File Manager. Launch the SCM site, below is sample URL:
 
     ```bash
-    https://<sitename>.azurewebsites.net/newui
+    https://<sitename>.scm.azurewebsites.net/newui
     ```
 
     Navigate to File Manager and click on the label that says '**Drag a File/Folder here to upload, or click to select one**'. Please note that if you are not able to upload the entire content at once, then you can divide your content into multiple chunks and upload.
