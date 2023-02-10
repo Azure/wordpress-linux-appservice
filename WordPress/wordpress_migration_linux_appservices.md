@@ -31,17 +31,18 @@ If you choose to migrate the site using this plugin, install All-In-One Migratio
 
 ### Export the data at source site
 
-1. Launch WordPress Admin page
-1. Open All-In-One WP Migration plugin
-1. Click on 'Export' option and specify the export type as file
-1. This bundles the contents of database, media files, plugins, and themes into a single file, which can then be downloaded.
+1.	Launch WordPress Admin page
+2.	Open All-In-One WP Migration plugin
+3.	Click on 'Export' option and specify the export type as file
+4.	This bundles the contents of database, media files, plugins, and themes into a single file, which can then be downloaded.
+
 
 ### Import the data at destination site
 
-1. Launch WordPress Admin page
-1. Open All-In-One WP Migration plugin
-1. Click on import option on the destination site, and upload the file downloaded in previous section
-1. Empty the caches in W3TC plugin (or any other caches) and validate the content of the site.
+1.	Launch WordPress Admin page
+2.	Open All-In-One WP Migration plugin
+3.	Click on import option on the destination site, and upload the file downloaded in previous section
+4.	Empty the caches in W3TC plugin (or any other caches) and validate the content of the site.
     - Click on the **Performance** option given in the left sidebar of the admin panel to open the W3TC plugin.
     - Then click on the **Dashboard** option shown below it.
     - On the dashboard, you will see a button with the label **Empty All Caches**.
@@ -54,9 +55,9 @@ The prerequisite is that the WordPress on Linux Azure App Service must have been
 
 >**NOTE:** Depending on the size of your content and your internet connection, this operation could take sometime.
 
-1. Download the **wp-content** folder from the source site. You can use popular FTP tools like [FileZilla](https://filezilla-project.org/download.php?type=client) to connect to the web server and download the content.
+1.	Download the **wp-content** folder from the source site. You can use popular FTP tools like [FileZilla](https://filezilla-project.org/download.php?type=client) to connect to the web server and download the content.
 
-1. Export the contents of the source database into an SQL file. You can perform this task either using MySQL client tools like HeidiSQL, [MySQL workbench](https://dev.mysql.com/downloads/workbench/), [PhpMyAdmin](https://docs.phpmyadmin.net/en/latest/setup.html) or through command line interface. For more information on exporting the database, please refer to the following [documentation](https://dev.mysql.com/doc/workbench/en/wb-admin-export-import-management.html).
+2.	Export the contents of the source database into an SQL file. You can perform this task either using MySQL client tools like HeidiSQL, [MySQL workbench](https://dev.mysql.com/downloads/workbench/), [PhpMyAdmin](https://docs.phpmyadmin.net/en/latest/setup.html) or through command line interface. For more information on exporting the database, please refer to the following [documentation](https://dev.mysql.com/doc/workbench/en/wb-admin-export-import-management.html).
 
 ### Manually Import the data at destination site
 
@@ -73,13 +74,13 @@ The prerequisite is that the WordPress on Linux Azure App Service must have been
 
 4. Upload the new contents of **wp-content** folder using the File Manager. Launch the SCM site, below is sample URL:
 
-  ```bash
-  https://**\<sitename\>.azurewebsites.net/newui**
-  ```
+    ```bash
+    https://<sitename>.azurewebsites.net/newui
+    ```
 
-Navigate to File Manager and click on the label that says '**Drag a File/Folder here to upload, or click to select one**'. Please note that if you are not able to upload the entire content at once, then you can divide your content into multiple chunks and upload.
+  Navigate to File Manager and click on the label that says '**Drag a File/Folder here to upload, or click to select one**'. Please note that if you are not able to upload the entire content at once, then you can divide your content into multiple chunks and upload.
 
-   **Note:** <!it is recommended to upload the content over FTP than web upload through SCM site. Uploading the content through FTP(may be [FileZilla](https://filezilla-project.org/download.php?type=client)) is more reliable and flexible >
+   **Note:** It is recommended to upload the content over FTP than web upload through SCM site. Uploading the content through FTP(may be [FileZilla](https://filezilla-project.org/download.php?type=client)) is more reliable and flexible >
 
 5. You can either point your WordPress to [use an existing MySQL database](./using_an_existing_mysql_database.md), or use the steps below to migrate the content to the new database server (an Azure Database for MySQL flexible server) created by the WordPress on Linux App Services offering.
 
