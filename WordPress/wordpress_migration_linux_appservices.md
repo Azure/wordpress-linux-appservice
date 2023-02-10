@@ -71,9 +71,9 @@ The prerequisite is that the WordPress on Linux Azure App Service must have been
    rm -rf /home/site/wwwroot/wp-content/* 
    ```
 
-4. Upload the new contents of **wp-content** folder using the File Manager. Click on the label that says '**Drag a File/Folder here to upload, or click to select one**'. Please note that if you are not able to upload everything at once, then you can try dividing your upload into multiple smaller ones.
+4. Upload the new contents of **wp-content** folder using the File Manager. Launch the SCM site https://**\<sitename\>.azurewebsites.net/newui**. Navigate to File Manager and click on the label that says '**Drag a File/Folder here to upload, or click to select one**'. Please note that if you are not able to upload everything at once, then you can try dividing your upload into multiple smaller chunks.
 
-   <!TODO: we should prob recomend doing this over FTP, it's more reliable than web upload through SCM site?>
+   <!it is recommended to upload the content over FTP than web upload through SCM site. Uploadig the content through FTP is more reliable and flexibe >
 
 5. You can either point your WordPress to [use an existing MySQL database](./using_an_existing_mysql_database.md), or use the steps below to migrate the content to the new database server (an Azure Database for MySQL flexible server) created by the WordPress on Linux App Services offering.
 
