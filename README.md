@@ -1,5 +1,7 @@
 # WordPress on Linux App Service
 
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazureappserviceoss%2Fwordpress-azure%2Fmaster%2Fazuredeploy.json)
+
 Whether you’re shuffling a couple thousand visitors a day through an eCommerce shopping experience or attracting thousands of visitors to your content per day, your digital experience must be available and load fast to engage and wow your audiences. Our cloud-based solutions give your sites high availability, speed, scalability, and security, so you can press ahead with confidence.
 
 WordPress hosted on Azure App Service is a fully managed Azure PaaS offering with built-in infrastructure maintenance, security patching and scaling. It also supports virtual networks, and the ability to run in an isolated and dedicated App Service Environment. WordPress updates and patches, threat detection and blocking, and traffic encryption with free SSL certificates are part of what we offer to all of our customers.
