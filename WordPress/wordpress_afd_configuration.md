@@ -12,7 +12,7 @@ The following Application Settings are passed on to the Web App during the deplo
 
 |Application Settings | Value |
 |---------------------|-------|
-|CDN_EAFD_ENABLED | <true/false>     |
+|AFD_ENABLED | <true/false>     |
 |AFD_ENDPOINT | <AFD_Endpoint_Hostname>   |
 
 
