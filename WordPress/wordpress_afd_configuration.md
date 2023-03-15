@@ -18,7 +18,7 @@ The following Application Settings are passed on to the Web App during the deplo
 
 When AFD endpoint comes up, the following constants are updated in wp-config file. This updates the domain of all hyperlinks produced by WordPress to AFD endpoint hostname and redirects all admin pages to AFD.
 
-**WP_HOME: <AFD_Endpoint_Hostname>**
+**WP_HOME: <AFD_Endpoint_Hostname>** <br>
 **WP_SITEURL: <AFD_Endpoint_Hostname>**
 
 **NOTE**: It may take up to 15 minutes or more in case of app restarts to configure AFD since it leads to a reset of the cron job that configures AFD.
