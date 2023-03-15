@@ -9,6 +9,7 @@ Configuration that can be changed and have an affect  on your WordPress site thr
 | Application Setting  | Scope | Default Value | Max Value  | Description                      |
 |----------------------|-------------|---------------|-------------|---------------------------|
 |WEBSITES_CONTAINER_START_TIME_LIMIT| Web App| 900| -| The amount of time the platform will wait (for the site to come up) before it restarts your container. WP installation takes around 5-10 mins after the AppService is deployed. By default, timeout limit for Linux AppService is 240 seconds. So, overriding this value to 900 seconds for WordPress deployments to avoid container restarts during the setup process. This is a required setting, and it is recommended to not change this value.|
+|WORDPRESS_LOCAL_STORAGE_CACHE_ENABLED| Web App| -| -| Enables high performance for WordPress by serving the content from local storage rather than from remote storage. This only works with single instance of App Service and scaling out is not possible when it is enabled. We highly recommended to set this to TRUE and in case if you need more compute power, you can always try scaling up. |
 |WEBSITES_ENABLE_APP_SERVICE_STORAGE| Web App| TRUE| -| When set to TRUE, file contents are preserved during restarts.|
 |WP_MEMORY_LIMIT| WordPress| 128M| 512M| Frontend or general wordpress PHP memory limit (per script). Can't be more than PHP_MEMORY_LIMIT|
 |WP_MAX_MEMORY_LIMIT| WordPress| 256M| 512M| Admin dashboard PHP memory limit (per script). Generally Admin dashboard/ backend scripts takes lot of memory compared to frontend scripts. Can't be more than PHP_MEMORY_LIMIT.|
@@ -33,6 +34,8 @@ Configurations that are used as a 'one-time' change and will be in affect during
 |SETUP_PHPMYADMIN| PhpMyAdmin| TRUE| -| Setups PhpMyAdmin dashboard and can be accessed from /phpmyadmin on your site. Only used once during the installation process. It is recommended to not change this once the WordPress installation is complete as it might change the routing rules.|
 |CDN_ENABLED| Azure CDN| -| -| Enables and configures CDN during installation time if the flag is set to true.|
 |CDN_ENDPOINT| Azure CDN| -| -| The CDN endpoint is configured in the WordPress during installation time. CDN takes around 15 minutes to come up and get configured. CDN_ENABLED flag has to be set to true for this to be configured.|
+|AFD_ENABLED| Azure CDN| -| -| Enables and configures AFD during installation time if the flag is set to true.|
+|AFD_ENDPOINT| Azure CDN| -| -| The AFD endpoint is configured in the WordPress during installation time. AFD_ENABLED flag has to be set to true for this to be configured.|
 |BLOB_STORAGE_ENABLED| Azure Blob Storage| -| -| Enables and configures blob during installation time if the flag is set to true.|
 |STORAGE_ACCOUNT_NAME| Azure Blob Storage| -| -|
 |BLOB_CONTAINER_NAME| Azure Blob Storage| -| -|
