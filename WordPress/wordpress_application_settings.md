@@ -24,19 +24,19 @@ Configuration that can be changed and have an affect  on your WordPress site thr
 |DATABASE_NAME| Database| -| -| Database name used to connect to WordPress.|
 |DATABASE_USERNAME| Database| -| -| Database username used to connect to WordPress.|
 |DATABASE_PASSWORD| Database| -| -| Database password used to connect to WordPress.|
-|AFD_CUSTOM_DOMAIN| Azure Frontdoor| -| -| This is used when Azure Frontdoor is configured with a custom domain, and the new domain needs to be configured in WordPress App too.|
+|AFD_CUSTOM_DOMAIN| Azure Frontdoor| -| -| This is used when Azure Frontdoor is configured with a custom domain, and the new domain needs to be configured in WordPress App too. AFD_ENABLED flag has to be set to true for this to be configured.|
 
 ## One-time Application Settings
 
-Configurations that are used as a 'one-time' change and will be in affect during the installation process. Once the App is deployed, the changes to these App Settings  will not have any impact to your WordPress site. These are shown for your reference only.
+Configurations that are used as a 'one-time' change and are applied just once. Any additional changes to these App Settings after the app has been deployed or configured won't re-configure or update your WordPress site. Although some of them needs to be preserved for proper functioning of your App.
 
 | Application Setting  | Scope        | Default Value | Max Value  | Description                      |
 |----------------------|-------------------|---------------|-------------|----------------------------------|
-|SETUP_PHPMYADMIN| PhpMyAdmin| TRUE| -| Setups PhpMyAdmin dashboard and can be accessed from /phpmyadmin on your site. Only used once during the installation process. It is recommended to not change this once the WordPress installation is complete as it might change the routing rules.|
-|CDN_ENABLED| Azure CDN| -| -| Enables and configures CDN during installation time if the flag is set to true.|
+|SETUP_PHPMYADMIN| PhpMyAdmin| TRUE| -| Setups PhpMyAdmin dashboard and can be accessed from /phpmyadmin on your site. Only used once during the installation process. It is recommended to not change this once the WordPress installation is complete as it will change the Nginx routing rules. **Needs to be preserved for proper functioning of the App.**|
+|CDN_ENABLED| Azure CDN| -| -| Enables and configures CDN during installation time if the flag is set to true. |
 |CDN_ENDPOINT| Azure CDN| -| -| The CDN endpoint is configured in the WordPress during installation time. CDN takes around 15 minutes to come up and get configured. CDN_ENABLED flag has to be set to true for this to be configured.|
-|AFD_ENABLED| Azure Frontdoor| -| -| Enables and configures AFD during installation time if the flag is set to true.|
-|AFD_ENDPOINT| Azure Frontdoor| -| -| The AFD endpoint is configured in the WordPress during installation time. AFD_ENABLED flag has to be set to true for this to be configured.|
+|AFD_ENABLED| Azure Frontdoor| -| -| Enables and configures AFD during installation time if the flag is set to true. **Needs to be preserved for proper functioning of the App.** |
+|AFD_ENDPOINT| Azure Frontdoor| -| -| The AFD endpoint is configured in the WordPress during installation time. AFD_ENABLED flag has to be set to true for this to be configured. **Needs to be preserved for proper functioning of the App.** |
 |BLOB_STORAGE_ENABLED| Azure Blob Storage| -| -| Enables and configures blob during installation time if the flag is set to true.|
 |STORAGE_ACCOUNT_NAME| Azure Blob Storage| -| -|
 |BLOB_CONTAINER_NAME| Azure Blob Storage| -| -|
