@@ -1,5 +1,7 @@
 # WordPress on Linux App Service
 
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/WordPress.WordPress)
+
 Whether you’re shuffling a couple thousand visitors a day through an eCommerce shopping experience or attracting thousands of visitors to your content per day, your digital experience must be available and load fast to engage and wow your audiences. Our cloud-based solutions give your sites high availability, speed, scalability, and security, so you can press ahead with confidence.
 
 WordPress hosted on Azure App Service is a fully managed Azure PaaS offering with built-in infrastructure maintenance, security patching and scaling. It also supports virtual networks, and the ability to run in an isolated and dedicated App Service Environment. WordPress updates and patches, threat detection and blocking, and traffic encryption with free SSL certificates are part of what we offer to all of our customers.
@@ -15,12 +17,13 @@ WordPress on Azure App Service is supported in Public cloud, US Government cloud
 * [Change MySQL Database Password for WordPress on Linux App Service](./WordPress/changing_mysql_database_password.md)
 * [Change WordPress Admin Credentials of the WordPress hosted on Linux App Service](./WordPress/changing_wordpress_admin_credentials.md)
 * [Setup Startup scripts for WordPress running on Linux App Service](./WordPress/running_post_startup_scripts.md)
+* [Configuring Nginx for WordPress running on Linux App Service](./WordPress/configuring_nginx_for_wordpress.md)
 * [A view of Application Settings of WordPress on Linux App Service](./WordPress/wordpress_application_settings.md)
 * [Connect to database with phpmyadmin of WordPress on Linux AppService](./WordPress/wordpress_phpmyadmin.md)
 * [Configure WordPress on Linux AppService with existing MySQL database](./WordPress/using_an_existing_mysql_database.md)
 * [Migrate any WordPress site to WordPress on Linux App Service](./WordPress/wordpress_migration_linux_appservices.md)
 * [Adding PHP extensions for WordPress on Linux App Service](./WordPress/wordpress_adding_php_extensions.md)
-* [AFD Integration with WordPress on Azure App Service](./WordPress/Configuring%20AFD%20with%20your%20WordPress%20site.md)
+* [AFD Integration with WordPress on Azure App Service](./WordPress/wordpress_afd_configuration.md)
 
 ## Contributing
 
