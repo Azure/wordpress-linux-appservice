@@ -35,6 +35,7 @@ Image Server URL: https://mcr.microsoft.com
 * [Migrate any WordPress site to WordPress on Linux App Service](./WordPress/wordpress_migration_linux_appservices.md)
 * [Adding PHP extensions for WordPress on Linux App Service](./WordPress/wordpress_adding_php_extensions.md)
 * [AFD Integration with WordPress on Azure App Service](./WordPress/wordpress_afd_configuration.md)
+* [Enabling High Performance with Local Storage](./WordPress/enabling_high_performance_with_local_storage.md)
 
 ## Contributing
 
