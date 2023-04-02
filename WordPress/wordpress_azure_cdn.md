@@ -21,7 +21,7 @@ If the CDN is not installed as part of your site deployment and would like to en
 
 ![Wordpress Performance](./media/wp_azure_cdn_1.png)
 
-Select General settings under Performance blade, navigated to CDN section in General Settings and modify the values as described in this screenshot and save the configuration:
+Select General settings under Performance blade, then navigate to CDN section in General Settings and modify the values as described in this screenshot. Now save the configuration:
 
 ![General Settings](./media/wp_azure_cdn_2.png)
 
