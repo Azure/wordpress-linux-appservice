@@ -29,7 +29,7 @@ Select CDN blade in left navigation bar, specify the CDN endpoint as shown in th
 
 ![Wordpress CDN](./media/wp_azure_cdn_3.png)
 
-Now your Wordpress site is all set with CDN and can observe the improvement in your page response time.
+Now your Wordpress site is all set with CDN and can observe the improvement in your page response time. 
 
 ## Learn More
 
