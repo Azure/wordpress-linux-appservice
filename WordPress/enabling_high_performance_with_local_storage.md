@@ -29,6 +29,8 @@ Go to your App Service and add the following Application Setting, and then wait 
 
 - This feature is enabled only if the total size of your site excluding the user uploaded content under **wp-content/uploads**, is less than 10GiB. This limit is more than enough to accommodate **WordPress Core Code + Plugins + Themes**. This restriction has been placed because local storage is limited in size. If the size exceeds the above limit, the feature is not enabled and the Web App uses the remote file server.
 
+- Manually updating files via **FTP, BASH, or FileManager** requires the site to be restarted for the changes to take effect. This is because the contents are cached on local storage (/var/www/wordpress) and the above modes do not support auto detection of changes. However, if you make the changes via **SSH or WebSSH**, there is no need to restart because the changes are automatically synced.
+
 
 ### Recommendations
 - Always remove unused plugins and themes, as it might impact the initialization time of the feature.
