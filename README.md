@@ -14,6 +14,7 @@ WordPress on Azure App Service is supported in Public cloud, US Government cloud
 
 ## Image Details
 Image Server URL: https://mcr.microsoft.com
+
 URL to view all the list of WordPress tags:  https://mcr.microsoft.com/v2/appsvc/wordpress-alpine-php/tags/list
 
 |Image Name |Image Tag  |OS |PHP Version | Nginx version| 
