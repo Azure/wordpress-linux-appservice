@@ -14,6 +14,7 @@ WordPress on Azure App Service is supported in Public cloud, US Government cloud
 
 ## Image Details
 Image Server URL: https://mcr.microsoft.com
+URL to view all the list of WordPress tags:  https://mcr.microsoft.com/v2/appsvc/wordpress-alpine-php/tags/list
 
 |Image Name |Image Tag  |OS |PHP Version | Nginx version| 
 |-----------|-----------|---|------------|--------------|
@@ -21,6 +22,7 @@ Image Server URL: https://mcr.microsoft.com
 |appsvc/wordpress-alpine-php    |8.0 |Alpine Linux 3.16  |8.0.28  |1.22.1 |
 
 **Note**: *latest* tag corresponds to 8.0 version of PHP, and it does not actually mean that it will always carry the latest version of image. We will soon stop using the *latest* tag and use appropriate 'numerical' tag to avoid confusion.
+
 
 
 ## How to Configurations
