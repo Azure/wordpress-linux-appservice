@@ -25,7 +25,7 @@ define( 'WP_AUTO_UPDATE_CORE', minor);
 
 To edit wp-config.php file, follow these steps:
 
-1. Navigate to webssh of your app service through this link \<app service name\>.scm.azurewebsites.net/webssh/host
+1. Navigate to webssh of your app service through this link https://\<app service name\>.scm.azurewebsites.net/webssh/host
 
 2. Edit wp-config.php file with vi/vim editors using the following command
 ```
