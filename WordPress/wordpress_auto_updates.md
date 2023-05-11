@@ -1,10 +1,10 @@
-# WordPress core auto-updates
+# WordPress Core Automatic upgrades
 
-WordPress core auto-updates is one of the most important features of WordPress because it helps to ensure the security and stability of the platform. WordPress is constantly evolving and improving, and new updates are released regularly to address security vulnerabilities, fix bugs, and improve performance.
+WordPress core automatic upgrades is one of the most important features of WordPress because it helps to ensure the security and stability of the platform. WordPress is constantly evolving and improving, and new updates are released regularly to address security vulnerabilities, fix bugs, and improve performance.
 
 By automatically updating the WordPress core software, website owners can ensure that their website is always running on the latest version of the platform. This helps to protect the site from security vulnerabilities and other issues that could impact the performance of the site.
 
-By default, **WordPress on App Service** enables auto updates of WordPress core minor version and disables major version updates to avoid potential bugs or incompatibilities with plugins or themes. Minor version updates are necessary for keeping the site up to date with security fixes and maintenance updates. With these settings, WordPress regularly checks for a new minor version every 2 hours and updates to the latest version if available.
+By default, **WordPress on App Service** enableed with  auto upgrade of WordPress core minor version.  Minor version updates are necessary for keeping the site up to date with security fixes and any other maintenance updates. With these settings, WordPress regularly checks for a new minor version every 2 hours and updates to the latest version if available.
 
 
 ## How do I enable WordPress core major updates? 
