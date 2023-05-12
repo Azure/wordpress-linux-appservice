@@ -4,10 +4,13 @@ WordPress core automatic upgrades is one of the most important features of WordP
 
 By automatically updating the WordPress core software, website owners can ensure that their website is always running on the latest version of the platform. This helps to protect the site from security vulnerabilities and other issues that could impact the performance of the site.
 
-By default, **WordPress on App Service** enableed with  auto upgrade of WordPress core minor version.  Minor version updates are necessary for keeping the site up to date with security fixes and any other maintenance updates. With these settings, WordPress regularly checks for a new minor version every 2 hours and updates to the latest version if available.
+By default, **WordPress on App Service** enabled with  auto upgrade of WordPress core minor version.  Minor version updates are necessary for keeping the site up to date with security fixes and any other maintenance updates.
 
+## WordPress Core Automatic updates behaviour
 
-## How do I enable WordPress core major updates? 
+WordPress checks for updates every two hours and updates to the latest version if available. During the update process, the site enters maintenance mode, which renders it temporarily inaccessible. Once the update is complete, the site returns back to normal state.
+
+## Enable WordPress Core major updates 
 
 To enable WordPress core major updates, go to the Updates section in WordPress admin dashboard of your site and click on "Enable automatic updates for all new versions of WordPress" link as shown below.
 
@@ -17,11 +20,21 @@ Once you click on this link and enable WordPress core auto updates, you can go b
 
 ![WordPress Major Updates](./media/wp_auto_updates_2.png)
 
-In case you are unable to see such links in Updates section of WordPress admin, you can add the following to wp-config.php file:
+In case you are unable to see such links in Updates section of WordPress admin, you can add the following to wp-config.php file (see below for steps to update this file):
 ```
 define( 'WP_AUTO_UPDATE_CORE', minor);
 ```
 ***NOTE:*** Setting this constant to 'minor' will enable only minor version auto-updates. You can change this using the link from Updates section as described before.
+
+## Disable all WordPress Core Automatic updates
+
+If you want to disable all WordPress Core Automatic updates, update the Constant WP_AUTO_UPDATE_CORE in wp-config file (see below for steps to update this file) by adding the following code snippet
+
+```
+define( 'WP_AUTO_UPDATE_CORE', false);
+```
+
+## Steps to edit wp-config.pgp file
 
 To edit wp-config.php file, follow these steps:
 
@@ -31,7 +44,10 @@ To edit wp-config.php file, follow these steps:
 ```
 vi /home/site/wwwroot/wp-config.php
 ```
-3. Add this line and save the file
-```
-define( 'WP_AUTO_UPDATE_CORE', minor);
-```
+
+3. Save the file
+
+## Learn More
+
+- [WordPress Core Automatic updates](https://wordpress.org/documentation/article/configuring-automatic-background-updates/)
+
