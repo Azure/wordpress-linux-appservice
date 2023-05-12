@@ -6,8 +6,6 @@ By automatically updating the WordPress core software, website owners can ensure
 
 By default, **WordPress on App Service** enabled with  auto upgrade of WordPress core minor version.  Minor version updates are necessary for keeping the site up to date with security fixes and any other maintenance updates.
 
-## WordPress Core Automatic updates behaviour
-
 WordPress checks for updates every two hours and updates to the latest version if available. During the update process, the site enters maintenance mode, which renders it temporarily inaccessible. Once the update is complete, the site returns back to normal state.
 
 ## Enable WordPress Core major updates 
