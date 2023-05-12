@@ -24,7 +24,7 @@ In case you are unable to see such links in Updates section of WordPress admin, 
 ```
 define( 'WP_AUTO_UPDATE_CORE', minor);
 ```
-***NOTE:*** This setting enables only minor version updates for WordPress. You can set it to "true" for enabling Major version updates. See [here](https://aka.ms/WordPressautoupdateslink) for more information.
+***NOTE:*** This setting enables only minor version updates for WordPress. You can set it to "true" for enabling Major, Minor and Developement updates. See [here](https://aka.ms/WordPressautoupdateslink) for more information.
 
 ## Disable all WordPress Core Automatic updates
 
