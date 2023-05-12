@@ -1,4 +1,4 @@
-# WordPress Core Automatic upgrades
+# WordPress Core Automatic updates
 
 WordPress core automatic upgrades is one of the most important features of WordPress because it helps to ensure the security and stability of the platform. WordPress is constantly evolving and improving, and new updates are released regularly to address security vulnerabilities, fix bugs, and improve performance.
 
