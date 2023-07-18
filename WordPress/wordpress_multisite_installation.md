@@ -1,10 +1,14 @@
 # How to enable Multisite WordPress on Azure App Service?
 
-WordPress Multisite is a powerful feature of WordPress that enables you to create and manage multiple websites within a single WordPress installation. This makes it a convenient solution for organizations and individuals who need to maintain multiple websites under a common administrative interface. One of the significant advantages of WordPress Multi-Site is the ability to share resources across the network. Plugins, themes and other core files can be shared across all the sites, reducing the need for duplication. 
+WordPress Multisite is a powerful feature of WordPress that enables you to create and manage multiple websites within a single WordPress installation. This makes it a convenient solution for organizations and individuals who need to maintain multiple websites under a common administrative interface.
 
-With WordPress Multi-Site, network administrators has full control over the entire multi-site network. They can add new sites, manage existing ones, control user access and permissions. The network administrator has the authority to install plugins and themes that are available to all sites within the network. Core upgrades, plugin and theme updates are performed at network level. This centralized approach simplifies the updates and maintenance tasks, and also makes it more efficient. Each individual site within the multi-site network has its own site administrator. Site administrators have control over their respective sites, allowing them to customize the site, activate or deactivate available plugins and themes, and manage user access and content. 
+With WordPress Multi-Site, network administrators has full control over the entire multi-site network. They can add new sites, manage existing ones, control user access and permissions. The network administrator has the authority to install plugins and themes that are available to all sites within the network. Core upgrades, plugin and theme updates are performed at network level. This centralized approach simplifies the updates and maintenance tasks, and also makes it more efficient.
 
-Multisite WordPress can be classified into two types. 
+Each individual site within the multi-site network has its own site administrator. Site administrators have control over their respective sites, allowing them to customize the site, activate or deactivate available plugins and themes, and manage user access and content.
+
+ One of the significant advantages of WordPress Multi-Site is the ability to share resources across the network. Plugins, themes and other core files can be shared across all the sites, reducing the need for duplication.
+
+**Multisite WordPress can be classified into two types.**
 1. **Subdirectory-based multi-site**
 In a subdirectory-based multi-site configuration, additional sites are organized as subdirectories within the main domain. For instance, if the main domain is _contoso.com_, the sub-sites would be structured as _contoso.com/site1_, _contoso.com/site2_, and so on. 
 
