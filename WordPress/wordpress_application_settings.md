@@ -24,7 +24,7 @@ Configuration that can be changed and have an affect  on your WordPress site thr
 |DATABASE_NAME| Database| -| -| Database name used to connect to WordPress.|
 |DATABASE_USERNAME| Database| -| -| Database username used to connect to WordPress.|
 |DATABASE_PASSWORD| Database| -| -| Database password used to connect to WordPress.|
-|AFD_CUSTOM_DOMAIN| Azure Frontdoor| -| -| This is used when Azure Frontdoor is configured with a custom domain, and the new domain needs to be configured in WordPress App too. AFD_ENABLED flag has to be set to true for this to be configured.|
+|CUSTOM_DOMAIN| Web App | -| -| This is a multi-purpose app setting. It is used when Azure Frontdoor is configured with a custom domain, and the new domain needs to be configured in WordPress App too. AFD_ENABLED flag has to be set to true in this case. Additionally, it is also used for configuring custom domain to be used for multi-site WordPress installation. |
 
 ## One-time Application Settings
 
