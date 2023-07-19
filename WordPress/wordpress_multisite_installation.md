@@ -23,15 +23,12 @@ In this article, we will discuss on how to convert your single-site WordPress in
 
 3. Now, go to your App Service dashboard in Azure Portal, click on Configuration -> Application Settings and add the following settings and save it. This would restart your App Service and install the multi-site WordPress.
 
-|Application Settings | Value |
-|---------------------|-------|
-| WORDPRESS_MULTISITE_CONVERT | true     |
-| WORDPRESS_MULTISITE_TYPE | subdirectory _(or)_ subdomain   |
-| CUSTOM_DOMAIN | <custom_domain>   |
+   |Application Settings | Value |
+   |---------------------|-------|
+   | WORDPRESS_MULTISITE_CONVERT | true     |
+   | WORDPRESS_MULTISITE_TYPE | subdirectory _(or)_ subdomain   |
+   | CUSTOM_DOMAIN | <custom_domain>   |
 
-![Configuration Section](./media/app_service_configuration_section.png)
-
-![App Setting Section](./media/app_service_multisite_app_setting_section.png)
 
 ### Important Notes
 * Custom domain is mandatory for subdomain based multi-site installation. However, it is optional for subdirectory based multi-site, where, by default, either App Service domain or Azure Front Door endpoint (if integrated) would be used in the absence of a custom domain.
@@ -43,4 +40,9 @@ In this article, we will discuss on how to convert your single-site WordPress in
 * You can access your site only with the domain that is used for multi-site installation. Trying to access it via another domain might result in _"Error while establishing database connection"_ or _"too many redirections"_ errors. For instance, if you have used a custom domain (ex: _contoso.com_) to install the multi-site, and then trying to access it via App Service default domain (ex: _contoso.azurewebsites.net_), it might not work.
 
 * In order to change the domain associated with the multi-site post installation, you might have to manually update the occurrence of old domain name in the MySQL database tables. Some common tables to look for are *wp_options, wp_site, wp-blog, wp_users, wp_usermeta, wp_sitemeta* and so on. Moreover, there can be specific sub-site tables *(wp_2_site, wp_2_options etc.,)*.
+
+<br>
+
+![Configuration Section](./media/app_service_configuration_section.png)
+![App Setting Section](./media/app_service_multisite_app_setting_section.png)
 
