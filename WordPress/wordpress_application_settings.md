@@ -40,7 +40,10 @@ Configurations that are used as a 'one-time' change and are applied just once. A
 |BLOB_STORAGE_ENABLED| Azure Blob Storage| -| -| Enables and configures blob during installation time if the flag is set to true.|
 |STORAGE_ACCOUNT_NAME| Azure Blob Storage| -| -|
 |BLOB_CONTAINER_NAME| Azure Blob Storage| -| -|
+|BLOB_STORAGE_URL| Azure Blob Storage| -| -|
 |STORAGE_ACCOUNT_KEY| Azure Blob Storage| -| -|
+|WORDPRESS_MULTISITE_CONVERT | Multisite WordPress Setup| -| -| Set this to true to convert the single site to multi-site |
+|WORDPRESS_MULTISITE_TYPE | Multisite WordPress Setup| -| -| The types can be either 'subdirectory' or 'subdomain'. For subdomain-based multi-site, CUSTOM_DOMAIN application is mandatory. However, it is optional for subdirectory-based multi-site. |
 |WORDPRESS_ADMIN_EMAIL| WordPress Setup| -| -|
 |WORDPRESS_ADMIN_USER| WordPress Setup| -| -|
 |WORDPRESS_ADMIN_PASSWORD| WordPress Setup| -| -|
