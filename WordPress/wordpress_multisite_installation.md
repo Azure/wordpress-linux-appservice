@@ -29,6 +29,10 @@ In this article, we will discuss on how to convert your single-site WordPress in
 | WORDPRESS_MULTISITE_TYPE | subdirectory _(or)_ subdomain   |
 | CUSTOM_DOMAIN | <custom_domain>   |
 
+![Configuration Section](./media/app_service_configuration_section.png)
+
+![App Setting Section](./media/app_service_multisite_app_setting_section.png)
+
 ### Important Notes
 * Custom domain is mandatory for subdomain based multi-site installation. However, it is optional for subdirectory based multi-site, where, by default, either App Service domain or Azure Front Door endpoint (if integrated) would be used in the absence of a custom domain.
 
