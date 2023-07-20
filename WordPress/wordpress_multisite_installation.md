@@ -21,7 +21,7 @@ Naivgate to your App Service dashboard in Azure Portal, click on Configuration -
    | WORDPRESS_MULTISITE_TYPE | subdirectory |
    | CUSTOM_DOMAIN | <custom_domain>   |
 
- ### Important Notes 
+* **Important Notes**
 Custom Domian setup is an optional configuration for subdirectory based multisite.  Your can run the website under default domian that gets created as part of WordPress site creation or Azure Front Door endpoint if the site is integrated with Azure Front Door. 
 
 * **Subdomain-based multisite**
