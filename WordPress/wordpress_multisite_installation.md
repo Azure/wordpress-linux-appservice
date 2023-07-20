@@ -41,7 +41,9 @@ In a subdomain-based multisite configuration, additional sites are structured as
    | WORDPRESS_MULTISITE_TYPE | subdomain   |
    | CUSTOM_DOMAIN | <custom_domain>   |
 
-* You can now create individual sub-sites from the WordPress Admin dashboard, and the corresponding sub-domain must be mapped to either the App Service or the Azure Front Door, using the same procedure as described above.  Please note that you do not need to configure any Application Settings for these subdomains. Optionally, if you want to avoid mapping each individual sub-domain every time you add a new sub-site, you can simply map the wild-card domain (ex: _*.contoso.com_) with your resource. The procedure for mapping a wild-card domain is the same as for any other domain. 
+* You can now create individual sub-sites from the WordPress Admin dashboard, and the corresponding sub-domain must be mapped to either the App Service or the Azure Front Door, using the same procedure as described above.  Please note that you do not need to configure any Application Settings for these subdomains.
+
+* Optionally, if you want to avoid mapping each individual sub-domain every time you add a new sub-site, you can simply map the wild-card domain (ex: _*.contoso.com_) with your resource. The procedure for mapping a wild-card domain is the same as for any other domain. 
 
 
 ### Important Notes
