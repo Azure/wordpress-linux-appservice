@@ -7,11 +7,11 @@ The structure of a WordPress Multisite network is hierarchical in nature, with a
 
 Each individual site within the multisite network has its own site administrator. Site administrators have control over their respective sites, allowing them to customise the site, activate or deactivate available plugins and themes, and manage user access and content. One of the most notable features of WordPress Multisite is the capability of domain mapping, where each site within the network can be associated with its own distinct domain name. This allows organizations to present a unified brand identity while still offering a personalized experience for each site's visitors, enhancing user engagement and fostering a sense of individuality for the different components of the network.
 
-Create a WordPress site from [Azure Market place] (https://ms.portal.azure.com/#create/WordPress.WordPress). You can follow this documentation to create a new WordPress site: [How to set up a new WordPress website on Azure App Service](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/how-to-set-up-a-new-wordpress-website-on-azure-app-service/ba-p/3729150)
+Create a WordPress site from [Azure Market place](https://ms.portal.azure.com/#create/WordPress.WordPress). You can follow this documentation to create a new WordPress site: [How to set up a new WordPress website on Azure App Service](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/how-to-set-up-a-new-wordpress-website-on-azure-app-service/ba-p/3729150)
 
 ## Types of Multisites
 * **Subdirectory-based multisite**
-In a subdirectory-based multi-site configuration, additional sites are organised as subdirectories within the main domain. For instance, if the main domain is _contoso.com_, the sub-sites would be structured as _contoso.com/site1_, _contoso.com/site2_, and so on.
+In a subdirectory-based multisite configuration, additional sites are organised as subdirectories within the main domain. For instance, if the main domain is _contoso.com_, the sub-sites would be structured as _contoso.com/site1_, _contoso.com/site2_, and so on.
 Follow these steps to configure Subdirectory based multisite: 
 Naivgate to your App Service dashboard in Azure Portal, click on Configuration -> Application Settings, add the following settings and save them. This would restart your App Service and install multi-site WordPress.
 
