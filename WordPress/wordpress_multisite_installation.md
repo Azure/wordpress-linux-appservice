@@ -21,6 +21,9 @@ Naivgate to your App Service dashboard in Azure Portal, click on Configuration -
    | WORDPRESS_MULTISITE_TYPE | subdirectory |
    | CUSTOM_DOMAIN | <custom_domain>   |
 
+ ### Important Notes 
+Custom Domian setup is an optional configuration for subdirectory based multisite.  Your can run the website under default domian that gets created as part of WordPress site creation or Azure Front Door endpoint if the site is integrated with Azure Front Door. 
+
 * **Subdomain-based multisite**
 In a subdomain-based multisite configuration, additional sites are structured as subdomains of the main domain. For instance, if the main domain is _contoso.com_, the individual sub-sites would be set up as _site1.contoso.com_, _site2.contoso.com_, and so on. 
 
@@ -38,9 +41,9 @@ In a subdomain-based multisite configuration, additional sites are structured as
 
 
 ### Important Notes
-* A custom domain is mandatory for subdomain-based multi-site installations. However, it is optional for subdirectory based multi-site, where, by default, either an App Service domain or an Azure Front Door endpoint (if integrated) would be used in the absence of a custom domain.
+* A custom domain is mandatory for subdomain-based multi-site installations. 
 
-* Don't add **https://** or **http://** prefix when adding the custom domain value for your App Setting. It should be just your domain name (ex: _contoso.com_).
+* Do not add **https://** or **http://** prefix when adding the custom domain value for your App Setting. It should be just your domain name (ex: _contoso.com_).
 
 * In the case of subdomain multisite, you can either integrate a wild card domain or the primary custom domain plus required individual subdomains with your resource. Here, the resource can be either the App Service or an Azure Front Door.
 
