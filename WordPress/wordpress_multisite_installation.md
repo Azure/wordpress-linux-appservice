@@ -21,9 +21,10 @@ Naivgate to your App Service dashboard in Azure Portal, click on Configuration -
    | WORDPRESS_MULTISITE_TYPE | subdirectory |
    | CUSTOM_DOMAIN | <custom_domain>   |
 
-Custom domian integration is an optional configuration for subdirectory based multisite. Your can run the website under default domian that gets created as part of WordPress site creation or Azure Front Door endpoint if the site is integrated with Azure Front Door. 
+Custom domain integration is an optional configuration for subdirectory based multisite. If you do not add it, your multisite will be configured with the default App Service domain, or with Azure Front Door endpoint, if the site is integrated with Azure Front Door.
 
-If you plan to configure your website with custom domain then follow these steps: [Map existing custom DNS name - Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain?tabs=root%2Cazurecli) 
+If you plan to configure your website with custom domain then follow these steps to add custom domain to App Service: [Map existing custom DNS name - Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain?tabs=root%2Cazurecli). Or, if you have integrated Azure Front Door, then you must map custom domain to Azure Front Door by following these steps: [How to add a custom domain - Azure Front Door](https://learn.microsoft.com/en-us/azure/frontdoor/standard-premium/how-to-add-custom-domain).
+
 
 ### Subdomain-based multisite
 In a subdomain-based multisite configuration, additional sites are structured as subdomains of the main domain. For instance, if the main domain is _contoso.com_, the individual sub-sites would be set up as _site1.contoso.com_, _site2.contoso.com_, and so on. 
@@ -40,13 +41,13 @@ In a subdomain-based multisite configuration, additional sites are structured as
    | WORDPRESS_MULTISITE_TYPE | subdomain   |
    | CUSTOM_DOMAIN | <custom_domain>   |
 
+* You can now create individual sub-sites from the WordPress Admin dashboard, and the corresponding sub-domain must be mapped to either the App Service or the Azure Front Door, using the same procedure as described above.  Please note that you do not need to configure any Application Settings for these subdomains. Optionally, if you want to avoid mapping each individual sub-domain every time you add a new sub-site, you can simply map the wild-card domain (ex: _*.contoso.com_) with your resource. The procedure for mapping a wild-card domain is the same as for any other domain. 
+
 
 ### Important Notes
 * A custom domain is mandatory for subdomain-based multi-site installations. 
 
 * Do not add **https://** or **http://** prefix when adding the custom domain value for your App Setting. It should be just your domain name (ex: _contoso.com_).
-
-* In the case of subdomain multisite, you can either integrate a wild card domain or required individual subdomains with your resource. Here, the resource can be either the App Service or an Azure Front Door. However, please note that in the CUSTOM_DOMAIN Application Setting, you should always pass the primary domain name (non-wild card).
 
 * You can access your site only with the domain that is used for multi-site installation. Trying to access it via another domain might result in _"Error while establishing database connection"_ or _"too many redirections"_ errors. For instance, if you have used a custom domain (ex: _contoso.com_) to install the multi-site, and then try to access it via the default App Service domain (ex: _contoso.azurewebsites.net_), it might not work.
 
