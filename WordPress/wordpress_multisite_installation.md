@@ -21,14 +21,16 @@ Naivgate to your App Service dashboard in Azure Portal, click on Configuration -
    | WORDPRESS_MULTISITE_TYPE | subdirectory |
    | CUSTOM_DOMAIN | <custom_domain>   |
 
-Custom domian integration is an optional configuration for subdirectory based multisite. Your can run the website under default domian that gets created as part of WordPress site creation or Azure Front Door endpoint if the site is integrated with Azure Front Door. Please refer to the next section on how to integrate a custom domain with your resource.
+Custom domian integration is an optional configuration for subdirectory based multisite. Your can run the website under default domian that gets created as part of WordPress site creation or Azure Front Door endpoint if the site is integrated with Azure Front Door. 
+
+If you plan to configure your website with custom domain then follow these steps: [Map existing custom DNS name - Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain?tabs=root%2Cazurecli) 
 
 ### Subdomain-based multisite
 In a subdomain-based multisite configuration, additional sites are structured as subdomains of the main domain. For instance, if the main domain is _contoso.com_, the individual sub-sites would be set up as _site1.contoso.com_, _site2.contoso.com_, and so on. 
 
 * Map your custom domain to the App Service using the following steps: [Map existing custom DNS name - Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain?tabs=root%2Cazurecli).
   
-* If you have integrated your website with Azure Front Door, then you must map custom domain to Azure Front Door rather than App Service by following these steps: [How to add a custom domain - Azure Front Door](https://learn.microsoft.com/en-us/azure/frontdoor/standard-premium/how-to-add-custom-domain)
+* If you have integrated your website with Azure Front Door, then you must map custom domain to Azure Front Door by following these steps: [How to add a custom domain - Azure Front Door](https://learn.microsoft.com/en-us/azure/frontdoor/standard-premium/how-to-add-custom-domain)
 
 * Now, go to your App Service dashboard in Azure Portal, click on Configuration -> Application Settings, and add the following settings and save them. This would restart your App Service and install multi-site WordPress.
 
