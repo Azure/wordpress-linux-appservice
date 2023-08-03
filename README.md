@@ -40,7 +40,8 @@ URL to view all the list of WordPress tags:  https://mcr.microsoft.com/v2/appsvc
 * [Adding PHP extensions for WordPress on Linux App Service](./WordPress/wordpress_adding_php_extensions.md)
 * [AFD Integration with WordPress on Azure App Service](./WordPress/wordpress_afd_configuration.md)
 * [Enabling High Performance with Local Storage](./WordPress/enabling_high_performance_with_local_storage.md)
-
+* [Enabling Multisite WordPress on Azure App Service](./WordPress/wordpress_multisite_installation.md)
+  
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
