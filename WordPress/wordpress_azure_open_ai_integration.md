@@ -16,6 +16,7 @@ This document explains how to configure Azure Open AI with WordPress on Azure Ap
 
 1. In Azure Portal – navigate to Create resource and search for Open AI resource
 2. Create Open AI resource, the screen looks as follows:
+
    ![Create Page](./media/AI_Images/WP_AI_Create.jpg)
 
 You will need to provide the following information: 
@@ -27,6 +28,7 @@ You will need to provide the following information:
     •Pricing Tier: Currently, only one pricing tier is available for the OpenAI service. 
 
 3. Navigate to Network tab in the Azure portal, it is presented with below screen:
+
     ![Network Page](./media/AI_Images/WP_AI_Create_Networktab.jpg)
 
 4. select the Network type catering to your organizational needs:
@@ -42,18 +44,23 @@ Configure Azure OpenAI with WordPress on App Service
 To configure Azure OpenAI models with WordPress on App Service, you can install and activate the AI Engine plugin from WordPress marketplace for plugins 
 
 1. Launch WordPress Admin dashboard and install the AI Engine plugin : 
+
    ![AI Plugin](./media/AI_Images/WP_AI_Plugin.jpg)
 
 2. Once the plugin is installed, Meow Apps is shown in the right bar as shown below:
+
 ![Mewo App](./media/AI_Images/WP_Mewo_App.jpg)
 
-3.  Go to AI Engine. In the Dashboard screen you can add multiple models. Chose Chatbot, Generators(Content & Image),  Playground. 
+3.  Go to AI Engine. In the Dashboard screen you can add multiple models. Chose Chatbot, Generators(Content & Image),  Playground.
+
 ![Admin Settings](./media/AI_Images/WP_Admin_Settings.jpg)
 
 4. Go to Settings tab, configure Endpoint & API Key of your Azure OpenAI resource
+
  ![Admin AI Settings](./media/AI_Images/WP_AI_Admin_Settings.jpg)
 
 Note: Endpoint & API Key to be captured from your Azure Open AI resource definition created in the first step in Azure portal as shown in below screenshot.
+
  ![End Point](media/AI_Images/WP_AI_Endpoint.jpg)
 
 You can now leverage the AI capabilities – Chatbot, Content & Image creation, offered by Azure OpenAI. See below for more information about its capabilities: 
@@ -61,6 +68,7 @@ You can now leverage the AI capabilities – Chatbot, Content & Image creation, 
 **Chatbot (GPT-like)**: Enhance your website with a chatbot powered by AI, similar to GPT models. It includes an image bot, a shortcode builder, and offers a wide range of customizable parameters and possibilities.  
  
 NOTE: When using chatbot, it is essential to select the desired model to be used as shown below. By default, the AI Engine plugin automatically selects the gpt-35-turbo model; however, it is necessary to modify this setting if you wish to utilize other models. 
+
  ![Chatbot](media/AI_Images/WP_Chatbot.jpg)
 
 You can find the 'Generate Content', 'Generate Images' and 'Playground' tools  in Tools section of WordPress dashboard as shown 
