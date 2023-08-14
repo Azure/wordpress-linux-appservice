@@ -67,7 +67,9 @@ NOTE: When using chatbot, it is essential to select the desired model to be used
 
 You can find the 'Generate Content', 'Generate Images' and 'Playground' tools  in Tools section of WordPress dashboard as shown 
 
-| ![Application Setting](./media/AI_Images/WP_Admin_tools.jpg) | Content & Images Generator: Generate fresh and engaging content for your website, along with high-quality images, using AI algorithms.  
+| ![Application Setting](./media/AI_Images/WP_Admin_tools.jpg) |
+
+Content & Images Generator: Generate fresh and engaging content for your website, along with high-quality images, using AI algorithms.  
  
 AI Playground: Explore a variety of AI tools within the plugin, such as translation, correction, and engaging in discussions, providing a versatile AI-powered playground.  
  
