@@ -16,7 +16,6 @@ This document explains how to configure Azure Open AI with WordPress on Azure Ap
 
 1. In Azure Portal – navigate to Create resource and search for Open AI resource
 2. Create Open AI resource, the screen looks as follows:
-
    ![Create Page](./media/AI_Images/WP_AI_Create.jpg)
 
 You will need to provide the following information: 
@@ -28,13 +27,12 @@ You will need to provide the following information:
     •Pricing Tier: Currently, only one pricing tier is available for the OpenAI service. 
 
 3. Navigate to Network tab in the Azure portal, it is presented with below screen:
-
     ![Network Page](./media/AI_Images/WP_AI_Create_Networktab.jpg)
 
-4. select the Network type catering to your organizational needs:
+5. select the Network type catering to your organizational needs:
     a. The default option allows unrestricted access to the resource, which can be useful if you intend to provide the chatbot as a feature to users of your WordPress site. 
     b. Selected networks -. This can be beneficial if you want to limit access to the resource only from specific IP addresses
-5. Review the details and click on Create. Azure OpenAI resource will be created.
+6. Review the details and click on Create. Azure OpenAI resource will be created.
 
 **Deploy Azure OpenAI models**
 As per the steps specified in this section “Deploy a model” of this document: How-to - Create a resource and deploy a model using Azure OpenAI Service - Azure OpenAI | Microsoft Learn
@@ -44,19 +42,15 @@ Configure Azure OpenAI with WordPress on App Service
 To configure Azure OpenAI models with WordPress on App Service, you can install and activate the AI Engine plugin from WordPress marketplace for plugins 
 
 1. Launch WordPress Admin dashboard and install the AI Engine plugin : 
-
    ![AI Plugin](./media/AI_Images/WP_AI_Plugin.jpg)
 
 2. Once the plugin is installed, Meow Apps is shown in the right bar as shown below:
-
 ![Mewo App](./media/AI_Images/WP_Mewo_App.jpg)
 
-3.  Go to AI Engine. In the Dashboard screen you can add multiple models. Chose Chatbot, Generators(Content & Image),  Playground.
-
+3.  Go to AI Engine. In the Dashboard screen you can add multiple models. Chose Chatbot, Generators(Content & Image),  Playground. 
 ![Admin Settings](./media/AI_Images/WP_Admin_Settings.jpg)
 
 4. Go to Settings tab, configure Endpoint & API Key of your Azure OpenAI resource
-
  ![Admin AI Settings](./media/AI_Images/WP_AI_Admin_Settings.jpg)
 
 Note: Endpoint & API Key to be captured from your Azure Open AI resource definition created in the first step in Azure portal as shown in below screenshot.
