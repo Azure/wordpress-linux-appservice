@@ -13,9 +13,11 @@ The following Application Settings used at deployment time to configure WordPres
 |CDN_ENABLED | true/false     |
 |CDN_ENDPOINT | cdn endpoint url   |
 
-If the CDN is not installed as part of your site deployment and would like to enable it now, then navigate to WP-Admin dashboard and modify the settings as described below.
+**Azure CDN is not installed as part of Deployment**
 
-**Note:** The local cache in W3TC plugin should be purged after the configuration changes.
+1. Create Azure CDN resource as described in this [CDN Quickstart](https://learn.microsoft.com/en-us/azure/cdn/cdn-create-new-endpoint). 
+
+2. Login to WP-Admin dashboard and modify the settings as described below.
 
  From WordPress Admin dashboard, navigate to Performance blade as shown in the below screenshot:
 
@@ -28,6 +30,8 @@ Select General settings under Performance blade, then navigate to CDN section in
 Select CDN blade in left navigation bar, specify the CDN endpoint as shown in the below screenshot and save the settings.
 
 ![Wordpress CDN](./media/wp_azure_cdn_3.png)
+
+**Note:** Navigate to W2TC Plugin settings and Purge the local cache in W3TC plugin.
 
 Now your Wordpress site is all set with CDN and can observe the improvement in your page response time. 
 
