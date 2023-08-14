@@ -1,4 +1,4 @@
-# WordPress on Azure App Service – Simplify site creation with OpenAI
+# WordPress on Azure App Service – Simplify site creation with Azure OpenAI
 
 AI models can provide significant benefits to WordPress content generation by analysing vast amounts of data and generate high-quality content automatically. This can save content creators time and effort by automating repetitive and time-consuming tasks such as keyword research, topic selection, writing blog drafts or image generation.
 
