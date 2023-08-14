@@ -13,7 +13,7 @@ The following Application Settings used at deployment time to configure WordPres
 |CDN_ENABLED | true/false     |
 |CDN_ENDPOINT | cdn endpoint url   |
 
-**Azure CDN is not installed as part of Deployment**
+**If Azure CDN is not installed as part of Deployment**
 
 1. Create Azure CDN resource as described in this [CDN Quickstart](https://learn.microsoft.com/en-us/azure/cdn/cdn-create-new-endpoint). 
 
