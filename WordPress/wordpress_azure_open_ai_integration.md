@@ -2,15 +2,14 @@
 
 AI models can provide significant benefits to WordPress content generation by analysing vast amounts of data and generate high-quality content automatically. This can save content creators time and effort by automating repetitive and time-consuming tasks such as keyword research, topic selection, writing blog drafts or image generation.
 
-AI chat models can help content creators optimize their content for search engines by suggesting relevant keywords and identifying gaps in existing content. By leveraging AI chat models, WordPress site owners can create more content in less time, improve the quality of their content, and ultimately drive more traffic to their site. Additionally, they can enhance the user experience by offering instant assistance to visitors who have questions or need help navigating through the site. This can improve customer satisfaction and increase engagement on the site.
-
 This document explains how to configure Azure Open AI with WordPress on Azure AppService. With this integration you can enable:
 
-    1. Content/ Posts generation 
+    1. Content/ Posts creation and generation 
     2. Translation of the content the language of your choice
     3. Content proof reading/ polishing the content for grammatical correctness 
-    4. Image Generation based on the subject/topic.
-    5. Search for content within website 
+    4. Image Generation based on the subject/topic
+    5. Search and navigation within website
+    6. Chatbots and customer support
 
 **Prerequisite**:  Create Azure Open AI resource from Azure Portal
 
@@ -92,6 +91,7 @@ You can find the 'Generate Content', 'Generate Images' and 'Playground' tools  i
 
 *Quick Suggestions*: Obtain one-click recommendations for titles, excerpts, and other elements, making it effortless to apply AI-generated suggestions and enhance your website's content. |
 
+## Few example steps for generating images, content and posts
 **Generate Images**:  From WP Admin dashboard side bar, click on Generate Images section. Type the text for which you need image, no. of images and click on Generate Image as shown below
 
 ![Image Generator](./media/AI_Images/WP_Image_Generator.jpg)
