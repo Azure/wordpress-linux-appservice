@@ -37,7 +37,7 @@ If you want to disable all WordPress Core Automatic updates, update the Constant
 define( 'WP_AUTO_UPDATE_CORE', false);
 ```
 
-## Steps to edit wp-config.pgp file
+## Steps to edit wp-config.php file
 
 To edit wp-config.php file, follow these steps:
 
