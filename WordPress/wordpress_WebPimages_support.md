@@ -8,22 +8,23 @@ This Alpine image has access to Alpine package manager and can load all required
 
 1. Launch Azure portal and navigate to your site definition page.
 2. Via advanced tools of App Service blade, connect to webssh of your SCM site
-3. Install the gd extension with webp support using the below command:
+3. Navigate to webssh of your app service through this link https://<app service name>.scm.azurewebsites.net/webssh/host
+4. Install the gd extension with webp support using the below command:
         apk add --no-cache --virtual .build-deps autoconf pkgconfig gcc g++ gawk make zlib-dev libpng-dev libwebp-dev \
         && docker-php-ext-configure gd --with-webp \
         && docker-php-ext-install gd \
         && apk del .build-deps
 
-4. Copy the newly installed gd.so file to a persistent file storage:
+5. Copy the newly installed gd.so file to a persistent file storage:
     mkdir -p /home/dev/extensions
     cp /usr/local/lib/php/extensions/no-debug-non-zts-20200930/gd.so /home/dev/extensions/gd.so
 
-5. Now modify the WP post startup script as per the instructions shown below to restore the updated copy of gd.so every time wordpress app gets restarted.
+6. Now modify the WP post startup script as per the instructions shown below to restore the updated copy of gd.so every time wordpress app gets restarted.
 
 Edit the startup script file located at /home/dev directory using the below command:  
 
 vi /home/dev/startup.sh
-cp /home/dev/extensions/gd.so /usr/local/lib/php/extensions/no-debug-non-zts-20200930/gd so
+cp /home/dev/extensions/gd.so /usr/local/lib/php/extensions/no-debug-non-zts-20200930/gd.so
 
  Save the startup.sh file (:wq to save)
 
