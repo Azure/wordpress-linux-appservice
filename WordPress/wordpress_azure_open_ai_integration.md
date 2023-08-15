@@ -14,28 +14,9 @@ This document explains how to configure Azure Open AI with WordPress on Azure Ap
 **Prerequisite**:  Create Azure Open AI resource from Azure Portal
 
 1. In Azure Portal – navigate to Create resource and search for Open AI resource
-2. Create Open AI resource, the screen looks as follows:
+2. Follow the steps described in [Create Open AI resource](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/create-resource?pivots=web-portal). The screen looks as follows:
+   
    ![Create Page](./media/AI_Images/WP_AI_Create.jpg)
-
-You will need to provide the following information: 
-
-    •Subscription: Select the Azure subscription associated with your OpenAI onboarding application.  
-    •Resource Group: Choose an existing resource group or create a new one to contain your OpenAI resource. 
-    •Region: Specify the location of your instance. Note that different regions may have varying levels of latency, but this does 
-    not affect the availability of your resource.  
-    •Name: Provide a descriptive name for your cognitive services resource, such as "MyOpenAIResource".  
-    •Pricing Tier: Currently, only one pricing tier is available for the OpenAI service. 
-
-3. Navigate to Network tab in the Azure portal, it is presented with below screen:
-    ![Network Page](./media/AI_Images/WP_AI_Create_Networktab.jpg)
-
-5. select the Network type catering to your organizational needs:
-   
-    a. The default option allows unrestricted access to the resource, which can be useful if you intend to provide the chatbot as a
-    feature to users of your WordPress site. 
-    b. Selected networks -. This can be beneficial if you want to limit access to the resource only from specific IP addresses
-   
-7. Review the details and click on Create. Azure OpenAI resource will be created.
 
 **Deploy Azure OpenAI models**
 
