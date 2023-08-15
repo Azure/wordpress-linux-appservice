@@ -35,9 +35,11 @@ You will need to provide the following information:
 6. Review the details and click on Create. Azure OpenAI resource will be created.
 
 **Deploy Azure OpenAI models**
-As per the steps specified in this section “Deploy a model” of this document: How-to - Create a resource and deploy a model using Azure OpenAI Service - Azure OpenAI | Microsoft Learn
-Note: Deploy a GPT model (Davinci, Curie, Babage, Ada, gpt-35-turbo, DALL-E) as per your needs explained here: Azure OpenAI Service models - Azure OpenAI | Microsoft Learn. It is recommended to deploy a gpt-35-turbo model. Different models have different capabilities and pricing. Checkout pricing and model description and decide your option.
-Configure Azure OpenAI with WordPress on App Service 
+As per the steps specified in this section “Deploy a model” of this document [How-to - Create a resource and deploy a model using Azure OpenAI Service](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/create-resource?pivots=web-portal)
+
+Note: Deploy a GPT model (Davinci, Curie, Babage, Ada, gpt-35-turbo, DALL-E) as per your needs explained here [Azure OpenAI Service models](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability). It is recommended to deploy a gpt-35-turbo model. Different models have different capabilities and pricing. Checkout [pricing](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/), [model](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models#working-with-models) description and decide your option.
+
+## Configure Azure OpenAI with WordPress on App Service 
  
 To configure Azure OpenAI models with WordPress on App Service, you can install and activate the AI Engine plugin from WordPress marketplace for plugins 
 
@@ -69,17 +71,17 @@ You can find the 'Generate Content', 'Generate Images' and 'Playground' tools  i
 
 | ![Application Setting](./media/AI_Images/WP_Admin_tools.jpg) |
 
-Content & Images Generator: Generate fresh and engaging content for your website, along with high-quality images, using AI algorithms.  
+*Content & Images Generator*: Generate fresh and engaging content for your website, along with high-quality images, using AI algorithms.  
  
-AI Playground: Explore a variety of AI tools within the plugin, such as translation, correction, and engaging in discussions, providing a versatile AI-powered playground.  
+*AI Playground*: Explore a variety of AI tools within the plugin, such as translation, correction, and engaging in discussions, providing a versatile AI-powered playground.  
  
-Templates System: Create customized templates for the AI Playground, Content Generator, and Image Generator, allowing you to tailor the AI experience to your specific needs.  
+*Templates System*: Create customized templates for the AI Playground, Content Generator, and Image Generator, allowing you to tailor the AI experience to your specific needs.  
  
-AI Copilot: Seamlessly integrate AI capabilities directly into your website editor, enabling you to leverage AI assistance while creating content or managing your website.  
+*AI Copilot*: Seamlessly integrate AI capabilities directly into your website editor, enabling you to leverage AI assistance while creating content or managing your website.  
 
-Quick Suggestions: Obtain one-click recommendations for titles, excerpts, and other elements, making it effortless to apply AI-generated suggestions and enhance your website's content. |
+*Quick Suggestions*: Obtain one-click recommendations for titles, excerpts, and other elements, making it effortless to apply AI-generated suggestions and enhance your website's content. |
 
-**Generate Images**:  From WP Admin dashboard side bar, click on Generate Images section. Type the text for which you need image, no. of images and click on Generate Image as shown below
+*Generate Images*:  From WP Admin dashboard side bar, click on Generate Images section. Type the text for which you need image, no. of images and click on Generate Image as shown below
 
 ![Image Generator](./media/AI_Images/WP_Image_Generator.jpg)
 
