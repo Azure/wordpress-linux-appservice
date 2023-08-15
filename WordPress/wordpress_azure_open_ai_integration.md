@@ -22,7 +22,9 @@ This document explains how to configure Azure Open AI with WordPress on Azure Ap
 
 Deploy the desired AI model following the steps described in “Deploy a model” section of this document [How-to - Create a resource and deploy a model using Azure OpenAI Service](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/create-resource?pivots=web-portal)
 
-  *Note: It is recommended to deploy a gpt-35-turbo model.*
+ ```
+ *Note: It is recommended to deploy a gpt-35-turbo model.*
+```
 
 Chose the GPT model (Davinci, Curie, Babage, Ada, gpt-35-turbo, DALL-E) as per your needs explained here [Azure OpenAI Service models](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).  
 
