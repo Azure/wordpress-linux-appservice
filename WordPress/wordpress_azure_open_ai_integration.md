@@ -22,7 +22,8 @@ You will need to provide the following information:
 
     •Subscription: Select the Azure subscription associated with your OpenAI onboarding application.  
     •Resource Group: Choose an existing resource group or create a new one to contain your OpenAI resource. 
-    •Region: Specify the location of your instance. Note that different regions may have varying levels of latency, but this does not affect the availability of your resource.  
+    •Region: Specify the location of your instance. Note that different regions may have varying levels of latency, but this does 
+    not affect the availability of your resource.  
     •Name: Provide a descriptive name for your cognitive services resource, such as "MyOpenAIResource".  
     •Pricing Tier: Currently, only one pricing tier is available for the OpenAI service. 
 
@@ -30,36 +31,46 @@ You will need to provide the following information:
     ![Network Page](./media/AI_Images/WP_AI_Create_Networktab.jpg)
 
 5. select the Network type catering to your organizational needs:
-    a. The default option allows unrestricted access to the resource, which can be useful if you intend to provide the chatbot as a feature to users of your WordPress site. 
+   
+    a. The default option allows unrestricted access to the resource, which can be useful if you intend to provide the chatbot as a
+    feature to users of your WordPress site. 
     b. Selected networks -. This can be beneficial if you want to limit access to the resource only from specific IP addresses
-6. Review the details and click on Create. Azure OpenAI resource will be created.
+   
+7. Review the details and click on Create. Azure OpenAI resource will be created.
 
 **Deploy Azure OpenAI models**
+
 As per the steps specified in this section “Deploy a model” of this document [How-to - Create a resource and deploy a model using Azure OpenAI Service](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/create-resource?pivots=web-portal)
 
-Note: Deploy a GPT model (Davinci, Curie, Babage, Ada, gpt-35-turbo, DALL-E) as per your needs explained here [Azure OpenAI Service models](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability). It is recommended to deploy a gpt-35-turbo model. Different models have different capabilities and pricing. Checkout [pricing](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/), [model](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models#working-with-models) description and decide your option.
+Note: Deploy a GPT model (Davinci, Curie, Babage, Ada, gpt-35-turbo, DALL-E) as per your needs explained here [Azure OpenAI Service models](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability). It is recommended to deploy a gpt-35-turbo model. 
+
+Different models have different capabilities and pricing. Checkout [pricing](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/), [model](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models#working-with-models) description and decide your option.
 
 ## Configure Azure OpenAI with WordPress on App Service 
  
 To configure Azure OpenAI models with WordPress on App Service, you can install and activate the AI Engine plugin from WordPress marketplace for plugins 
 
-1. Launch WordPress Admin dashboard and install the AI Engine plugin : 
+1. Launch WordPress Admin dashboard and install the AI Engine plugin :
+   
    ![AI Plugin](./media/AI_Images/WP_AI_Plugin.jpg)
 
-2. Once the plugin is installed and activated, Meow Apps is shown in the right bar as shown below:
+3. Once the plugin is installed and activated, Meow Apps is shown in the right bar as shown below:
+   
 ![Mewo App](./media/AI_Images/WP_Mewo_App.jpg)
 
-3. Go to AI Engine. In the Dashboard screen you can add multiple models. Chose Chatbot, Generators(Content & Image),  Playground. 
+5. Go to AI Engine. In the Dashboard screen you can add multiple models. Chose Chatbot, Generators(Content & Image), Playground.
+   
 ![Admin Settings](./media/AI_Images/WP_Admin_Settings.jpg)
 
-4. Go to Settings tab, configure Endpoint & API Key of your Azure OpenAI resource
+7. Go to Settings tab, configure Endpoint & API Key of your Azure OpenAI resource
+   
  ![Admin AI Settings](./media/AI_Images/WP_AI_Admin_Settings.jpg)
 
 Note: Endpoint & API Key to be captured from your Azure Open AI resource definition created in the first step in Azure portal as shown in below screenshot.
 
  ![End Point](media/AI_Images/WP_AI_Endpoint.jpg)
 
-You can now leverage the AI capabilities – Chatbot, Content & Image creation, offered by Azure OpenAI. See below for more information about its capabilities: 
+You can now leverage the AI capabilities – Chatbot, Content & Image creation offered by Azure OpenAI. See below for more information about its capabilities: 
 
 **Chatbot (GPT-like)**: Enhance your website with a chatbot powered by AI, similar to GPT models. It includes an image bot, a shortcode builder, and offers a wide range of customizable parameters and possibilities.  
  
@@ -71,7 +82,7 @@ You can find the 'Generate Content', 'Generate Images' and 'Playground' tools  i
 
 | ![Application Setting](./media/AI_Images/WP_Admin_tools.jpg) |
 
-*Content & Images Generator*: Generate fresh and engaging content for your website, along with high-quality images, using AI algorithms.  
+*Content & Images Generator**: Generate fresh and engaging content for your website, along with high-quality images, using AI algorithms.  
  
 *AI Playground*: Explore a variety of AI tools within the plugin, such as translation, correction, and engaging in discussions, providing a versatile AI-powered playground.  
  
@@ -81,7 +92,7 @@ You can find the 'Generate Content', 'Generate Images' and 'Playground' tools  i
 
 *Quick Suggestions*: Obtain one-click recommendations for titles, excerpts, and other elements, making it effortless to apply AI-generated suggestions and enhance your website's content. |
 
-*Generate Images*:  From WP Admin dashboard side bar, click on Generate Images section. Type the text for which you need image, no. of images and click on Generate Image as shown below
+**Generate Images**:  From WP Admin dashboard side bar, click on Generate Images section. Type the text for which you need image, no. of images and click on Generate Image as shown below
 
 ![Image Generator](./media/AI_Images/WP_Image_Generator.jpg)
 
