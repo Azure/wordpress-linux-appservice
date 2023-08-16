@@ -6,7 +6,7 @@ For a quick start, three types of hosting plans are made available for WordPress
 
 | Hosting Plan | App Service | Database (MySQL Flexible Server) |
 |--------------|--------|----------------------------------|
-|Free| **B1** F1 (60 CPU minutes / day, 1 GB RAM, 1 GB storage) | **Burstable, B1ms** (1 vCores, 2 GiB RAM, 32 GiB storage, 400 IOPS)|
+|Free| **F1** (60 CPU minutes / day, 1 GB RAM, 1 GB storage) | **Burstable, B1ms** (1 vCores, 2 GiB RAM, 32 GiB storage, 400 IOPS)|
 |Basic| **B1** (1 vCores, 1.75 GB RAM, 10 GB Storage)| **Burstable, B1ms** (1 vCores, 2 GiB RAM, 32 GiB storage, 400 IOPS)|
 |Standard| **P1V2** (1 vCores, 3.5 GB RAM, 250 GB Storage)| **General Purpose, D2ds_v4** (2 vCores, 8 GiB RAM, 128 GiB storage, 700 IOPS)|
 |Premium| **P1V3** (2 vCores, 8 GB RAM, 250 GB Storage)| **Memory Optimized, Standard_E2ds_v4** (2 vCores, 16 GiB RAM, 256 GiB storage, 1100 IOPS)|
