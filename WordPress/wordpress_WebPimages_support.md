@@ -10,22 +10,30 @@ This Alpine image has access to Alpine package manager and can load all required
 2. Via advanced tools of App Service blade, connect to webssh of your SCM site
 3. Navigate to webssh of your app service through this link https://<app service name>.scm.azurewebsites.net/webssh/host
 4. Install the gd extension with webp support using the below command:
+     ```bash
         apk add --no-cache --virtual .build-deps autoconf pkgconfig gcc g++ gawk make zlib-dev libpng-dev libwebp-dev \
         && docker-php-ext-configure gd --with-webp \
         && docker-php-ext-install gd \
         && apk del .build-deps
+     ```
 
-5. Copy the newly installed gd.so file to a persistent file storage:
+6. Copy the newly installed gd.so file to a persistent file storage:
+    ```bash
     mkdir -p /home/dev/extensions
     cp /usr/local/lib/php/extensions/no-debug-non-zts-20200930/gd.so /home/dev/extensions/gd.so
+     ```
 
-6. Now modify the WP post startup script as per the instructions shown below to restore the updated copy of gd.so every time wordpress app gets restarted.
+8. Now modify the WP post startup script as per the instructions shown below to restore the updated copy of gd.so every time wordpress app gets restarted.
 
 Edit the startup script file located at /home/dev directory using the below command:  
-
-vi /home/dev/startup.sh
-cp /home/dev/extensions/gd.so /usr/local/lib/php/extensions/no-debug-non-zts-20200930/gd.so
-
+  ```bash
+  vi /home/dev/startup.sh
+  ```
+    Append the below line in startup.sh file
+    
+   ```bash      
+    cp /home/dev/extensions/gd.so /usr/local/lib/php/extensions/no-debug-non-zts-20200930/gd.so
+   ```
  Save the startup.sh file (:wq to save)
 
 6. Restart your app from Azure Portal. Now you can start uploading the .webp images and your Wordpress site will render those images.
