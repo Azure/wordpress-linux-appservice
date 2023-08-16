@@ -33,6 +33,8 @@ This Alpine image has access to Alpine package manager and can load all required
    ```bash      
          cp /home/dev/extensions/gd.so /usr/local/lib/php/extensions/no-debug-non-zts-20200930/gd.so
    ```
-      Save the startup.sh file (:wq to save)
-
+8. Save the startup.sh file 
+  ```bash
+        :wq
+  ```
 8. Restart your app from Azure Portal. Now you can start uploading the .webp images and your Wordpress site will render those images.
