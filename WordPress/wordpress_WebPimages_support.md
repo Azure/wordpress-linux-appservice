@@ -17,23 +17,22 @@ This Alpine image has access to Alpine package manager and can load all required
         && apk del .build-deps
      ```
 
-6. Copy the newly installed gd.so file to a persistent file storage:
+5. Copy the newly installed gd.so file to a persistent file storage:
     ```bash
     mkdir -p /home/dev/extensions
     cp /usr/local/lib/php/extensions/no-debug-non-zts-20200930/gd.so /home/dev/extensions/gd.so
      ```
 
-8. Now modify the WP post startup script as per the instructions shown below to restore the updated copy of gd.so every time wordpress app gets restarted.
+6. Now modify the WP post startup script as per the instructions shown below to restore the updated copy of gd.so every time wordpress app gets restarted.
 
 Edit the startup script file located at /home/dev directory using the below command:  
   ```bash
   vi /home/dev/startup.sh
   ```
-    Append the below line in startup.sh file
-    
+ 7.  Append the below line in startup.sh file  
    ```bash      
     cp /home/dev/extensions/gd.so /usr/local/lib/php/extensions/no-debug-non-zts-20200930/gd.so
    ```
  Save the startup.sh file (:wq to save)
 
-6. Restart your app from Azure Portal. Now you can start uploading the .webp images and your Wordpress site will render those images.
+8. Restart your app from Azure Portal. Now you can start uploading the .webp images and your Wordpress site will render those images.
