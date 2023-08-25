@@ -113,7 +113,7 @@ resource "azurerm_linux_web_app" "wordpress_web_app" {
     always_on              = var.app_service_alwayson
     vnet_route_all_enabled = true
     application_stack {
-      docker_image_name   = "${var.wordpress_container_linux_fx_version}:latest"
+      docker_image_name   = "${var.wordpress_container_linux_fx_version}:8.2"
       docker_registry_url = var.app_service_docker_registry_url
     }
   }
