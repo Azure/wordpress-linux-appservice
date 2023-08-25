@@ -1,6 +1,6 @@
 # How to Enable Debug Logs for WordPress on App Service
 
-To enable debug logs in WordPress, add the following code to the **wp-config.php** file in the /home/site/wwwroot directory.. Note that you must insert this code before **/\* That's all, stop editing! Happy blogging. \*/** line in the wp-config.php file.
+To enable debug logs in WordPress, add the following code to the **wp-config.php** file in the /home/site/wwwroot directory.. Note that you must insert this code before ```/* That's all, stop editing! Happy blogging. */``` line in the wp-config.php file.
 
 ```
 define( 'WP_DEBUG', true );
