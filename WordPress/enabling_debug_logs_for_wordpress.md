@@ -9,7 +9,7 @@ define( 'WP_DEBUG_DISPLAY', false );
 @ini_set( 'display_errors', 0 );
 ```
 
-All the debug logs are now written to **/var/log/php-fpm/php-fpm.www.log** file and you can monitor them using the command below. 
+All the debug logs are now written to ```/var/log/php-fpm/php-fpm.www.log``` file and you can monitor them using the command below. 
 ```
 tail -f /var/log/php-fpm/php-fpm.www.log
 ```
