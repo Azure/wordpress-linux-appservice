@@ -49,7 +49,7 @@ Configuring AFD with WordPress
 WordPress deployment with AFD doesn't add a custom domain by default. Since, Front Door replaces the app service as your WordPress application's entry point, you do not use a custom domain for your app service. If you want to configure the custom domain then refer to [Configure a custom domain on AFD](https://learn.microsoft.com/en-us/azure/frontdoor/standard-premium/how-to-add-custom-domain). In addition to this, add the following App setting in your app service.
 
 ```bash
-AFD_CUSTOM_DOMAIN: <Custom_Domain> 
+CUSTOM_DOMAIN: <Custom_Domain> 
 ```
 
 **Purge AFD cache**
