@@ -80,7 +80,6 @@ resource "azurerm_service_plan" "app_service_hosting_plan" {
 # Web app
 resource "azurerm_linux_web_app" "wordpress_web_app" {
   app_settings = {
-    DOCKER_REGISTRY_SERVER_URL          = var.app_service_docker_registry_url
     WEBSITES_ENABLE_APP_SERVICE_STORAGE = "true"
     DATABASE_HOST                       = "${var.mysql_server_name}.mysql.database.azure.com"
     DATABASE_USERNAME                   = var.mysql_server_username
@@ -114,8 +113,8 @@ resource "azurerm_linux_web_app" "wordpress_web_app" {
     always_on              = var.app_service_alwayson
     vnet_route_all_enabled = true
     application_stack {
-      docker_image     = var.wordpress_container_linux_fx_version
-      docker_image_tag = "latest"
+      docker_image_name   = "${var.wordpress_container_linux_fx_version}:8.2"
+      docker_registry_url = var.app_service_docker_registry_url
     }
   }
   depends_on = [
