@@ -63,15 +63,19 @@ To import the content into your destination WordPress site on the Azure Linux Ap
 
    ![Import Step 2](./media/aasm_importSelectFile.png)
 
-3. Click on **Import**.
+3. Enable the checkbox if you want to retain caching/CDN features that we provide by default. Note that enabling this will install and overwrite W3 total cache plugin configuration of the imported site.
 
-   ![Import Step 3](./media/aasm_importButton.png)
+   ![Import Step 3](./media/aasm_importCheckBox.png)
 
-4. You can monitor the progress of the import process.
+4. Click on **Import**.
 
-   ![Import Step 4](./media/aasm_importStatus.png)
+   ![Import Step 4](./media/aasm_importButton.png)
 
-5. Once the import is complete, refresh the page and log in with the credentials of the source site.
+5. You can monitor the progress of the import process.
+
+   ![Import Step 5](./media/aasm_importStatus.png)
+
+6. Once the import is complete, refresh the page and log in with the credentials of the source site.
 
 ## Support
 
