@@ -38,7 +38,7 @@ To export your WordPress content from the source site, follow these steps:
 
 1. Open the **Export** section of the Azure App Service Migration plugin.
 
-  ![Export Step 3](./media/aasm_export.png)
+  ![Export Step 1](./media/aasm_export.png)
 
 2. Configure the desired export options.
 
@@ -57,7 +57,7 @@ To export your WordPress content from the source site, follow these steps:
 To import the content into your destination WordPress site on the Azure Linux App Service, follow these steps:
 
 1. Open the **Import** section of the Azure App Service Migration plugin.
-    ![Import Step 2](./media/import.png)
+    ![Import Step 1](./media/import.png)
 
 2. Select the zip file that you exported from the source site previously.
 
