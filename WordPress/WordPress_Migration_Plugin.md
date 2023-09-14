@@ -14,23 +14,25 @@ Before you begin, make sure you have the following prerequisites in place:
 
 Follow these steps to install the Azure App Service Migration plugin:
 
-1. Open the WordPress dashboard of your site.
+1. Download the plugin zip file from [here][https://github.com/Azure/wordpress-linux-appservice/blob/saisubodh/wpMigrationPlugin/WordPress%20Migration%20Plugin/azure_app_service_migration.zip].
 
-2. In the dashboard menu, navigate to **Plugins > Add New** section.
+2. Open the WordPress dashboard of your site.
 
-   ![Installation Step 2](./media/aasm_addPlugin.png)
+3. In the dashboard menu, navigate to **Plugins > Add New** section.
 
-3. Click on **Upload Plugin** and select the plugin zip file.
+   ![Installation Step 3](./media/aasm_addPlugin.png)
 
-   ![Installation Step 3](./media/aasm_uploadPlugin.png)
+4. Click on **Upload Plugin** and select the plugin zip file.
 
-4. Click on **Install**.
+   ![Installation Step 4](./media/aasm_uploadPlugin.png)
 
-   ![Installation Step 4](./media/aasm_installPlugin.png)
+5. Click on **Install**.
 
-5. After installation, click on **Activate**.
+   ![Installation Step 5](./media/aasm_installPlugin.png)
 
-   ![Installation Step 5](./media/activatePlugin.png)
+6. After installation, click on **Activate**.
+
+   ![Installation Step 6](./media/aasm_activatePlugin.png)
 
 ## Export
 
