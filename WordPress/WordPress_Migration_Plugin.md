@@ -14,13 +14,13 @@ Before you begin, make sure you have the following prerequisites in place:
 
 Follow these steps to install the Azure App Service Migration plugin:
 
-1. Download the plugin zip file from [here][https://github.com/Azure/wordpress-linux-appservice/blob/saisubodh/wpMigrationPlugin/WordPress%20Migration%20Plugin/azure_app_service_migration.zip].
+1. Download the plugin zip file from [here](https://github.com/Azure/wordpress-linux-appservice/blob/saisubodh/wpMigrationPlugin/WordPress%20Migration%20Plugin/azure_app_service_migration.zip).
 
 2. Open the WordPress dashboard of your site.
 
 3. In the dashboard menu, navigate to **Plugins > Add New** section.
 
-   ![Installation Step 3](./media/aasm_addPlugin.png)
+   ![Installation Step 3](./media/aasm_addplugin.png)
 
 4. Click on **Upload Plugin** and select the plugin zip file.
 
@@ -50,16 +50,16 @@ To export your WordPress content from the source site, follow these steps:
 
 4. A popup will appear when the export is complete. Download the export zip file.
 
-   ![Export Step 41](./media/aasm_Complete.png)
+   ![Export Step 41](./media/aasm_exportComplete.png)
 
-   ![Export Step 42](./media/aasm_downloadExportButton.png)
+   ![Export Step 42](./media/aasm_downloadExportFile.png)
 
 ## Import
 
 To import the content into your destination WordPress site on the Azure Linux App Service, follow these steps:
 
 1. Open the **Import** section of the Azure App Service Migration plugin.
-    ![Import Step 1](./media/import.png)
+    ![Import Step 1](./media/aasm_import.png)
 
 2. Select the zip file that you exported from the source site previously.
 
