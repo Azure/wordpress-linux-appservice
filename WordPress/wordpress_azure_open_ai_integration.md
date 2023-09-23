@@ -2,7 +2,7 @@
 
 AI models can provide significant benefits to WordPress content generation by analysing vast amounts of data and generate high-quality content automatically. This can save content creators time and effort by automating repetitive and time-consuming tasks such as keyword research, topic selection, writing blog drafts or image generation.
 
-This document explains how to configure Azure Open AI with WordPress on Azure AppService. With this integration you can enable:
+This document explains how to configure Azure OpenAI with WordPress on Azure AppService. With this integration you can enable:
 
     1. Content/ Posts creation and generation 
     2. Translation of the content the language of your choice
@@ -11,7 +11,7 @@ This document explains how to configure Azure Open AI with WordPress on Azure Ap
     5. Search and navigation within website
     6. Chatbots and customer support
 
-**Prerequisite**:  Create Azure Open AI resource from Azure Portal
+**Prerequisite**:  Create Azure OpenAI resource from Azure Portal
 
 1. In Azure Portal – navigate to Create resource and search for Open AI resource
 2. Follow the steps described in [Create Open AI resource](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/create-resource?pivots=web-portal). The screen looks as follows:
@@ -50,7 +50,7 @@ To configure Azure OpenAI models with WordPress on App Service, you can install 
    
  ![Admin AI Settings](./media/AI_Images/WP_AI_Admin_Settings.jpg)
 
-Note: Endpoint & API Key to be captured from your Azure Open AI resource definition created in the first step in Azure portal as shown in below screenshot.
+Note: Endpoint & API Key to be captured from your Azure OpenAI resource definition created in the first step in Azure portal as shown in below screenshot.
 
  ![End Point](media/AI_Images/WP_AI_Endpoint.jpg)
 
