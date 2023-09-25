@@ -34,7 +34,7 @@ Prerequisites: As a user, you already have an active Azure subscription and an a
          
 >**Note:** : Replace `<endpoint>` with the Azure communication service endpoint mentioned in step 5. Make sure that there is no training slash ("/") at the end of the resource endpoint URL.
 
->**Note:** : Replace `<access-key>` with the Azure communication service endpoint and primary key mentioned in step 5 And replace `<sender-address>` with MailFrom Address mentioned in step 6.
+>**Note:** : Replace `<access-key>` with the Azure communication service primary key mentioned in step 5.
 
 >**Note:** : Replace `<sender-address>` with MailFrom Address mentioned in step 6.
 
