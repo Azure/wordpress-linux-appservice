@@ -32,7 +32,7 @@ Prerequisites: As a user, you already have an active Azure subscription and an a
 |WP_EMAIL_CONNECTION_STRING | endpoint=`<endpoint>`;senderaddress=`<sender-address>`;accesskey=`<access-key>`                         |
 
          
->**Note:** : Replace `<endpoint>` with the Azure communication service endpoint mentioned in step 5. Make sure that there is no training slash ("/") at the end of the resource endpoint URL.
+>**Note:** : Replace `<endpoint>` with the Azure communication service endpoint mentioned in step 5. Make sure that there is no training slash ("/") at the end of the endpoint URL.
 
 >**Note:** : Replace `<access-key>` with the Azure communication service primary key mentioned in step 5.
 
