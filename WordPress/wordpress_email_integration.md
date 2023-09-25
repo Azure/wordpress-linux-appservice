@@ -34,7 +34,8 @@ Prerequisites: As a user, you already have an active Azure subscription and an a
 ```         
 **Note:** :
 
-1. Replace `<endpoint>` with the Azure communication service endpoint mentioned in step 5. Make sure that there is no training slash ("/") at the end of the endpoint URL.
+1. Replace `<endpoint>` with the Azure communication service endpoint mentioned in step 5. Make sure that
+there is no training slash ("/") at the end of the endpoint URL.
 
 2.  Replace `<access-key>` with the Azure communication service primary key mentioned in step 5.
 
