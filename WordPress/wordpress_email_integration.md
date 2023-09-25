@@ -20,7 +20,7 @@ Prerequisites: As a user, you already have an active Azure subscription and an a
 3.	Add Azure managed domain to email communication service following the [quick start guide](https://learn.microsoft.com/en-us/azure/communication-services/quickstarts/email/add-azure-managed-domains). 
 4.	Connect the azure managed domain with azure communication service resource following the [quick start guide](https://learn.microsoft.com/en-us/azure/communication-services/quickstarts/email/connect-email-communication-resource?pivots=azure-portal). 
 5.	Go to Azure communication service resource and navigate to keys blade and save the primary key and resource endpoint for later use. 
->**Note:** Please refrain from copying the trailing slash ("/") at the end of the resource endpoint URL. 
+
 
 ![acs endpoint and key](./media/acs_endpoint_and_access_key.png)
 
@@ -32,7 +32,11 @@ Prerequisites: As a user, you already have an active Azure subscription and an a
 |WP_EMAIL_CONNECTION_STRING | endpoint=`<endpoint>`;senderaddress=`<sender-address>`;accesskey=`<access-key>`                         |
 
          
->**Note:** : Replace `<endpoint>` and `<access-key>` with the Azure communication service endpoint and primary key mentioned in step 5 And replace `<sender-address>` with MailFrom Address mentioned in step 6.
+>**Note:** : Replace `<endpoint>` with the Azure communication service endpoint mentioned in step 5. Make sure that there is no training slash ("/") at the end of the resource endpoint URL.
+
+>**Note:** : Replace `<access-key>` with the Azure communication service endpoint and primary key mentioned in step 5 And replace `<sender-address>` with MailFrom Address mentioned in step 6.
+
+>**Note:** : Replace `<sender-address>` with MailFrom Address mentioned in step 6.
 
 8.	Download the App service email plugin from here: [Click here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2FAzure%2FWordpress-on-Linux-App-Service-plugins%2Ftree%2Fmain%2Fapp_service_email).
 9.	Go to Wordpress Admin Dashboard, navigate to plugins tab and then click on add new plugin.
