@@ -31,12 +31,15 @@ Prerequisites: As a user, you already have an active Azure subscription and an a
 |---------------------|-------|
 |WP_EMAIL_CONNECTION_STRING | endpoint=`<endpoint>`;senderaddress=`<sender-address>`;accesskey=`<access-key>`                         |
 
-         
->**Note:** : Replace `<endpoint>` with the Azure communication service endpoint mentioned in step 5. Make sure that there is no training slash ("/") at the end of the endpoint URL.
+```         
+**Note:** :
 
->**Note:** : Replace `<access-key>` with the Azure communication service primary key mentioned in step 5.
+1. Replace `<endpoint>` with the Azure communication service endpoint mentioned in step 5. Make sure that there is no training slash ("/") at the end of the endpoint URL.
 
->**Note:** : Replace `<sender-address>` with MailFrom Address mentioned in step 6.
+2.  Replace `<access-key>` with the Azure communication service primary key mentioned in step 5.
+
+3.  Replace `<sender-address>` with MailFrom Address mentioned in step 6.
+```
 
 8.	Download the App service email plugin from here: [Click here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2FAzure%2FWordpress-on-Linux-App-Service-plugins%2Ftree%2Fmain%2Fapp_service_email).
 9.	Go to Wordpress Admin Dashboard, navigate to plugins tab and then click on add new plugin.
