@@ -19,7 +19,8 @@ Prerequisites: As a user, you already have an active Azure subscription and an a
 2.	Create the Email communication Resource following the [quick start guide](https://learn.microsoft.com/en-us/azure/communication-services/quickstarts/email/create-email-communication-resource). 
 3.	Add Azure managed domain to email communication service following the [quick start guide](https://learn.microsoft.com/en-us/azure/communication-services/quickstarts/email/add-azure-managed-domains). 
 4.	Connect the azure managed domain with azure communication service resource following the [quick start guide](https://learn.microsoft.com/en-us/azure/communication-services/quickstarts/email/connect-email-communication-resource?pivots=azure-portal). 
-5.	Go to Azure communication service resource and navigate to keys blade and save the primary key and resource endpoint for later use.
+5.	Go to Azure communication service resource and navigate to keys blade and save the primary key and resource endpoint for later use. 
+>**Note:** Please refrain from copying the trailing slash ("/") at the end of the resource endpoint URL. 
 
 ![acs endpoint and key](./media/acs_endpoint_and_access_key.png)
 
