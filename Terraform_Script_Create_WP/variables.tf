@@ -121,7 +121,7 @@ variable "app_service_alwayson" {
 
 variable "app_service_docker_registry_url" {
   description = "Docker Registry URL"
-  default     = "https://mcr.microsoft.com"
+  default     = "mcr.microsoft.com"
 }
 
 /*
