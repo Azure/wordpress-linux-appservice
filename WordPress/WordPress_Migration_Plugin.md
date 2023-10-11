@@ -2,6 +2,9 @@
 
 In this quickstart guide, you will learn how to install and use the Azure App Service Migration plugin. This plugin allows you to migrate a WordPress site from any hosting platform to a WordPress site on the Azure Linux App Service. The migration process involves exporting the WordPress content from the source site as a zip file and then importing it into the destination WordPress site on the Azure Linux App Service.
 
+```
+**Note**: This plugin will work only for the site with content(Web + DB) size 4 GB. If your site size is more than 4 GB then you have to follow the steps described in this [migration guide](https://github.com/Azure/wordpress-linux-appservice/tree/main/WordPress%20Migration%20Tool) 
+
 ## Prerequisites
 
 Before you begin, make sure you have the following prerequisites in place:
