@@ -108,19 +108,26 @@ resource "azurerm_linux_web_app" "wordpress_web_app" {
   service_plan_id           = azurerm_service_plan.app_service_hosting_plan.id
   virtual_network_subnet_id = azurerm_subnet.application_subnet.id
   client_affinity_enabled   = false
+
   site_config {
     ftps_state             = "AllAllowed"
     always_on              = var.app_service_alwayson
     vnet_route_all_enabled = true
+
     application_stack {
-      docker_image_name   = "${var.wordpress_container_linux_fx_version}:8.2"
-      docker_registry_url = var.app_service_docker_registry_url
+      docker_image = "${var.app_service_docker_registry_url}/${var.wordpress_container_linux_fx_version}"
+      docker_image_tag = "8.2"
     }
   }
+
+
+
+
   depends_on = [
     azurerm_mysql_flexible_server.mysql_db_server,
     azurerm_mysql_flexible_database.wordpress_mysql_database
   ]
+
 }
 
 #VNet
