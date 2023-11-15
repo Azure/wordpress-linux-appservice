@@ -63,14 +63,14 @@ With this, your site is configured with two deployment slots: production and sta
 
 - Please ensure that invisible primary key generation setting is turned off for your MySQL database server. Go to your Azure MySQL server -> Server parameters -> All -> search for ‘sql_generate_invisible_primary_key’ -> set the value to OFF -> click on Save.
 
-- To copy the database from production to staging, you can use [phpMyAdmin](https://github.com/Azure/wordpress-linux-appservice/blob/main/WordPress/wordpress_phpmyadmin.md) by following the steps described [here](https://stackoverflow.com/questions/16481083/how-can-i-duplicate-a-database-using-phpmyadmin). Or, you can install and use **mysqldump** cli tool from SCM site of your staging App Service: `https://<appname>-staging.azurewebsites.net/newui/webssh`.
+- To copy the database from production to staging, you can use [phpMyAdmin](./wordpress_phpmyadmin.md) by following the steps described [here](https://stackoverflow.com/questions/16481083/how-can-i-duplicate-a-database-using-phpmyadmin). Or, you can install and use **mysqldump** cli tool from SCM site of your staging App Service: `https://<appname>-staging.azurewebsites.net/newui/webssh`.
     ```
     mysql -h $DATABASE_HOST -u $DATABASE_USERNAME --password=$DATABASE_PASSWORD -e 'DROP DATABASE staging_db;'
     mysql -h $DATABASE_HOST -u $DATABASE_USERNAME --password=$DATABASE_PASSWORD -e 'CREATE DATABASE staging_db;'
     mysqldump -h $DATABASE_HOST -u $DATABASE_USERNAME --password=$DATABASE_PASSWORD production_db | mysql -h $DATABASE_HOST -u $DATABASE_USERNAME --password=$DATABASE_PASSWORD staging_db
     ```
 
-- Replace the values of production domain name in the database with staging domain name. To do this, you can use [WP CLI Tool](https://developer.wordpress.org/cli/commands/search-replace/) from SCM site of your staging App Service which can be accessed from: `https://<appname>-staging.azurewebsites.net/newui/webssh`. Replace the placeholder values with your staging app name. You can do a dry run using the ‘--dry-run’ flag. 
+- After copying the database replace the values of production domain name in the database with staging domain name. To do this, you can use [WP CLI Tool](./how_to_use_wpcli_tool.md) from SCM site of your staging App Service which can be accessed from: `https://<appname>-staging.azurewebsites.net/newui/webssh`. Replace the placeholder values with your staging app name. You can do a dry run using the ‘--dry-run’ flag. 
     ```
     wp search-replace '<PRODUCTION_DOMAIN_NAME>' '<STAGING_DOMAIN_NAME>' --all-tables --path=$WORDPRESS_HOME --allow-root
     ```
