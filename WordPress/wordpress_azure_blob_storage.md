@@ -28,7 +28,7 @@ The following Application Settings used at deployment time to configure WordPres
 - Storage Account settings are defined in W3 Total Cache CDN tab. Storage Account Key can be visible to Administrators.  Azure Blog Storage container setting is set to ‘public, read-only’  blob access.
 
 - In case Blob Storage needs to be disabled, then in addition to disabling CDN in W3Total Cache settings, files from Blob Container need to be moved to wp-content/uploads folder in AppService if not already present.
-
+- You can upload media files to the blob storage using the WordPress Admin dashboard (Media -> Add New) or the Azure Portal. In Azure Portal, you can find the storage account resource in the same resource group where your WordPress App Service is deployed. Go to the storage account and select **'Containers'** under **'Data storage'** section. Open the appropriate blob container and click on Upload option shown at the top.
 - If Custom Domain or CDN is enabled for Blob Storage, then the domain name needs to be updated in **'Configuration -> Replace site's hostname with'** setting in W3 Total Cache CDN settings.
 
 - Azure Blob Storage currently doesn't support SSL with custom domain. Click here for more information on custom domain mapping to Azure Blob Storage.
