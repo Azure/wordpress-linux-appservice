@@ -1,6 +1,6 @@
 # Migrate the WordPress images running on a different container to Microsoft supported containers
 
-This document describes the approach to migrate WordPress instances running on Linux App Service **(using different images, or older wordpress-alpine:0.72 image)** to the new WordPress offering **(mcr.microsoft.com/appsvc/wordpress-alpine-php having >=7.4 tag)**.
+This document describes the approach to migrate WordPress instances running on Linux App Service using different images, or older **wordpress-alpine:0.72**, to the new WordPress offering image **(i.e., mcr.microsoft.com/appsvc/wordpress-alpine-php having >=7.4 tag)**.
 
 **Note-1:** The steps described below under section **Steps for migrating the docker container** will upgrade the underlying stack such as Nginx, PHP, Redis etc., and it will not upgrade/refresh the WordPress version or source code.  As a result, sometimes there can be compatibility issue between the upgraded PHP version and underlying WordPress code. So upgrading the WordPress to latest compatible version with the PHP version as per the [PHP Compatibility and WordPress Versions](https://make.wordpress.org/core/handbook/references/php-compatibility-and-wordpress-versions/) is the responsibility of the user.
 
@@ -30,11 +30,11 @@ It is recommended to migrate the WordPress container image first in staging envi
 9. Navigate to Deployment Center blade and update the new image details  with appropriate **tag** value as shown in the below screen shot.
 ![Deployment Center](./media/wordpress_deployment_center_update.png)
 10. Restart your App Service to take the changes into effect.
-11. To cross verify, launch (**https://_\<appname\>_.scm.azurewebsites.net/newui/webssh**)
+11. To cross verify, launch (**https://\<appname\>.scm.azurewebsites.net/newui/webssh**)
 12. In webssh console, run **cat /etc/os-release** command. It should show the Alpine version as shown in below screenshot ![Alpine Version](./media/WP-Alpine-Version.png)
 13. Run php --version command to validate the image is on latest php version as shown below
 ![PHP Version](./media/WP-PHP-Version.png)
-14. Now Launch the WP-Admin (**https://_\<appname\>_azurewebsites.net/wp-admin**)
+14. Now Launch the WP-Admin (**https://\<appname\>.azurewebsites.net/wp-admin/**)
 15. Upgrade WordPress version to latest recommended version as hinted in the Admin UI
 16. Alternatively, if you run into any challenges with upgrade in the above step, you can follow the steps described in **Manual Updates** section of this [document](https://wordpress.org/support/article/updating-wordpress/).
 
