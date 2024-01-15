@@ -19,7 +19,7 @@ URL to view all the list of WordPress tags:  https://mcr.microsoft.com/v2/appsvc
 
 |Image Name |Image Tag  |OS |PHP Version | Nginx version| 
 |-----------|-----------|---|------------|--------------|
-|appsvc/wordpress-alpine-php    |latest |Alpine Linux 3.16  |8.0.28  |1.22.1 |
+|appsvc/wordpress-alpine-php    |latest <sup>(see note)</sup> |Alpine Linux 3.16  |8.0.28  |1.22.1 |
 |appsvc/wordpress-alpine-php    |8.0 |Alpine Linux 3.16  |8.0.28  |1.22.1 |
 |appsvc/wordpress-alpine-php    |8.2 |Alpine Linux 3.16  |8.2.5   |1.22.1 |
 
