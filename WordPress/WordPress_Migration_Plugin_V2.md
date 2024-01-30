@@ -17,13 +17,13 @@ In this quickstart, you will learn how to use the Azure App Service Migration pl
 
 3. Generate a new Authentication Token and copy it.
 
-   ![Step 2](./media/generate_token.png)
+   ![Step 2](./media/migration_v2_generate_token.png)
 
-   ![Step 3](./media/copy_token.png)
+   ![Step 3](./media/migration_v2_copy_token.png)
 
 4. Copy the destination site URL. Ensure it is of the form 'https://<Destination Site Domain>/'
 
-   ![Step 4](./media/url.png)
+   ![Step 4](./media/migration_v2_url.png)
 
 5. Now, navigate to the 'Migrate' page on the source site and input the destination Site URL and Authentication token.
    
