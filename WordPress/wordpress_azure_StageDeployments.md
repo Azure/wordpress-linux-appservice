@@ -31,7 +31,7 @@ You can enable the staging environment option while creating a new WordPress on 
 <br>
 <br>
 
-## Setup staging environment for an existing App Service:
+## Setup staging environment with an existing App Service:
 
 1. If you already have an existing App Service, please follow the steps below to setup staging environment.
 
