@@ -100,7 +100,7 @@ wp-config.php
 
 ### Important Notes
 ---
-- Previously, the image details could be viewed or updated from the 'Deployment Center' section. However, it would now show only the code integration view. In the near future, image upgrade option would be available under **Settings -> Configuration -> Stack Settings** section.
+- Previously, the image details could be viewed or updated from the 'Deployment Center' section. However, it would now show only the code integration view. In the near future, image upgrade option would be available under **Settings -> Configuration -> Stack Setting** section.
 
 - Meanwhile, if you are looking at updating the image details of your App Service, you can do it via **[az cli](https://learn.microsoft.com/en-us/cli/azure/webapp/config?view=azure-cli-latest#az-webapp-config-set)**. Below are the commands to update linux-fx-version of App Service. Replace the place holders SUBSCRIPTION_ID, RESOURCE_GROUP_NAME, WEBAPP_NAME with actual values.
 
