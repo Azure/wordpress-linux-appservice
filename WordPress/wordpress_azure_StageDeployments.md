@@ -1,4 +1,4 @@
-# WordPress on Azure App Service - Stage Deployments
+# Staging Deployments with WordPress on App Service
 
 The Deployment Slots feature of Azure App Service allows you to create multiple environments for your web applications. They are extremely useful for various scenarios, such as:
 
@@ -10,11 +10,11 @@ The Deployment Slots feature of Azure App Service allows you to create multiple 
 
 - Rollback: If a new deployment causes issues, you can easily swap the slots back to the previous version, quickly rolling back changes.
 
-Leveraging the power of stage deployments of App Service, we can easily manage the content updates, plugin and theme modifications, version upgrades of WordPress, and much more without impacting the end users. Since WordPress on App Service also makes use of Azure MySQL Flexible Server database, you must setup production and staging databases that corresponds to your respective deployment environments (slots). Because Azure MySQL Flexible Server does not have features similar to App Service deployment slots, you must perform certain customizations to maintain production and staging slots for WordPress sites. 
+Leveraging the power of staging deployments of App Service, we can easily manage the content updates, plugin and theme modifications, version upgrades of WordPress, and much more without impacting the end users. Since WordPress on App Service also makes use of Azure MySQL Flexible Server database, you must setup production and staging databases that corresponds to your respective deployment environments (slots). Because Azure MySQL Flexible Server does not have features similar to App Service deployment slots, you must perform certain customizations to maintain production and staging slots for WordPress sites. 
 
 ![WordPress Deployment Slot setup](./media/StageDeploy_Images/WP-Stagedeploy-options.jpg)
 
-**Note:** To learn more about deployment slots and how stage deployments works in App Service, you can refer to the following documentation - [Creating Staging Environments in Azure App Service]( https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots?tabs=portal)
+**Note:** To learn more about deployment slots and how staging deployments works in App Service, you can refer to the following documentation - [Creating Staging Environments in Azure App Service]( https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots?tabs=portal)
 
 ## Steps to configure staging slot
 
