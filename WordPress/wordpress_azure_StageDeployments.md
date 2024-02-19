@@ -35,7 +35,7 @@ You can enable the staging environment option while creating a new WordPress on 
 
 1. If you already have an existing App Service, please follow the steps below to setup staging environment.
 
-2. Once the WordPress resources are created, navigate to the Azure MySQL Server resource used by the production environment and create a new database for staging environment. You can name the new database with a suitable suffix, such as "_staging".
+2. Navigate to the Azure MySQL Server resource used by the production environment and create a new database for staging environment. You can name the new database with a suitable suffix, such as "_staging".
 
 ![Create a new database](./media/StageDeploy_Images/WP-SQL-NewDatabase.png)
 
