@@ -1,4 +1,4 @@
-# Staging environments with WordPress on App Service
+# Staging environment with WordPress on App Service
 
 The Deployment Slots feature of Azure App Service allows you to create multiple environments for your web applications. They are extremely useful for various scenarios, such as:
 
@@ -16,9 +16,24 @@ Leveraging the power of staging deployments of App Service, we can easily manage
 
 **Note:** To learn more about deployment slots and how staging deployments works in App Service, you can refer to the following documentation - [Creating Staging Environments in Azure App Service]( https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots?tabs=portal)
 
-## Steps to configure staging slot
+<br>
 
-1. Create WordPress on Azure App Service from the Azure marketplace offering : [Create WordPress on App Service - Microsoft Azure](https://ms.portal.azure.com/#create/WordPress.WordPress)
+## Create a new WordPress App with staging environment:
+
+You can enable the staging environment option while creating a new WordPress on Azure App Service from the Azure marketplace offering : [Create WordPress on App Service - Microsoft Azure](https://portal.azure.com/#create/WordPress.WordPress)
+
+<kbd>
+    
+![WordPress_CreateUX_Staging_Setup](./media/StageDeploy_Images/create_ux_staging_environment.png)
+
+</kbd>
+
+<br>
+<br>
+
+## Setup staging environment for an existing App Service:
+
+1. If you already have an existing App Service, please follow the steps below to setup staging environment.
 
 2. Once the WordPress resources are created, navigate to the Azure MySQL Server resource used by the production environment and create a new database for staging environment. You can name the new database with a suitable suffix, such as "_staging".
 
