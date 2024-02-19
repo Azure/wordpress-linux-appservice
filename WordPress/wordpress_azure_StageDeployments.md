@@ -85,7 +85,7 @@ With this, your site is configured with two deployment slots: production and sta
 
 - Database changes should be included within the code being added. For example, a newly added plugin is supposed to take care of creating its own tables (if any) within its code.
 
-- Use CI/CD pipelines as relevant to deploy the code changes to each of the slots from their respective branches. For more information refer: [Continuous deployment to Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/deploy-continuous-deployment?tabs=github) 
+- Use CI/CD pipelines as relevant to deploy the code changes to each of the slots from their respective branches. For more information refer: [Enablin CI/CD with WordPress on App Service](./wordpress_azure_ci_cd.md) 
 
 
 ## Managing Blob Storage
