@@ -2,8 +2,7 @@
 
 The code integration feature is currently enabled with WordPress images having  [tags](https://github.com/Azure/wordpress-linux-appservice/tree/main?tab=readme-ov-file#image-details) of 8.2 or greater. It will soon be available for the remaining supported [tags](https://github.com/Azure/wordpress-linux-appservice/tree/main?tab=readme-ov-file#image-details). You should see a code integration view in the Deployment Center blade of your App Service if it is supported for your image version.
 
-### Which files to track using VCS?
----
+## Which files to track using VCS?
 Before integrating code with Version Control platforms, it is important to decide which files to include and which to exclude. It is always recommended that you keep track of as few files as possible. For example, keeping track of the **wp-content/uploads** folder will be inefficient because it contains static media files that can be quite large. Instead, the uploaded data should be stored in an Azure blob storage. 
 
 It is also widely preferred to ignore WordPress core files as they change less frequently, and core upgrades can be performed independently on each of the environments. You can also ignore the **wp-config.php** file as configurations usually differ between production and development environments. However, it is up to the users to decide whether it is necessary to keep track of them. We must also ignore temporary files and directories, such as, _wp-content/advanced-cache.php, wp-content/object-cache.php, wp-content/cache/, wp-content/upgrades/ etc.,_ 
@@ -48,8 +47,7 @@ wp-config.php
 **Reference**: https://github.com/github/gitignore/blob/main/WordPress.gitignore
 <br><br>
 
-### Downloading WordPress code from App Service
----
+## Downloading WordPress code from App Service
 - Go to the SCM site of your App Service using the following URL: https://**\<sitename\>**.scm.azurewebsites.net/newui/fileManager
 
 - Navigate to *site* folder in File Manager and download the *wwwroot* folder as a zip file as show below.
@@ -60,8 +58,8 @@ wp-config.php
 
 <br>
 
-### Enabling CI/CD with GitHub
----
+## Enabling CI/CD with GitHub
+
 1. Go to **Deployment Center** on your App Service dashboard.
 
     ![GitHub integration with WordPress App Service](./media/cicd/appservice_github_devops-1.png)
@@ -86,8 +84,8 @@ wp-config.php
 
 <br>
 
-### Enabling CI/CD with Azure Repos
----
+## Enabling CI/CD with Azure Repos
+
 1. Go to **Deployment Center** on your App Service dashboard. From the dropdown, select 'Azure Repos' as the source provider.
 
     ![Azure Repos integration with WordPress App Service](./media/cicd/appservice_github_devops-1.png)
@@ -98,8 +96,8 @@ wp-config.php
 
 <br>
 
-### Important Notes
----
+## Important Notes
+
 - Previously, the image details could be viewed or updated from the 'Deployment Center' section. However, it would now show only the code integration view. In the near future, image upgrade option would be available under **Settings -> Configuration -> Stack Setting** section.
 
 - Meanwhile, if you are looking at updating the image details of your App Service, you can do it via **[az cli](https://learn.microsoft.com/en-us/cli/azure/webapp/config?view=azure-cli-latest#az-webapp-config-set)**. Below are the commands to update linux-fx-version of App Service. Replace the place holders SUBSCRIPTION_ID, RESOURCE_GROUP_NAME, WEBAPP_NAME with actual values.
