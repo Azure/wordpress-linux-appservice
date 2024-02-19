@@ -87,4 +87,4 @@ To import the content into your destination WordPress site on the Azure Linux Ap
 
 ## Support
 
-If you encounter any issues or have questions, please feel free to reach out to us at `wordpressonappservice@microsoft.com`. In case of errors with the plugin, make sure to attach the log file to your email for efficient assistance.
+If you encounter any issues or have questions, please feel free to reach out to us at `wordpressonazure@microsoft.com`. In case of errors with the plugin, make sure to attach the log file to your email for efficient assistance.
