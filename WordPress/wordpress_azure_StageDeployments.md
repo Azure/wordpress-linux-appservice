@@ -1,4 +1,4 @@
-# Staging Deployments with WordPress on App Service
+# Staging environments with WordPress on App Service
 
 The Deployment Slots feature of Azure App Service allows you to create multiple environments for your web applications. They are extremely useful for various scenarios, such as:
 
