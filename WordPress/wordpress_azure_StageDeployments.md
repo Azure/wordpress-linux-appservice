@@ -1,4 +1,4 @@
-# WordPress on Azure App Service - Stage Deployments
+# Staging environment with WordPress on App Service
 
 The Deployment Slots feature of Azure App Service allows you to create multiple environments for your web applications. They are extremely useful for various scenarios, such as:
 
@@ -10,17 +10,32 @@ The Deployment Slots feature of Azure App Service allows you to create multiple 
 
 - Rollback: If a new deployment causes issues, you can easily swap the slots back to the previous version, quickly rolling back changes.
 
-Leveraging the power of stage deployments of App Service, we can easily manage the content updates, plugin and theme modifications, version upgrades of WordPress, and much more without impacting the end users. Since WordPress on App Service also makes use of Azure MySQL Flexible Server database, you must setup production and staging databases that corresponds to your respective deployment environments (slots). Because Azure MySQL Flexible Server does not have features similar to App Service deployment slots, you must perform certain customizations to maintain production and staging slots for WordPress sites. 
+Leveraging the power of staging deployments of App Service, we can easily manage the content updates, plugin and theme modifications, version upgrades of WordPress, and much more without impacting the end users. Since WordPress on App Service also makes use of Azure MySQL Flexible Server database, you must setup production and staging databases that corresponds to your respective deployment environments (slots). Because Azure MySQL Flexible Server does not have features similar to App Service deployment slots, you must perform certain customizations to maintain production and staging slots for WordPress sites. 
 
 ![WordPress Deployment Slot setup](./media/StageDeploy_Images/WP-Stagedeploy-options.jpg)
 
-**Note:** To learn more about deployment slots and how stage deployments works in App Service, you can refer to the following documentation - [Creating Staging Environments in Azure App Service]( https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots?tabs=portal)
+**Note:** To learn more about deployment slots and how staging deployments works in App Service, you can refer to the following documentation - [Creating Staging Environments in Azure App Service]( https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots?tabs=portal)
 
-## Steps to configure staging slot
+<br>
 
-1. Create WordPress on Azure App Service from the Azure marketplace offering : [Create WordPress on App Service - Microsoft Azure](https://ms.portal.azure.com/#create/WordPress.WordPress)
+## Create a new WordPress App with staging environment:
 
-2. Once the WordPress resources are created, navigate to the Azure MySQL Server resource used by the production environment and create a new database for staging environment. You can name the new database with a suitable suffix, such as "_staging".
+You can enable the staging environment option while creating a new WordPress on Azure App Service from the Azure marketplace offering : [Create WordPress on App Service - Microsoft Azure](https://portal.azure.com/#create/WordPress.WordPress)
+
+<kbd>
+    
+![WordPress_CreateUX_Staging_Setup](./media/StageDeploy_Images/create_ux_staging_environment.png)
+
+</kbd>
+
+<br>
+<br>
+
+## Setup staging environment with an existing App Service:
+
+1. If you already have an existing App Service, please follow the steps below to setup staging environment.
+
+2. Navigate to the Azure MySQL Server resource used by the production environment and create a new database for staging environment. You can name the new database with a suitable suffix, such as "_staging".
 
 ![Create a new database](./media/StageDeploy_Images/WP-SQL-NewDatabase.png)
 
@@ -85,7 +100,7 @@ With this, your site is configured with two deployment slots: production and sta
 
 - Database changes should be included within the code being added. For example, a newly added plugin is supposed to take care of creating its own tables (if any) within its code.
 
-- Use CI/CD pipelines as relevant to deploy the code changes to each of the slots from their respective branches. For more information refer: [Continuous deployment to Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/deploy-continuous-deployment?tabs=github) 
+- Use CI/CD pipelines as relevant to deploy the code changes to each of the slots from their respective branches. For more information refer: [Enablin CI/CD with WordPress on App Service](./wordpress_azure_ci_cd.md) 
 
 
 ## Managing Blob Storage
