@@ -336,3 +336,6 @@ terraform.tfvars
 terraform.tfstate*
 secrets.tf
 **/WordPress*Migration*Plugin*V2/azure_app_service_migration.zip
+**/WordPress*Migration*Plugin/azure_app_service_migration.zip
+**/WordPress*Migration*Tool/WordPressMigrationTool_windows_x64.zip
+**/WordPress*Migration*Tool/WordPressMigrationTool_windows_x86.zip
