@@ -335,3 +335,4 @@ ASALocalRun/
 terraform.tfvars
 terraform.tfstate*
 secrets.tf
+**/WordPress*Migration*Plugin*V2/azure_app_service_migration.zip
