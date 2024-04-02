@@ -52,7 +52,7 @@ wp-config.php
 
 - Navigate to *site* folder in File Manager and download the *wwwroot* folder as a zip file as show below.
 
-- Extract the zip file, decide what code needs to be integrated with git, and push it to the remote repository.
+- Extract the zip file, determine which files should be integrated with git, and push them to the remote repository.
 
     ![WordPress Deployment Slot setup](./media/cicd/download_code_from_scm.png)
 
