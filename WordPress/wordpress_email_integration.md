@@ -42,7 +42,7 @@ there is no training slash ("/") at the end of the endpoint URL.
 3.  Replace `<sender-address>` with MailFrom Address mentioned in step 6.
 ```
 
-8.	Download the App service email plugin from here: [Click here](https://github.com/Azure/wordpress-linux-appservice/blob/main/Plugins/app_service_email/1.1.0/app_service_email.zip?raw=true).
+8.	Download the App service email plugin from here: [Click here](https://github.com/Azure/wordpress-linux-appservice/blob/main/Plugins/app_service_email/1.1.0/app_service_email.zip).
 9.	Go to Wordpress Admin Dashboard, navigate to plugins tab and then click on add new plugin.
 
 ![Add new plugin](./media/add_new_plugin.png)
