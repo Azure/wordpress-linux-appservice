@@ -21,8 +21,8 @@ URL to view all the list of WordPress tags:  https://mcr.microsoft.com/v2/appsvc
 |-----------|-----------|---|------------|--------------|
 |appsvc/wordpress-alpine-php    |latest <sup>(see note)</sup> |Alpine Linux 3.16  |8.0.30  |1.24.0 |
 |appsvc/wordpress-alpine-php    |8.0 |Alpine Linux 3.16  |8.0.30  |1.24.0 |
-|appsvc/wordpress-alpine-php    |8.2 |Alpine Linux 3.19  |8.2.15   |1.24.0 |
-|appsvc/wordpress-alpine-php    |8.3 |Alpine Linux 3.19  |8.3.2   |1.24.0 |
+|appsvc/wordpress-alpine-php    |8.2 |Alpine Linux 3.20  |8.2.20   |1.26.1 |
+|appsvc/wordpress-alpine-php    |8.3 |Alpine Linux 3.20  |8.3.8   |1.26.1 |
 
 **Note**: *latest* tag corresponds to 8.0 version of PHP, and it does not actually mean that it will always carry the latest version of image. We will soon stop using the *latest* tag and use appropriate 'numerical' tag to avoid confusion.
 
