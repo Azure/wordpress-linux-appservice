@@ -63,3 +63,6 @@ Customers who need to install PHP extensions that are not available on the WordP
     ``` bash
     rm /home/site/wwwroot/phpinfo.php
     ```
+
+## Additional References:
+- [Enabling PHP Intl Extension](./wordpress_intl_extension.md)
