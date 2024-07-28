@@ -1,4 +1,4 @@
-# How to enable PHP Intl extension in WordPress on Azure App Service
+# How to enable PHP Intl extension with WordPress App Service
 
 ## Steps
 
