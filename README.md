@@ -46,6 +46,7 @@ URL to view all the list of WordPress tags:  https://mcr.microsoft.com/v2/appsvc
 * [How to Enable Debug Logs for WordPress on App Service](./WordPress/enabling_debug_logs_for_wordpress.md)
 * [How to create staging environment with WordPress on App Service](./WordPress/wordpress_azure_StageDeployments.md)
 * [Enabling CI/CD with WordPress on App Service](./WordPress/wordpress_azure_ci_cd.md)
+* [How to enable PHP Intl extension with WordPress App Service](./WordPress/wordpress_intl_extension.md)
   
 ## Contributing
 
