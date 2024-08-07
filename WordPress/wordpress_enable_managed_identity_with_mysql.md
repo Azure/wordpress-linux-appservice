@@ -1,4 +1,4 @@
-# Enabling Managed Identity for Azure MySQL with WordPress App Service
+# Enabling Managed Identity with Azure MySQL for WordPress App Service
 
 A common challenge for developers is the management of secrets, credentials, certificates, and keys used to secure communication between services. Managed identities eliminate the need to manage these credentials and enables access to various services that support Entra ID authentication, without having to insert credentials into your code.
 
@@ -12,7 +12,7 @@ Managed Identity is enabled by default while creating a new WordPress on App Ser
 
 ## Configure Managed Identity With MySQL Flexible Server 
 
-- Go to the Azure MySQL flexible server resource and under the **Security** section, select **Authentication**.
+- Go to the Azure MySQL flexible server resource and under the **Security** blade, select **Authentication**.
 ![Azure AD Configuration with MySQL - 1](./media/managed_identity/azure-ad-configuration-mysql-1.jpg)
 
 - Under Authentication section, select **'Microsoft Entra authentication only'** option. This only allows authentication using Microsoft Entra account and disables MySQL native password authentication.

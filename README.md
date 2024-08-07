@@ -48,7 +48,9 @@ URL to view all the list of WordPress tags:  https://mcr.microsoft.com/v2/appsvc
 * [Enabling CI/CD with WordPress on App Service](./WordPress/wordpress_azure_ci_cd.md)
 * [Troubleshooting CORS errors with Azure CDN / FrontDoor or Azure Blob Storage](./WordPress/cors_issue_with_azure_cdn_frontdoor_blob.md)
 * [How to enable PHP Intl extension with WordPress App Service](./WordPress/wordpress_intl_extension.md)
-  
+* [Enabling Managed Identity with Azure Communication Service Email](./WordPress/wordpress_enable_managed_identity_with_acs_email.md)
+* [Enabling Managed Identity with Azure MySQL for WordPress App Service](./WordPress/wordpress_enable_managed_identity_with_mysql.md)
+
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
