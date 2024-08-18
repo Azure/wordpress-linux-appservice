@@ -3,7 +3,7 @@
 ## [1.2.1] - 2024-08-21
   
 ### Added
-- Replaced cURL to wp_remote_get
+- Replaced cURL with wp_remote_get
 
 ### Fixed
 - Minor bug in error handling
