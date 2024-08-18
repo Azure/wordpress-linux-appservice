@@ -1,5 +1,13 @@
 # Change Log
+
+## [1.2.1] - 2024-08-21
   
+### Added
+- Replaced cURL to wp_remote_get
+
+### Fixed
+- Minor bug in error handling
+
 ## [1.2.0] - 2024-07-01
   
 ### Added
