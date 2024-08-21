@@ -25,6 +25,10 @@ Configuration that can be changed and have an affect  on your WordPress site thr
 |DATABASE_USERNAME| Database| -| -| Database username used to connect to WordPress.|
 |DATABASE_PASSWORD| Database| -| -| Database password used to connect to WordPress.|
 |CUSTOM_DOMAIN| Web App | -| -| This is a multi-purpose app setting. It is used when Azure Frontdoor is configured with a custom domain, and the new domain needs to be configured in WordPress App too. AFD_ENABLED flag has to be set to true in this case. Additionally, it is also used for configuring custom domain to be used for multi-site WordPress installation. |
+|ENTRA_CLIENT_ID| Web App| -| -| Client Id of user assigned managed identity. You can find it in the overview section of the user assigned managed identity resource. This is used for password-less authentication to services such as Azure MYSQL, ACS Email and Azure Blob Storage. |
+|ENABLE_MYSQL_MANAGED_IDENTITY| Web App| -| -| Set to `true` if you want WordPress to use Managed Identity to access Azure MySQL Flexible Server. (If the setup is not yet done, refer to this [doc](./wordpress_enable_managed_identity_with_mysql.md)) |
+|ENABLE_EMAIL_MANAGED_IDENTITY| Web App| -| -| Set to `true` if you want App Service Email Plugin to use Managed Identity to access Azure Communication Service Email (If the setup is not yet done, refer to this [doc](./wordpress_enable_managed_identity_with_acs_email.md)) |
+
 
 ## One-time Application Settings
 
