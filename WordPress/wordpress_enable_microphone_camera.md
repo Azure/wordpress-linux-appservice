@@ -24,7 +24,7 @@ This document provides the instruction on how to resolve the **'permissions-poli
     ```
     - Please note that you can use `self`, `*`, empty value (none), or any specific origin in the allowlist. For instance, `microphone(self)` or `microphone(*)` or `microphone()`. For more information refer to [Permissions-Policy Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy)
     
-    - You can also edit the custom-spec-settings.conf file from the file manager (`https://<appname>.scm.azurewebsites.net/newui/fileManager`). Click on the 'pencil' icon to edit the file.
+    - You can also edit the custom-spec-settings.conf file from the file manager by clicking on the `pencil` icon (`https://<appname>.scm.azurewebsites.net/newui/fileManager`).
 
 
 3. Now copy the following code snippet to **/home/dev/startup.sh** file.
