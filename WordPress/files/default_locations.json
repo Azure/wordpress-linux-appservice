@@ -1,3 +1,4 @@
-[
-"eastus"
-]
+{
+  "defaultLocations" : ["westus", "centralus"],
+  "blockedLocations" : ["southcentralus"],
+}
