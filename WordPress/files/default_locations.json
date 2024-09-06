@@ -1,4 +1,4 @@
 {
   "defaultLocations" : ["centralus", "westus", "westus2", "eastus2", "northcentralus"],
-  "blockedLocations" : ["westeurope", "southcentralus"],
+  "blockedLocations" : ["westeurope", "southcentralus"]
 }
