@@ -49,8 +49,15 @@ Managed Identity is enabled by default while creating a new WordPress on App Ser
 - Once the setup is completed, you can remove the **DATABASE_PASSWORD** application setting (environment variable) from your App Service and validate whether your site is up.
 
 ### Retrieving access token and accessing MySQL Server
-- The script to fetch access token is available at **/usr/local/bin/fetch-mysql-access-token.sh** inside the container and can be accessed from SSH console of your App Service. Run the following command from SSH console: `bash /usr/local/bin/fetch-mysql-access-token.sh`
-- Once you get the access token, you can login to the MySQL server from PhpMyAdmin dashboard of your site: `https://<your-app>.azurewebsites.net/phpmyadmin/`. Use the 'Microsoft Entra Admin' as username, which you have added in the previous steps. It should also be available as **DATABASE_USERNAME** environment variable in your App Service.
+- The script to fetch MySQL access token is available at **/usr/local/bin/fetch-mysql-access-token.sh** inside the container and can be accessed from SSH console of your App Service. Run the following command from SSH console of your App Service:
+    ```
+    bash /usr/local/bin/fetch-mysql-access-token.sh
+    ```
+- Database username should be available as **DATABASE_USERNAME** environment variable / application setting in your App Service. Run the following command from SSH console to view it.
+    ```
+    echo $DATABASE_USERNAME
+    ```
+- Once you get the username and access token, you can login to the MySQL server from PhpMyAdmin dashboard of your site: `https://<your-app>.azurewebsites.net/phpmyadmin/`. 
 - Alternatively, you can use mysql client cli tool to access the database server. Use the below commands from SSH console of your App Service.
 
     ```
