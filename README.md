@@ -17,13 +17,6 @@ While there are multiple WordPress options on Azure, we recommend starting with 
 ## 🧠 Concepts
 
 ### Key Features:
-Here’s the updated **Concepts** section with both the previous and new key features, each with an emoji:
-
----
-
-## 🧠 Concepts
-
-### Key Features:
 - 🛡️ **Automatic security patches**: Updates are applied within 45 days, following the support policy, to keep your WordPress site secure.
 - 🚀 **Pre-configured Azure CDN and Blob Storage**: Optimized for content delivery, ensuring high availability and performance across the globe.
 - 🏗️ **Best practices from Azure Well-Architected Framework**: The default setup follows Azure's best practices for security, scalability, and performance.
@@ -69,16 +62,15 @@ or follow the steps outlined in the ARM template deployment guide found [here](.
 
 ## 📚 Tutorials
 
-### 🔐 **Security & Identity Management**
+### 🔐 Security & Identity Management
 - [Change MySQL Database Password for WordPress on Linux App Service](./WordPress/changing_mysql_database_password.md)
 - [Change WordPress Admin Credentials for WordPress hosted on Linux App Service](./WordPress/changing_wordpress_admin_credentials.md)
 - [Enabling Managed Identity with Azure Communication Service Email](./WordPress/wordpress_enable_managed_identity_with_acs_email.md)
 - [Enabling Managed Identity with Azure MySQL for WordPress App Service](./WordPress/wordpress_enable_managed_identity_with_mysql.md)
 
-
 ---
 
-### ⚙️ **Configuration & Customization**
+### ⚙️ Configuration & Customization
 - [A View of Application Settings for WordPress on Linux App Service](./WordPress/wordpress_application_settings.md)
 - [Configuring Nginx for WordPress on Linux App Service](./WordPress/configuring_nginx_for_wordpress.md)
 - [Adding PHP Extensions for WordPress on Linux App Service](./WordPress/wordpress_adding_php_extensions.md)
@@ -90,7 +82,7 @@ or follow the steps outlined in the ARM template deployment guide found [here](.
 
 ---
 
-### 🔄 **Migration & Database Management**
+### 🔄 Migration & Database Management
 - [Migrate Any WordPress Site to WordPress on Linux App Service](./WordPress/wordpress_migration_linux_appservices.md)
 - [Configure WordPress on Linux App Service with Existing MySQL Database](./WordPress/using_an_existing_mysql_database.md)
 - [Migrate WordPress Images from Other Containers to Microsoft-Supported Containers](./WordPress/wordpress_upgrade_from_other_images.md)
@@ -98,7 +90,7 @@ or follow the steps outlined in the ARM template deployment guide found [here](.
 
 ---
 
-### 🚀 **Performance Optimization & Scaling**
+### 🚀 Performance Optimization & Scaling
 - [Enabling High Performance with Local Storage](./WordPress/enabling_high_performance_with_local_storage.md)
 - [Image Optimizations in WordPress](./WordPress/wordpress_image_compression.md)
 - [Configuring Local Redis Cache for WordPress](./WordPress/wordpress_local_redis_cache.md)
@@ -107,7 +99,7 @@ or follow the steps outlined in the ARM template deployment guide found [here](.
 
 ---
 
-### 🌐 **Integration & Networking**
+### 🌐 Integration & Networking
 - [AFD Integration with WordPress on Azure App Service](./WordPress/wordpress_afd_configuration.md)
 - [Configuring Azure Blob Storage with WordPress](./WordPress/wordpress_azure_blob_storage.md)
 - [Configuring Azure CDN with WordPress](./WordPress/wordpress_azure_cdn.md)
@@ -115,19 +107,19 @@ or follow the steps outlined in the ARM template deployment guide found [here](.
 
 ---
 
-### 🔧 **Troubleshooting & Debugging**
+### 🔧 Troubleshooting & Debugging
 - [How to Enable Debug Logs for WordPress on App Service](./WordPress/enabling_debug_logs_for_wordpress.md)
 - [Troubleshooting CORS Errors with Azure CDN / FrontDoor or Azure Blob Storage](./WordPress/cors_issue_with_azure_cdn_frontdoor_blob.md)
 
 ---
 
-### 🎯 **Development & CI/CD**
+### 🎯 Development & CI/CD
 - [How to Create a Staging Environment for WordPress on Azure App Service](./WordPress/wordpress_azure_StageDeployments.md)
 - [Enabling CI/CD for WordPress on App Service](./WordPress/wordpress_azure_ci_cd.md)
 
 ---
 
-### 🤖 **AI & Automation**
+### 🤖 AI & Automation
 - [WordPress on Azure App Service – Simplify Site Creation with Azure OpenAI](./WordPress/wordpress_azure_open_ai_integration.md)
 
 ---
