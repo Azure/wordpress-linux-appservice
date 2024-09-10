@@ -1,60 +1,130 @@
-# WordPress on Linux App Service
+# 🚀 WordPress on Azure App Service
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/WordPress.WordPress)
 
-Whether you’re shuffling a couple thousand visitors a day through an eCommerce shopping experience or attracting thousands of visitors to your content per day, your digital experience must be available and load fast to engage and wow your audiences. Our cloud-based solutions give your sites high availability, speed, scalability, and security, so you can press ahead with confidence.
+---
 
-WordPress hosted on Azure App Service is a fully managed Azure PaaS offering with built-in infrastructure maintenance, security patching and scaling. It also supports virtual networks, and the ability to run in an isolated and dedicated App Service Environment. WordPress updates and patches as described [here](https://github.com/Azure/wordpress-linux-appservice/blob/main/WordPress/wordpress_auto_updates.md), threat detection and blocking, and traffic encryption with free SSL certificates are part of what we offer to all of our customers.
+## 🔍 Overview
 
-There are several forms of WordPress running on Azure, but we recommend [WordPress on Azure AppService](https://aka.ms/linux-wordpress) from the Azure Marketplace as your start point. Because these Marketplace offerings are optimized for Linux App Service, they are designed to be easy-to-install and come with up-to-date software packages, fine tuned SKU sizes for both App Service & [Azure Database for MySQL Flexible Server](https://learn.microsoft.com/en-us/azure/mysql/flexible-server/overview) and also with support from App Service team.
+Whether you're handling a few thousand visitors daily on your eCommerce platform or drawing in large crowds to your content, it's essential that your site is fast and always available to keep your audience engaged. Our cloud solutions ensure **high availability**, **speed**, **scalability**, and **security** — so you can confidently deliver a seamless digital experience.
 
-WordPress on Azure App Service is supported in Public cloud, US Government clouds(Fairfax) & China Cloud(mooncake).
+WordPress on Azure App Service is a fully managed PaaS offering that takes care of infrastructure maintenance, security patching, and scaling for you as described [here](https://github.com/Azure/wordpress-linux-appservice/blob/main/WordPress/wordpress_auto_updates.md). It also supports virtual networks and can run in an isolated, dedicated App Service Environment. Features like automatic WordPress updates, threat detection, and free SSL encryption are included to enhance security for all our customers.
 
-![WordPress on Linux App Service](https://user-images.githubusercontent.com/15884692/204471285-0350cf5e-4bd3-45c7-a5e0-9234fac9a785.png)
+While there are multiple WordPress options on Azure, we recommend starting with [WordPress on Azure App Service](https://aka.ms/linux-wordpress) from the Azure Marketplace. This Marketplace offering is optimized for Linux App Service, making it easy to install. This comes with the latest software packages, tailored SKU sizes for both Azure App Service and Azure Database for MySQL Flexible Server, and include dedicated support from the App Service team.
 
-## Image Details
-Image Server URL: https://mcr.microsoft.com
+---
 
-URL to view all the list of WordPress tags:  https://mcr.microsoft.com/v2/appsvc/wordpress-alpine-php/tags/list
+## 🧠 Concepts
 
-|Image Name |Image Tag  |OS |PHP Version | Nginx version| 
-|-----------|-----------|---|------------|--------------|
-|appsvc/wordpress-alpine-php    |latest <sup>(see note)</sup> |Alpine Linux 3.16  |8.0.30  |1.24.0 |
-|appsvc/wordpress-alpine-php    |8.0 |Alpine Linux 3.16  |8.0.30  |1.24.0 |
-|appsvc/wordpress-alpine-php    |8.2 |Alpine Linux 3.20  |8.2.20   |1.26.1 |
-|appsvc/wordpress-alpine-php    |8.3 |Alpine Linux 3.20  |8.3.8   |1.26.1 |
-
-**Note**: *latest* tag corresponds to 8.0 version of PHP, and it does not actually mean that it will always carry the latest version of image. We will soon stop using the *latest* tag and use appropriate 'numerical' tag to avoid confusion.
-
-
-
-## How to Configurations
-
-* [Change MySQL Database Password for WordPress on Linux App Service](./WordPress/changing_mysql_database_password.md)
-* [Change WordPress Admin Credentials of the WordPress hosted on Linux App Service](./WordPress/changing_wordpress_admin_credentials.md)
-* [Setup Startup scripts for WordPress running on Linux App Service](./WordPress/running_post_startup_scripts.md)
-* [Configuring Nginx for WordPress running on Linux App Service](./WordPress/configuring_nginx_for_wordpress.md)
-* [A view of Application Settings of WordPress on Linux App Service](./WordPress/wordpress_application_settings.md)
-* [Connect to database with phpmyadmin of WordPress on Linux AppService](./WordPress/wordpress_phpmyadmin.md)
-* [Configure WordPress on Linux AppService with existing MySQL database](./WordPress/using_an_existing_mysql_database.md)
-* [Migrate any WordPress site to WordPress on Linux App Service](./WordPress/wordpress_migration_linux_appservices.md)
-* [Adding PHP extensions for WordPress on Linux App Service](./WordPress/wordpress_adding_php_extensions.md)
-* [AFD Integration with WordPress on Azure App Service](./WordPress/wordpress_afd_configuration.md)
-* [Enabling High Performance with Local Storage](./WordPress/enabling_high_performance_with_local_storage.md)
-* [Enabling Multisite WordPress on Azure App Service](./WordPress/wordpress_multisite_installation.md)
-* [How to use WP-CLI with WordPress on App Service](./WordPress/how_to_use_wpcli_tool.md)
-* [How to Enable Debug Logs for WordPress on App Service](./WordPress/enabling_debug_logs_for_wordpress.md)
-* [How to create staging environment with WordPress on App Service](./WordPress/wordpress_azure_StageDeployments.md)
-* [Enabling CI/CD with WordPress on App Service](./WordPress/wordpress_azure_ci_cd.md)
-* [Troubleshooting CORS errors with Azure CDN / FrontDoor or Azure Blob Storage](./WordPress/cors_issue_with_azure_cdn_frontdoor_blob.md)
-* [How to enable PHP Intl extension with WordPress App Service](./WordPress/wordpress_intl_extension.md)
-* [Integrating Azure Communication Email Service with WordPress App Service](./WordPress/wordpress_email_integration.md)
-* [Enabling Managed Identity with Azure Communication Service Email](./WordPress/wordpress_enable_managed_identity_with_acs_email.md)
-* [Enabling Managed Identity with Azure MySQL for WordPress App Service](./WordPress/wordpress_enable_managed_identity_with_mysql.md)
-* [Enable Microphone and Camera with WordPress App Service](./WordPress/wordpress_enable_microphone_camera.md)
+### Key Features:
+- 🛡️ **Automatic security patches**: Updates are applied within 45 days, following the support policy, to keep your WordPress site secure.
+- 🚀 **Pre-configured Azure CDN and Blob Storage**: Optimized for content delivery, ensuring high availability and performance across the globe.
+- 🏗️ **Best practices from Azure Well-Architected Framework**: The default setup follows Azure's best practices for security, scalability, and performance.
+- 📈 **Flexible hosting plans**: Ranges from small hobby projects to large enterprise needs, offering scalability and customization.
+- 🔄 **Built-in infrastructure maintenance**: Automatic updates and security patches without manual intervention.
+- 📊 **Automatic scaling**: Resources dynamically adjust based on traffic, ensuring seamless user experiences.
+- 🔒 **SSL Certificates**: Free SSL certificates for traffic encryption to secure your website.
+- 🔗 **Virtual Networks**: Support for secure, isolated environments to enhance your site's security and performance.
+- 🌍 **Multi-cloud Availability**: Available in public cloud, US Government Cloud (Fairfax), and China Cloud (Mooncake).
 
 
-## Contributing
+    High-level architecture
+    ![WordPress on Linux App Service](https://user-images.githubusercontent.com/15884692/204471285-0350cf5e-4bd3-45c7-a5e0-9234fac9a785.png)
+
+---
+
+## 🚀 Quickstart
+
+### 1. **Deploy WordPress**  
+   You can deploy the recommended version of [WordPress on Azure App Service](https://aka.ms/linux-wordpress) directly from the Azure Marketplace. It’s optimized for Linux App Service and pre-configured with recommended software packages, including support for [Azure Database for MySQL Flexible Server](https://learn.microsoft.com/en-us/azure/mysql/flexible-server/overview).
+
+   [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/WordPress.WordPress)
+
+or follow the steps outlined in the ARM template deployment guide found [here](.ARM_Template_Create_WP/README.md) .
+   
+
+### 2. **Choose an Docker Image**  
+   Select from the following WordPress container images:
+
+   | Image Name | Image Tag | OS | PHP Version | Nginx version | Comments |
+   |------------|------------|----|-------------|---------------|----------|
+   | mcr.microsoft.com/appsvc/wordpress-alpine-php | 8.3 | Alpine Linux 3.20 | 8.3.8 | 1.26.1 | ✅ Supported and recommended |
+   | mcr.microsoft.com/appsvc/wordpress-alpine-php | 8.2 | Alpine Linux 3.20 | 8.2.20 | 1.26.1 | ✅ Supported |
+   | mcr.microsoft.com/appsvc/wordpress-alpine-php | 8.0 | Alpine Linux 3.16 | 8.0.30 | 1.24.0 | ⚠️ End of Life |
+   | mcr.microsoft.com/appsvc/wordpress-alpine-php | latest | Alpine Linux 3.16 | 8.0.30 | 1.24.0 | ❌ Deprecated (Use a specific numerical tag instead) |
+
+> **Note**: The `latest` tag points to PHP 8.0, which is no longer maintained. Always use a specific version number to avoid issues.
+
+- Image Server URL: https://mcr.microsoft.com
+- URL to view all the list of WordPress tags [here](https://mcr.microsoft.com/v2/appsvc/wordpress-alpine-php/tags/list)
+
+---
+
+## 📚 Tutorials
+
+### 🔐 Security & Identity Management
+- [Change MySQL Database Password for WordPress on Linux App Service](./WordPress/changing_mysql_database_password.md)
+- [Change WordPress Admin Credentials for WordPress hosted on Linux App Service](./WordPress/changing_wordpress_admin_credentials.md)
+- [Enabling Managed Identity with Azure Communication Service Email](./WordPress/wordpress_enable_managed_identity_with_acs_email.md)
+- [Enabling Managed Identity with Azure MySQL for WordPress App Service](./WordPress/wordpress_enable_managed_identity_with_mysql.md)
+
+---
+
+### ⚙️ Configuration & Customization
+- [A View of Application Settings for WordPress on Linux App Service](./WordPress/wordpress_application_settings.md)
+- [Configuring Nginx for WordPress on Linux App Service](./WordPress/configuring_nginx_for_wordpress.md)
+- [Adding PHP Extensions for WordPress on Linux App Service](./WordPress/wordpress_adding_php_extensions.md)
+- [How to Enable PHP Intl Extension with WordPress App Service](./WordPress/wordpress_intl_extension.md)
+- [Setup Startup Scripts for WordPress on Linux App Service](./WordPress/running_post_startup_scripts.md)
+- [Enabling Multi-site WordPress on Azure App Service](./WordPress/wordpress_multisite_installation.md)
+- [How to Use WP-CLI with WordPress on App Service](./WordPress/how_to_use_wpcli_tool.md)
+- [Enable Microphone and Camera with WordPress App Service](./WordPress/wordpress_enable_microphone_camera.md)
+
+---
+
+### 🔄 Migration & Database Management
+- [Migrate Any WordPress Site to WordPress on Linux App Service](./WordPress/wordpress_migration_linux_appservices.md)
+- [Configure WordPress on Linux App Service with Existing MySQL Database](./WordPress/using_an_existing_mysql_database.md)
+- [Migrate WordPress Images from Other Containers to Microsoft-Supported Containers](./WordPress/wordpress_upgrade_from_other_images.md)
+- [Connect to Database with phpMyAdmin on WordPress App Service](./WordPress/wordpress_phpmyadmin.md)
+
+---
+
+### 🚀 Performance Optimization & Scaling
+- [Enabling High Performance with Local Storage](./WordPress/enabling_high_performance_with_local_storage.md)
+- [Image Optimizations in WordPress](./WordPress/wordpress_image_compression.md)
+- [Configuring Local Redis Cache for WordPress](./WordPress/wordpress_local_redis_cache.md)
+- [Hosting Plans and Scaling WordPress](./WordPress/wordpress_hosting_plans_and_scaling.md)
+- [How to Enable WebP Support in WordPress on Azure App Service](./WordPress/wordpress_WebPimages_support.md)
+
+---
+
+### 🌐 Integration & Networking
+- [AFD Integration with WordPress on Azure App Service](./WordPress/wordpress_afd_configuration.md)
+- [Configuring Azure Blob Storage with WordPress](./WordPress/wordpress_azure_blob_storage.md)
+- [Configuring Azure CDN with WordPress](./WordPress/wordpress_azure_cdn.md)
+- [Integrating Azure Communication Email Service with WordPress App Service](./WordPress/wordpress_email_integration.md)
+
+---
+
+### 🔧 Troubleshooting & Debugging
+- [How to Enable Debug Logs for WordPress on App Service](./WordPress/enabling_debug_logs_for_wordpress.md)
+- [Troubleshooting CORS Errors with Azure CDN / FrontDoor or Azure Blob Storage](./WordPress/cors_issue_with_azure_cdn_frontdoor_blob.md)
+
+---
+
+### 🎯 Development & CI/CD
+- [How to Create a Staging Environment for WordPress on Azure App Service](./WordPress/wordpress_azure_StageDeployments.md)
+- [Enabling CI/CD for WordPress on App Service](./WordPress/wordpress_azure_ci_cd.md)
+
+---
+
+### 🤖 AI & Automation
+- [WordPress on Azure App Service – Simplify Site Creation with Azure OpenAI](./WordPress/wordpress_azure_open_ai_integration.md)
+
+---
+
+## 🤝 Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
@@ -68,7 +138,9 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
-## Trademarks
+---
+
+## ⚠️ Trademarks
 
 This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft trademarks or logos is subject to and must follow [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
 Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.

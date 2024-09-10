@@ -6,8 +6,8 @@
 #Login-AzAccount
     
 #Vars
-$resourceGroupName="wordpress-appsvc-rg"
-$location="West US"
+$resourceGroupName="sample-wordpress-app-rg"
+$location="Australia Central"
 
 #Create Resource Group
 New-AzResourceGroup -Name $resourceGroupName -Location $location -Force

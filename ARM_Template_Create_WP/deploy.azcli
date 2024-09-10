@@ -1,6 +1,6 @@
 #!/bin/sh
-resourceGroupName="AppService_RG"
-location="West US"
+resourceGroupName="sample-wordpress-app-rg"
+location="Australia Central"
 
 ##Create resource group
 az group create --name $resourceGroupName --location $location
