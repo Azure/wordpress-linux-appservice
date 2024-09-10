@@ -1,22 +1,40 @@
-# WordPress on Linux App Service ARM Template Deployment
+# 📝 ARM Template for WordPress on Linux App Service
 
-This is the ARM template that deploys the resources for running a WordPress site on a Linux App service.
-It deploys the following resources:
-* App Service Hosting Plan - Provisoned to use a WordPress container image based on the alpine latest build.
-* App Service - Configured to use a WordPress container image based on the alpine latest build.
-* MySQL Server running on the Flexible server SKU with a database deployed and configured for use with WordPress.
-* Virtual Network - with a 10.0.0.0/16 CIDR block.
-* Private DNS Zone for the MySQL database.
-* CDN Profile (Azure Frontdoor) with a CDN profile endpoint with compression enabled.
+This ARM template deploys the necessary resources to run a WordPress site on a Linux App Service. 🚀
+
+🔧 **Deployed Resources:**
+- App Service Hosting Plan: Provisioned with a WordPress container image based on the alpine latest build.
+- App Service: Configured to use a WordPress container image based on the alpine latest build.
+- MySQL Server: Running on the Flexible server SKU with a database deployed and configured for use with WordPress.
+- Virtual Network: With a `10.0.0.0/16` CIDR block.
+- Private DNS Zone: For the MySQL database.
+- CDN Profile (Azure Front Door): With a CDN profile endpoint and compression enabled.
+- Azure Blob Storage
+- User Assigned Managed Identity
+
+## 📥 How to Download Latest ARM Template with Pre-populated Parameters via UI Experience?
+1. Click [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/WordPress.WordPress)
+
+2. Fill in all the required details, such as Subscription ID, Resource Group Name, Hosting plan, Location, etc., in the provided tabs. Complete all the required tabs: 'Basics', 'Add-ins', 'Deployment', 'Tags', and finally 'Review + create'.
+3. Ensure there are no validation failures once go to 'Review + create' tab. The ARM template will be auto-generated based on your UI inputs. Refer screenshot below:
+
+    <img src="../WordPress/media/arm/download-arm-template.png" height="400">
 
 
-## Overview
-The main ARM template (azuredeploy.json) is a standard ARM template and is very configurable via custom parameters that are well documented. You can deploy this template without changing any parameters but will be prompted for database server admin name, database server password, wordpress email, wordpress initial administrator and wordpress password.
-There is also a parameters file (azuredeploy.parameters.json) included in the repository which you can change the values to suit your deployment. Please remember to **NOT** store usernames or passwords in this file. The parameters file should be self explanatory as the parameters are names in accordance with their purpose.
 
-## How to deploy
-Firstly, modify the parameters file (azuredeploy.parameters.json) with the parameter input values for your environment, its accepted practice to have a parameters file per environment/deployment as needed. Also replace the null values with the settings for your configuration.
-Modify the deployment scripts (deploy.azcli and deploy.ps1) and change the input parameters such as resource group name and location to suit your deployment needs.
-You can then run the deployment scripts as follows:
-* ./deploy.azcli for Bash script
-* ./deploy.ps1 for Powershell script
+4. Download the `template.zip` file, which contains `parameters.json` and `template.json` as shown in screenshot below:
+
+    <img src="../WordPress/media/arm/download-arm-template-zip.png" height="200">
+
+5. Replace the existing `azuredeploy.parameters.json` and `azuredeploy.json` files in this folder with the downloaded files.
+
+### 🔍 Overview of template files
+The main ARM template (`azuredeploy.json`) is highly configurable and well-documented. You can deploy it without making any changes, but it will prompt you for parameters. You can pre-populate these parameters using the included parameters file (`azuredeploy.parameters.json`).
+
+## 🚀 How to Deploy
+1. Modify the parameters file (`azuredeploy.parameters.json`) with the input values for your environment. It's recommended to have a parameters file per environment/deployment.
+2. Replace the `null` values in the file with the appropriate settings for your configuration as few sensitive parameters as secure strings and those are set to `null`.
+3. Modify the deployment scripts (`deploy.azcli` and `deploy.ps1`) and update the input parameters, such as the resource group name and location, to match your deployment needs.
+4. Run the deployment scripts:
+    - For Bash script: `./deploy.azcli`
+    - For PowerShell script: `./deploy.ps1`
