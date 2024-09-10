@@ -40,7 +40,7 @@ While there are multiple WordPress options on Azure, we recommend starting with 
 
    [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/WordPress.WordPress)
 
-or follow the steps outlined in the ARM template deployment guide found [here](.ARM_Template_Create_WP/README.md) .
+   or follow the steps outlined in the ARM template deployment guide found [here](./ARM_Template_Create_WP/readme.md) .
    
 
 ### 2. **Choose an Docker Image**  
