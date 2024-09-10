@@ -74,7 +74,7 @@ or follow the steps outlined in the ARM template deployment guide found [here](.
 - [Change WordPress Admin Credentials for WordPress hosted on Linux App Service](./WordPress/changing_wordpress_admin_credentials.md)
 - [Enabling Managed Identity with Azure Communication Service Email](./WordPress/wordpress_enable_managed_identity_with_acs_email.md)
 - [Enabling Managed Identity with Azure MySQL for WordPress App Service](./WordPress/wordpress_enable_managed_identity_with_mysql.md)
-- [Enable Microphone and Camera with WordPress App Service](./WordPress/wordpress_enable_microphone_camera.md)
+
 
 ---
 
@@ -86,6 +86,7 @@ or follow the steps outlined in the ARM template deployment guide found [here](.
 - [Setup Startup Scripts for WordPress on Linux App Service](./WordPress/running_post_startup_scripts.md)
 - [Enabling Multi-site WordPress on Azure App Service](./WordPress/wordpress_multisite_installation.md)
 - [How to Use WP-CLI with WordPress on App Service](./WordPress/how_to_use_wpcli_tool.md)
+- [Enable Microphone and Camera with WordPress App Service](./WordPress/wordpress_enable_microphone_camera.md)
 
 ---
 
