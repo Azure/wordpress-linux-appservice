@@ -2,6 +2,8 @@
 
 This document describes two approaches for migrating your WordPress sites from Windows App Services or any other external hosting provider to WordPress deployed to Linux App Services, preferably created from [Azure Market Place](https://aka.ms/linux-wordpress). These migration approaches will let you continue with the existing WordPress site as it is. It is recommended to transition the traffic to the new site after all the validations are taken place, site is successfully up and running.
 
+A similar [tutorial](https://learn.microsoft.com/en-us/azure/app-service/migrate-wordpress) exists, so some steps can be referenced there as well.
+
 >**Note:** Migrate the content to a test instance first, validate all E2E scenarios of your website, and if everything works as expected, swap this instance to the production slot.
 
  You can migrate your site to WordPress on Azure App Service in three ways:

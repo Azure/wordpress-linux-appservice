@@ -1,22 +1,22 @@
-# TODO: The maintainer of this repo has not yet edited this file
+# 🛠️ Support
 
-**REPO OWNER**: Do you want Customer Service & Support (CSS) support for this product/project?
+## 📩 How to Create an Azure Support Request
 
-- **No CSS support:** Fill out this template with information about how to file issues and get help.
-- **Yes CSS support:** Fill out an intake form at [aka.ms/onboardsupport](https://aka.ms/onboardsupport). CSS will work with/help you to determine next steps.
-- **Not sure?** Fill out an intake as though the answer were "Yes". CSS will help you decide.
+To address issues with specific Azure resources such as Azure App Service or Azure CDN, you can [raise an Azure Support request](https://learn.microsoft.com/en-us/azure/azure-portal/supportability/how-to-create-azure-support-request). Azure allows you to create and manage support requests (also known as support tickets) through the Azure portal.
 
-*Then remove this first heading from this SUPPORT.MD file before publishing your repo.*
+- **Subscription Management Support**: Azure offers unlimited support for subscription-related issues, including billing, quota adjustments, and account transfers.
+- **Technical Support**: For technical assistance, a support plan is required. For more information, refer to [Compare Support Plans](https://azure.microsoft.com/en-us/support/plans/).
 
-# Support
+## 🌐 WordPress Community Support
+WordPress open-source community-based support forums are an excellent resource for learning, sharing, and helping each other. [Find out how to get started](https://wordpress.org/support/welcome/)
 
-### How to file issues and get help  
+- Popular discussion forums and topics are available [here](https://wordpress.org/support/forums/).
+- Some Stack Overflow questions can be found under the `wordpress` and `azure-web-app-service` [tags](https://stackoverflow.com/questions/tagged/wordpress+azure-web-app-service).
 
-This project uses GitHub Issues to track bugs and feature requests. Please search the existing issues before filing new issues to avoid duplicates.  For new issues, file your bug or feature request as a new Issue.
+## 🐞 Filing Issues and Getting Help
 
-For help and questions about using this project, please **REPO MAINTAINER: INSERT INSTRUCTIONS HERE FOR HOW TO ENGAGE REPO OWNERS OR COMMUNITY FOR HELP. COULD BE A STACK OVERFLOW TAG OR OTHER
-CHANNEL. WHERE WILL YOU HELP PEOPLE?**.
+This project uses GitHub Issues to track bugs and feature requests. Before submitting a new issue, please search through existing issues to avoid duplicates. If your issue is new, file it as a **new bug or feature request**.
 
-### Microsoft Support Policy  
+## 📜 Microsoft Support Policy
 
-Support for this **PROJECT or PRODUCT** is limited to the resources listed above.
+Support for this **PROJECT or PRODUCT** is limited to the resources and channels mentioned above.

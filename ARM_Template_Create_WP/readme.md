@@ -20,8 +20,6 @@ This ARM template deploys the necessary resources to run a WordPress site on a L
 
     <img src="../WordPress/media/arm/download-arm-template.png" height="400">
 
-
-
 4. Download the `template.zip` file, which contains `parameters.json` and `template.json` as shown in screenshot below:
 
     <img src="../WordPress/media/arm/download-arm-template-zip.png" height="200">
@@ -38,3 +36,16 @@ The main ARM template (`azuredeploy.json`) is highly configurable and well-docum
 4. Run the deployment scripts:
     - For Bash script: `./deploy.azcli`
     - For PowerShell script: `./deploy.ps1`
+
+## ✨ Common Scenarios Requiring ARM Template Customization
+
+When using the Azure Portal UI, users can create a customized ARM template by selecting their preferred location, hosting plan, and out-of-the-box content delivery integrations. However, there may be cases where further customization is required to address specific needs. 
+
+For these scenarios, it is recommended to start by interacting with the Azure Portal UI to generate a basic template. Once created, you can download the `template.zip` as described earlier, and then modify the `parameters.json` or `template.json` files based on your requirements. You can also explore all ARM templates for various Azure services [here](https://learn.microsoft.com/en-us/azure/templates/) for additional customization.
+
+Here are a few common scenarios where further customization might be needed:
+
+- Create WordPress on [App Service Environment](https://learn.microsoft.com/en-us/azure/app-service/environment/overview) or in a more restricted location if you have approved quota limits.
+- Change the SKU or add additional configurations to the underlying Azure resources to customize your WordPress site.
+- Bring your own existing Azure Flexible MySQL Server or adjust the location apart from the pre-configured options.
+- Enable zone or region redundancy for the underlying Azure resources to ensure high availability and prevent data loss for your WordPress site.
