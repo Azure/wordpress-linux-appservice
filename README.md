@@ -1,4 +1,4 @@
-# 🚀 WordPress on Azure App Service
+# WordPress on Azure App Service
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/WordPress.WordPress)
 
