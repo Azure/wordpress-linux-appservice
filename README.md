@@ -58,7 +58,7 @@ While there are multiple WordPress options on Azure, we recommend starting with 
 - Image Server URL: https://mcr.microsoft.com
 - URL to view all the list of WordPress tags [here](https://mcr.microsoft.com/v2/appsvc/wordpress-alpine-php/tags/list)
 
-👉 Follow this [quick-start tutorial] (https://learn.microsoft.com/en-us/azure/app-service/quickstart-wordpress) for step-by-step instructions.
+👉 Follow this [quick-start tutorial](https://learn.microsoft.com/en-us/azure/app-service/quickstart-wordpress) for step-by-step instructions.
 
 ---
 
