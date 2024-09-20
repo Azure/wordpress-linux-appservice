@@ -51,6 +51,8 @@ While there are multiple WordPress options on Azure, we recommend starting with 
    |------------|------------|------------|---------------|----------|
    | mcr.microsoft.com/appsvc/wordpress-alpine-php | 8.3 | Alpine Linux 3 | 8.3 |✅ Supported and recommended |
    | mcr.microsoft.com/appsvc/wordpress-alpine-php | 8.2 | Alpine Linux 3 | 8.2 |✅ Supported |
+   | mcr.microsoft.com/appsvc/wordpress-debian-php | 8.3 | Debian bookworm | 8.3 |✅ Supported |
+   | mcr.microsoft.com/appsvc/wordpress-debian-php | 8.2 | Debian bullseye | 8.2 |✅ Supported |
    | mcr.microsoft.com/appsvc/wordpress-alpine-php | 8.0 | Alpine Linux 3 | 8.0 |⚠️ End of Life |
    | mcr.microsoft.com/appsvc/wordpress-alpine-php | latest| Alpine Linux 3 | 8.0 |❌ Deprecated (Use a specific numerical tag instead) |
 
