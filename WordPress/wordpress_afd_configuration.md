@@ -45,24 +45,21 @@ Configuring AFD with WordPress
 4. Go to Review and Create Tab and choose Create to deploy the WordPress
 
 ## Custom Domain
-
-1. Add the custom domain to your Azure Front Door resource by following the steps in this documentation [Configure a custom domain with AFD](https://learn.microsoft.com/en-us/azure/frontdoor/standard-premium/how-to-add-custom-domain). Because Azure Front Door is the entry point for your WordPress application, you should add a custom domain to it; You should not add custom domain to the App Service.
+1. Add the custom domain to your Azure Front Door resource by following the steps in this documentation [Configure a custom domain with AFD](https://learn.microsoft.com/en-us/azure/frontdoor/standard-premium/how-to-add-custom-domain). Because Azure Front Door is the entry point for your WordPress application, you should add a custom domain to it and not to the App Service.
 2. Then add the following Environment variable (App setting) to your App Service. Do not add **https://** or **http://** prefix when adding the custom domain value in the below App Setting. It should be just your domain name (ex: _contoso.com_).
 
     ```bash
     CUSTOM_DOMAIN: <Custom_Domain> 
     ```
 
-<br>
-
-**Purge AFD cache**
+## Purge AFD cache
 When you deploy updates to existing files in your WordPress app, Azure Front Door may continue to serve older versions of your files until their time-to-live expires. Purge the Azure Front Door cache for the affected paths to ensure the latest files are served. Follow this guide for steps to purge AFD cache for an AFD endpoint.
 
-**Resources Deployed**
+## Resources Deployed
 WordPress with AFD enabled deploys the following resources to AFD profile
-• AFD Endpoint
-• AFD Route
-• Origin group
-• Rule-set (2 Rules)
-    o First rule defines caching and compression behavior for wp-content/uploads files and the origin source (blob storage / app service).
-    o Second rule defines caching and compression behavior for other static files of specific extension.
+- AFD Endpoint
+- AFD Route
+- Origin group
+- Rule-set (2 Rules)
+    - First rule defines caching and compression behavior for wp-content/uploads files and the origin source (blob storage / app service).
+    - Second rule defines caching and compression behavior for other static files of specific extension.
