@@ -49,17 +49,17 @@ While there are multiple WordPress options on Azure, we recommend starting with 
 
    | Image Name | Image Stack Version | OS | PHP Version  | Comments |
    |------------|------------|------------|---------------|----------|
-   | mcr.microsoft.com/appsvc/wordpress-alpine-php | 8.3 | Alpine Linux 3 | 8.3 |✅ Supported and recommended |
-   | mcr.microsoft.com/appsvc/wordpress-alpine-php | 8.2 | Alpine Linux 3 | 8.2 |✅ Supported |
-   | mcr.microsoft.com/appsvc/wordpress-debian-php | 8.3 | Debian bookworm | 8.3 |✅ Supported |
+   | mcr.microsoft.com/appsvc/wordpress-debian-php | 8.3 | Debian bookworm | 8.3 |✅ Supported and recommended |
    | mcr.microsoft.com/appsvc/wordpress-debian-php | 8.2 | Debian bullseye | 8.2 |✅ Supported |
+   | mcr.microsoft.com/appsvc/wordpress-alpine-php | 8.3 | Alpine Linux 3 | 8.3 |⚠️ Supported (End of support Dec'24) but recommended to migrate to `Debian` based image |
+   | mcr.microsoft.com/appsvc/wordpress-alpine-php | 8.2 | Alpine Linux 3 | 8.2 |⚠️ Supported (End of support Dec'24) but recommended to migrate to `Debian` based image |
    | mcr.microsoft.com/appsvc/wordpress-alpine-php | 8.0 | Alpine Linux 3 | 8.0 |⚠️ End of Life |
    | mcr.microsoft.com/appsvc/wordpress-alpine-php | latest| Alpine Linux 3 | 8.0 |❌ Deprecated (Use a specific numerical tag instead) |
 
 > **Note**: The `latest` tag points to PHP 8.0, which is no longer maintained. Always use a specific version number to avoid issues.
 
 - Image Server URL: https://mcr.microsoft.com
-- URL to view all the list of WordPress tags [here](https://mcr.microsoft.com/v2/appsvc/wordpress-alpine-php/tags/list)
+- URL to view all the list of WordPress Docker Image tags [here](https://mcr.microsoft.com/v2/appsvc/wordpress-debian-php/tags/list)
 
 👉 Follow this [quick-start tutorial](https://learn.microsoft.com/en-us/azure/app-service/quickstart-wordpress) for step-by-step instructions.
 
