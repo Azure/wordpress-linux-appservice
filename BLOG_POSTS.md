@@ -6,6 +6,7 @@ This platform not only provides updates specific to WordPress but also covers a 
 
 ## Blog Posts Specific to WordPress
 
+- [Transition from Alpine Linux to Debian for WordPress on App Service](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/transition-from-alpine-linux-to-debian-for-wordpress-on-app/ba-p/4264858)
 - [Managed Identity support for WordPress on App Service](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/managed-identity-support-for-wordpress-on-app-service/ba-p/4241435)
 - [General Availability: Free hosting plan for WordPress on App Service](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/announcing-the-general-availability-of-wordpress-on-azure-app/ba-p/3593481)
 - [How to integrate continuous integration and deployment with WordPress on App Service](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/how-to-integrate-continuous-integration-and-deployment-with/ba-p/4144886)
