@@ -81,4 +81,6 @@ This is a warning, not an error, and you can proceed with resolving it if you’
 8. **Restart the Site Again**  
    Restart the WordPress App Service. The warning should now be resolved.
 
-By following these steps, you should be able to address the warning effectively.
+By following these steps, you should be able to resolve the warning effectively. 
+
+If the issue persists, please reach out to us through our [official support channels](../../README.md#-community-and-support) and include relevant details, such as your Azure App Service ARM Resource ID.
