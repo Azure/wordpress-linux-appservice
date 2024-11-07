@@ -115,7 +115,7 @@ While there are multiple WordPress options on Azure, we recommend starting with 
 ### 🔧 Troubleshooting & Debugging
 - [How to Enable Debug Logs for WordPress on App Service](./WordPress/enabling_debug_logs_for_wordpress.md)
 - [Troubleshooting CORS Errors with Azure CDN / FrontDoor or Azure Blob Storage](./WordPress/cors_issue_with_azure_cdn_frontdoor_blob.md)
-
+- [Troubleshooting Guide: Existing WordPress Site Detected Warning](./WordPress/TroubleShootingGuides/tsg_existing_wordpress_installation_detected.md)
 ---
 
 ### 🎯 Development & CI/CD
