@@ -1,0 +1,43 @@
+#!/bin/sh
+resourceGroupName="wordpress-appsvc-rg"
+location="West US"
+bicepMain="main.bicep"
+bicepParamsFile="wp.dev.parameters.json"
+deploymentName="wpappsvcdeploy"$RANDOM
+
+##1. Create resource group
+az group create --name $resourceGroupName --location $location
+
+###########################
+
+##2. Linting and validation check of template
+az bicep build -f $bicepMain
+
+##3. Validate Template
+az deployment group validate \
+    --resource-group $resourceGroupName \
+    --name $deploymentName \
+    --template-file $bicepMain \
+    --parameters $bicepParamsFile
+
+
+##4. Validate Deployment
+az deployment group create \
+    --resource-group $resourceGroupName \
+    --name $deploymentName \
+    --template-file $bicepMain \
+    --parameters $bicepParamsFile --what-if
+
+
+##5. Do Deployment
+az deployment group create \
+    --resource-group $resourceGroupName \
+    --name $deploymentName \
+    --template-file $bicepMain \
+    --parameters $bicepParamsFile
+
+
+
+
+##6. Delete Resources
+##az group delete --name $resourceGroupName --yes --no-wait
