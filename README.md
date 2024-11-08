@@ -84,7 +84,7 @@ While there are multiple WordPress options on Azure, we recommend starting with 
 - [Enabling Multi-site WordPress on Azure App Service](./WordPress/wordpress_multisite_installation.md)
 - [How to Use WP-CLI with WordPress on App Service](./WordPress/how_to_use_wpcli_tool.md)
 - [Enable Microphone and Camera with WordPress App Service](./WordPress/wordpress_enable_microphone_camera.md)
-
+- [How to use specific container image for WordPress](./WordPress/how-to-guides/specific_container_image.md)
 ---
 
 ### 🔄 Migration & Database Management
@@ -115,6 +115,7 @@ While there are multiple WordPress options on Azure, we recommend starting with 
 ### 🔧 Troubleshooting & Debugging
 - [How to Enable Debug Logs for WordPress on App Service](./WordPress/enabling_debug_logs_for_wordpress.md)
 - [Troubleshooting CORS Errors with Azure CDN / FrontDoor or Azure Blob Storage](./WordPress/cors_issue_with_azure_cdn_frontdoor_blob.md)
+- [Troubleshooting Guide: Existing WordPress Site Detected Warning](./WordPress/troubleshooting-guides/tsg_existing_wordpress_installation_detected.md)
 
 ---
 
