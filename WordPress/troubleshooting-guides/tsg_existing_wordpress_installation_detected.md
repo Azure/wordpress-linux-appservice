@@ -41,58 +41,57 @@ This is a warning, not an error, and you can proceed with resolving it if you’
      In the Kudu dashboard, select the "BASH" option.
 
 #### 3.3 Check Deployment Status
-     Run the following command to check the WordPress deployment status:
+Run the following command to check the WordPress deployment status:
 
-     ```bash
-     cat /home/wp-locks/wp_deployment_status.txt 
-     ```
+```bash
+cat /home/wp-locks/wp_deployment_status.txt 
+```
 
-     **Sample Expected Output**:
+**Sample Expected Output**:
 
-     ```text
-     PHPMYADMIN_INSTALLED
-     WORDPRESS_PULL_COMPLETED
-     WP_INSTALLATION_COMPLETED
-     WP_CONFIG_UPDATED
-     SMUSH_PLUGIN_INSTALLED
-     EMAIL_PLUGIN_INSTALLED
-     SMUSH_PLUGIN_CONFIG_UPDATED
-     W3TC_PLUGIN_INSTALLED
-     W3TC_PLUGIN_CONFIG_UPDATED
-     BLOB_STORAGE_CONFIGURATION_COMPLETE
-     WP_LANGUAGE_SETUP_COMPLETED
-     WP_TRANSLATE_WELCOME_DATA_COMPLETED
-     FIRST_TIME_SETUP_COMPLETED
-     BLOB_CDN_CONFIGURATION_COMPLETE
-     BLOWFISH_SECRET_UPDATED
-     ```
+```text
+PHPMYADMIN_INSTALLED
+WORDPRESS_PULL_COMPLETED
+WP_INSTALLATION_COMPLETED
+WP_CONFIG_UPDATED
+SMUSH_PLUGIN_INSTALLED
+EMAIL_PLUGIN_INSTALLED
+SMUSH_PLUGIN_CONFIG_UPDATED
+W3TC_PLUGIN_INSTALLED
+W3TC_PLUGIN_CONFIG_UPDATED
+BLOB_STORAGE_CONFIGURATION_COMPLETE
+WP_LANGUAGE_SETUP_COMPLETED
+WP_TRANSLATE_WELCOME_DATA_COMPLETED
+FIRST_TIME_SETUP_COMPLETED
+BLOB_CDN_CONFIGURATION_COMPLETE
+BLOWFISH_SECRET_UPDATED
+```
 
 #### 3.4 Confirm WordPress Installation Status File Presence  
-     If `/home/wp-locks/wp_deployment_status.txt` is missing, the setup may be complete, but a transient issue has occurred. Additionally, check the MySQL database for any existing WordPress data. A site restart may help in such cases.
+If `/home/wp-locks/wp_deployment_status.txt` is missing, the setup may be complete, but a transient issue has occurred. Additionally, check the MySQL database for any existing WordPress data. A site restart may help in such cases.
 
 #### 3.5 Verify Installation Status
-     If the file is present but missing entries like `WORDPRESS_PULL_COMPLETED` or `WP_INSTALLATION_COMPLETED`, the installation may be incomplete. To verify, use the WP CLI command:
+If the file is present but missing entries like `WORDPRESS_PULL_COMPLETED` or `WP_INSTALLATION_COMPLETED`, the installation may be incomplete. To verify, use the WP CLI command:
 
-     ```bash
-     wp core is-installed --path=/home/site/wwwroot --allow-root
-     ```
+```bash
+wp core is-installed --path=/home/site/wwwroot --allow-root
+```
 
-     Refer to [this guide](../how_to_use_wpcli_tool.md) for detailed instructions. Run the command in the "SSH" tab on the Kudu dashboard as it needs to execute within the container context.
+Refer to [this guide](../how_to_use_wpcli_tool.md) for detailed instructions. Run the command in the "SSH" tab on the Kudu dashboard as it needs to execute within the container context.
 
 #### 3.6 Manual File Update (If Needed)
-     If WordPress installation is confirmed, you can manually update or recreate the status file to resolve the warning. Use the following commands:
+If WordPress installation is confirmed, you can manually update or recreate the status file to resolve the warning. Use the following commands:
 
-     ```bash
-     touch /home/wp-locks/wp_deployment_status.txt
-     echo "WORDPRESS_PULL_COMPLETED" >> /home/wp-locks/wp_deployment_status.txt
-     echo "WP_INSTALLATION_COMPLETED" >> /home/wp-locks/wp_deployment_status.txt
-     ```
+```bash
+touch /home/wp-locks/wp_deployment_status.txt
+echo "WORDPRESS_PULL_COMPLETED" >> /home/wp-locks/wp_deployment_status.txt
+echo "WP_INSTALLATION_COMPLETED" >> /home/wp-locks/wp_deployment_status.txt
+```
 
-     Optionally, replace this with the full sample output from above or restore from a recent working backup of your deployment status file.
+Optionally, replace this with the full sample output from above or restore from a recent working backup of your deployment status file.
 
 #### 3.7 Restart the Site Again after updating status file
-     Restart the WordPress App Service. The warning should now be resolved.
-
+Restart the WordPress App Service. The warning should now be resolved.
 
 By following these steps, you should be able to resolve the warning effectively.
 
