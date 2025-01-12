@@ -4,7 +4,8 @@
 
 1. Run the below code only once from the SSH console of your App Service.
     ```
-    apk add icu-dev && \
+    apt-get update && \
+    apt-get install -y libicu-dev && \
     docker-php-ext-configure intl && \
     docker-php-ext-install intl && \
     docker-php-ext-enable intl
