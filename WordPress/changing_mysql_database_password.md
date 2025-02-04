@@ -1,5 +1,7 @@
 # Changing MySQL database password
 
+## Note that if you are using Managed Identity, do not follow this document. Refer to this document: [Enabling Managed Identity with Azure MySQL for WordPress App Service](https://github.com/Azure/wordpress-linux-appservice/blob/main/WordPress/wordpress_enable_managed_identity_with_mysql.md)
+
 WordPress deployment creates an AppService and a MySQL flexible database server under the same resource group. Login credentials for the MySQL server are generated randomly during deployment process.
 
 These database connection details are configured into WordPress via **Application Settings** option available in the AppService. You can retrieve the database connection details from Application Setting section in case you forgot to note them down during the creation time.
@@ -12,6 +14,7 @@ Please note that the Application Settings related to database connection are **p
 |    DATABASE_HOST               |
 |    DATABASE_USERNAME           |
 |    DATABASE_PASSWORD           |
+
 
 ## Changing MySQL Database Password
 
