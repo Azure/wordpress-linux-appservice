@@ -80,7 +80,6 @@ resource "azurerm_service_plan" "app_service_hosting_plan" {
 # Web app
 resource "azurerm_linux_web_app" "wordpress_web_app" {
   app_settings = {
-    WEBSITES_ENABLE_APP_SERVICE_STORAGE = "true"
     DATABASE_HOST                       = "${var.mysql_server_name}.mysql.database.azure.com"
     DATABASE_USERNAME                   = var.mysql_server_username
     DATABASE_NAME                       = var.mysql_wordpress_database_name
