@@ -105,14 +105,14 @@ wp-config.php
     ```
     az login
     az account set --subscription SUBSCRIPTION_ID
-    az webapp config set --name WEBAPP_NAME --resource-group RESOURCE_GROUP_NAME --linux-fx-version "DOCKER|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.3"
+    az webapp config set --name WEBAPP_NAME --resource-group RESOURCE_GROUP_NAME --linux-fx-version "DOCKER|mcr.microsoft.com/appsvc/wordpress-debian-php:8.4"
     ```
 - You can also update the image details of the App Service using the [REST interface](https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/create-or-update-configuration?view=rest-appservice-2022-03-01#code-try-0) and use the following json as body. You also need to specify the app name, resource group name and subscription in the parameters section.
 
     ```
     {
         "properties": {
-            "linuxFxVersion": "DOCKER|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.3"
+            "linuxFxVersion": "DOCKER|mcr.microsoft.com/appsvc/wordpress-debian-php:8.4"
         }
     }
     ```

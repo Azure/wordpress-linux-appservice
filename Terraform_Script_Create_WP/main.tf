@@ -116,7 +116,7 @@ resource "azurerm_linux_web_app" "wordpress_web_app" {
 
     application_stack {
       docker_image = "${var.app_service_docker_registry_url}/${var.wordpress_container_linux_fx_version}"
-      docker_image_tag = "8.2"
+      docker_image_tag = "8.4"
     }
   }
 
