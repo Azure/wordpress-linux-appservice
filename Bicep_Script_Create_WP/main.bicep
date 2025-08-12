@@ -47,7 +47,7 @@ param numberOfWorkers int = 1
 param kind string = 'linux'
 param reserved bool = true
 param alwaysOn bool = true
-param linuxFxVersion string = 'DOCKER|mcr.microsoft.com/appsvc/wordpress-alpine-php:latest'
+param linuxFxVersion string = 'DOCKER|mcr.microsoft.com/appsvc/wordpress-debian-php:8.4'
 param dockerRegistryUrl string = 'https://mcr.microsoft.com'
 param storageSizeGB int = 128
 

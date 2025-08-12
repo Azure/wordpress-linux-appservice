@@ -214,7 +214,7 @@ variable "wordpress_locale_code" {
 }
 variable "wordpress_container_linux_fx_version" {
   description = "WP Container Image version"
-  default     = "appsvc/wordpress-alpine-php"
+  default     = "appsvc/wordpress-debian-php"
 }
 
 

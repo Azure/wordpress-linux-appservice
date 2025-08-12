@@ -49,7 +49,8 @@ While there are multiple WordPress options on Azure, we recommend starting with 
 
    | Image Name | Image Stack Version | OS | PHP Version  | Comments |
    |------------|------------|------------|---------------|----------|
-   | mcr.microsoft.com/appsvc/wordpress-debian-php | 8.3 | Debian bookworm | 8.3 |✅ Supported and recommended |
+   | mcr.microsoft.com/appsvc/wordpress-debian-php | 8.4 | Debian bookworm | 8.4 |✅ Supported and recommended |
+   | mcr.microsoft.com/appsvc/wordpress-debian-php | 8.3 | Debian bookworm | 8.3 |✅ Supported |
    | mcr.microsoft.com/appsvc/wordpress-debian-php | 8.2 | Debian bullseye | 8.2 |✅ Supported |
    | mcr.microsoft.com/appsvc/wordpress-alpine-php | 8.3 | Alpine Linux 3 | 8.3 |⚠️ Supported (End of support Dec'24) but recommended to migrate to `Debian` based image |
    | mcr.microsoft.com/appsvc/wordpress-alpine-php | 8.2 | Alpine Linux 3 | 8.2 |⚠️ Supported (End of support Dec'24) but recommended to migrate to `Debian` based image |

@@ -48,7 +48,7 @@
             "value": true
         },
         "linuxFxVersion": {
-            "value": "DOCKER|mcr.microsoft.com/appsvc/wordpress-alpine-php:8.3"
+            "value": "DOCKER|mcr.microsoft.com/appsvc/wordpress-debian-php:8.4"
         },
         "dockerRegistryUrl": {
             "value": "https://mcr.microsoft.com"
