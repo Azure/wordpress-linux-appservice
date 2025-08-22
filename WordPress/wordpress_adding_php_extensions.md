@@ -17,8 +17,8 @@ Customers who need to install PHP extensions that are not available on the WordP
    >**Note:** Depending on the version of the PHP, the name of the package needs to be updated accordingly. Additionally, you can use the [Alpine Linux Packages](https://pkgs.alpinelinux.org/packages) dashboard to search for your required PHP extensions. You can make use of wildcards (* and ?) in the search.
 
    ```bash
-    apk update
-    apk add php8-soap
+    apt-get update
+    apt-get install php8-soap
    ```
 
 1. For PHP 8, the extensions will be installed under **/usr/lib/php8/modules/**. If you are not able to find it, you can make use of **find** command to locate the extension file.
