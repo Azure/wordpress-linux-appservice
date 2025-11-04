@@ -119,18 +119,6 @@
         "wpLocaleCode": {
             "type": "string"
         },
-        "cdnProfileName": {
-            "type": "string"
-        },
-        "cdnEndpointName": {
-            "type": "string"
-        },
-        "cdnType": {
-            "type": "string"
-        },
-        "stagingCdnEndpointName": {
-            "type": "string"
-        },
         "storageAccountName": {
             "type": "string"
         },
@@ -208,6 +196,48 @@
         },
         "managedIdentityName": {
             "type": "string"
+        },
+        "useExistingVnet": {
+            "type": "bool",
+            "defaultValue": false,
+            "metadata": {
+                "description": "Set to true to use an existing VNet instead of creating a new one"
+            }
+        },
+        "createSubnets": {
+            "type": "bool",
+            "defaultValue": true,
+            "metadata": {
+                "description": "Set to false to skip subnet creation (useful when subnets already exist)"
+            }
+        },
+        "vnetAddressPrefix": {
+            "type": "string",
+            "defaultValue": "10.0.0.0/16",
+            "metadata": {
+                "description": "Address space for the VNet (e.g., 10.0.0.0/16)"
+            }
+        },
+        "subnetAddressForApp": {
+            "type": "string",
+            "defaultValue": "10.0.0.0/24",
+            "metadata": {
+                "description": "Address prefix for the App Service subnet (e.g., 10.0.0.0/24)"
+            }
+        },
+        "subnetAddressForDb": {
+            "type": "string",
+            "defaultValue": "10.0.1.0/24",
+            "metadata": {
+                "description": "Address prefix for the Database subnet (e.g., 10.0.1.0/24)"
+            }
+        },
+        "useExistingPrivateDnsZone": {
+            "type": "bool",
+            "defaultValue": false,
+            "metadata": {
+                "description": "Set to true to use an existing Private DNS Zone instead of creating a new one"
+            }
         }
     },
     "resources": [
@@ -274,14 +304,6 @@
                         {
                             "name": "DATABASE_USERNAME",
                             "value": "[parameters('managedIdentityName')]"
-                        },
-                        {
-                            "name": "CDN_ENABLED",
-                            "value": "true"
-                        },
-                        {
-                            "name": "CDN_ENDPOINT",
-                            "value": "[concat(parameters('cdnEndPointName'),'.azureedge.net')]"
                         },
                         {
                             "name": "BLOB_STORAGE_ENABLED",
@@ -405,7 +427,7 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Network/privateDnsZones/virtualNetworkLinks', parameters('privateDnsZoneNameForDb'), format('{0}-vnetlink', parameters('privateDnsZoneNameForDb')))]",
                 "[concat('Microsoft.ManagedIdentity/userAssignedIdentities/', parameters('managedIdentityName'))]",
-                "[resourceId('Microsoft.Resources/deployments', 'subnet_Resources')]"
+                "[if(parameters('createSubnets'), resourceId('Microsoft.Resources/deployments', 'subnet_Resources'), if(parameters('useExistingVnet'), resourceId('Microsoft.Resources/deployments', 'update_existing_subnets'), resourceId('Microsoft.Network/virtualNetworks/', parameters('vnetName'))))]"
             ],
             "identity": {
                 "type": "UserAssigned",
@@ -524,6 +546,7 @@
         {
             "type": "Microsoft.Network/virtualNetworks",
             "apiVersion": "[variables('vnetDeploymentApiVersion')]",
+            "condition": "[not(parameters('useExistingVnet'))]",
             "location": "[parameters('location')]",
             "name": "[parameters('vnetName')]",
             "tags": {
@@ -532,7 +555,7 @@
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
-                        "[variables('vnetAddress')]"
+                        "[parameters('vnetAddressPrefix')]"
                     ]
                 },
                 "subnets": []
@@ -543,11 +566,11 @@
             "type": "Microsoft.Resources/deployments",
             "name": "subnet_Resources",
             "apiVersion": "[variables('resourceDeploymentApiVersion')]",
+            "condition": "[parameters('createSubnets')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks/', parameters('vnetName'))]"
             ],
-            "resourceGroup": "rajneesh-experiments",
-            "subscriptionId": "9801ce74-29e4-4846-9d02-5010413d1042",
+            "resourceGroup": "[parameters('serverFarmResourceGroup')]",
+            "subscriptionId": "[subscription().subscriptionId]",
             "properties": {
                 "mode": "Incremental",
                 "template": {
@@ -561,7 +584,7 @@
                             "apiVersion": "2021-03-01",
                             "name": "[format('{0}/{1}', parameters('vnetName'), parameters('subnetForApp'))]",
                             "properties": {
-                                "addressPrefix": "10.0.0.0/25",
+                                "addressPrefix": "[parameters('subnetAddressForApp')]",
                                 "delegations": [
                                     {
                                         "name": "dlg-appService",
@@ -577,10 +600,66 @@
                             "apiVersion": "2021-03-01",
                             "name": "[format('{0}/{1}',parameters('vnetName'), parameters('subnetForDb'))]",
                             "properties": {
-                                "addressPrefix": "10.0.0.128/25",
+                                "addressPrefix": "[parameters('subnetAddressForDb')]",
                                 "delegations": [
                                     {
                                         "name": "dlg-appService",
+                                        "properties": {
+                                            "serviceName": "Microsoft.DBforMySQL/flexibleServers"
+                                        }
+                                    }
+                                ]
+                            },
+                            "dependsOn": [
+                                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), parameters('subnetForApp'))]"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "name": "update_existing_subnets",
+            "apiVersion": "[variables('resourceDeploymentApiVersion')]",
+            "condition": "[and(parameters('useExistingVnet'), not(parameters('createSubnets')))]",
+            "dependsOn": [
+            ],
+            "resourceGroup": "[parameters('serverFarmResourceGroup')]",
+            "subscriptionId": "[subscription().subscriptionId]",
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.1",
+                    "parameters": {},
+                    "variables": {},
+                    "resources": [
+                        {
+                            "type": "Microsoft.Network/virtualNetworks/subnets",
+                            "apiVersion": "2021-03-01",
+                            "name": "[format('{0}/{1}', parameters('vnetName'), parameters('subnetForApp'))]",
+                            "properties": {
+                                "addressPrefix": "[parameters('subnetAddressForApp')]",
+                                "delegations": [
+                                    {
+                                        "name": "dlg-appService",
+                                        "properties": {
+                                            "serviceName": "Microsoft.Web/serverFarms"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Microsoft.Network/virtualNetworks/subnets",
+                            "apiVersion": "2021-03-01",
+                            "name": "[format('{0}/{1}',parameters('vnetName'), parameters('subnetForDb'))]",
+                            "properties": {
+                                "addressPrefix": "[parameters('subnetAddressForDb')]",
+                                "delegations": [
+                                    {
+                                        "name": "dlg-mysql",
                                         "properties": {
                                             "serviceName": "Microsoft.DBforMySQL/flexibleServers"
                                         }
@@ -622,7 +701,7 @@
             ],
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks/', parameters('vnetName'))]",
-                "[resourceId('Microsoft.Resources/deployments', 'subnet_Resources')]"
+                "[if(parameters('createSubnets'), resourceId('Microsoft.Resources/deployments', 'subnet_Resources'), if(parameters('useExistingVnet'), resourceId('Microsoft.Resources/deployments', 'update_existing_subnets'), resourceId('Microsoft.Network/virtualNetworks/', parameters('vnetName'))))]"
             ]
         },
         {
@@ -715,14 +794,6 @@
                         {
                             "name": "DATABASE_USERNAME",
                             "value": "[parameters('managedIdentityName')]"
-                        },
-                        {
-                            "name": "CDN_ENABLED",
-                            "value": "true"
-                        },
-                        {
-                            "name": "CDN_ENDPOINT",
-                            "value": "[concat(parameters('stagingCdnEndpointName'),'.azureedge.net')]"
                         },
                         {
                             "name": "BLOB_STORAGE_ENABLED",
@@ -911,14 +982,6 @@
                                         "value": "[parameters('managedIdentityName')]"
                                     },
                                     {
-                                        "name": "CDN_ENABLED",
-                                        "value": "true"
-                                    },
-                                    {
-                                        "name": "CDN_ENDPOINT",
-                                        "value": "[concat(parameters('cdnEndPointName'),'.azureedge.net')]"
-                                    },
-                                    {
                                         "name": "BLOB_STORAGE_ENABLED",
                                         "value": "true"
                                     },
@@ -947,373 +1010,6 @@
                                         "value": "true"
                                     }
                                 ]
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            "apiVersion": "[variables('cdnApiVersion')]",
-            "type": "Microsoft.Cdn/profiles",
-            "name": "[parameters('cdnProfileName')]",
-            "location": "Global",
-            "sku": {
-                "name": "[parameters('cdnType')]"
-            },
-            "tags": {
-                "AppProfile": "Wordpress"
-            },
-            "properties": {},
-            "dependsOn": [
-                "[resourceId('Microsoft.DBforMySQL/flexibleServers', parameters('serverName'))]"
-            ]
-        },
-        {
-            "apiVersion": "[variables('cdnApiVersion')]",
-            "type": "Microsoft.Cdn/profiles/endpoints",
-            "name": "[concat(parameters('cdnProfileName'),'/',parameters('cdnEndPointName'))]",
-            "location": "Global",
-            "tags": {
-                "AppProfile": "Wordpress"
-            },
-            "properties": {
-                "isHttpAllowed": true,
-                "isHttpsAllowed": true,
-                "isCompressionEnabled": true,
-                "contentTypesToCompress": [
-                    "application/eot",
-                    "application/font",
-                    "application/font-sfnt",
-                    "application/javascript",
-                    "application/json",
-                    "application/opentype",
-                    "application/otf",
-                    "application/pkcs7-mime",
-                    "application/truetype",
-                    "application/ttf",
-                    "application/vnd.ms-fontobject",
-                    "application/xhtml+xml",
-                    "application/xml",
-                    "application/xml+rss",
-                    "application/x-font-opentype",
-                    "application/x-font-truetype",
-                    "application/x-font-ttf",
-                    "application/x-httpd-cgi",
-                    "application/x-javascript",
-                    "application/x-mpegurl",
-                    "application/x-opentype",
-                    "application/x-otf",
-                    "application/x-perl",
-                    "application/x-ttf",
-                    "font/eot",
-                    "font/ttf",
-                    "font/otf",
-                    "font/opentype",
-                    "image/svg+xml",
-                    "text/css",
-                    "text/csv",
-                    "text/html",
-                    "text/javascript",
-                    "text/js",
-                    "text/plain",
-                    "text/richtext",
-                    "text/tab-separated-values",
-                    "text/xml",
-                    "text/x-script",
-                    "text/x-component",
-                    "text/x-java-source"
-                ],
-                "origins": [
-                    {
-                        "name": "sample-wordpress-app-hvgxd6frewgccwas-australiacentral-01-azurewebsites-net",
-                        "properties": {
-                            "hostName": "sample-wordpress-app-hvgxd6frewgccwas.australiacentral-01.azurewebsites.net",
-                            "httpPort": 80,
-                            "httpsPort": 443,
-                            "originHostHeader": "sample-wordpress-app-hvgxd6frewgccwas.australiacentral-01.azurewebsites.net",
-                            "priority": 1,
-                            "weight": 1000,
-                            "enabled": true
-                        }
-                    },
-                    {
-                        "name": "sampleword0ab37a5082-blob-core-windows-net",
-                        "properties": {
-                            "hostName": "sampleword0ab37a5082.blob.core.windows.net",
-                            "httpPort": 80,
-                            "httpsPort": 443,
-                            "originHostHeader": "sampleword0ab37a5082.blob.core.windows.net",
-                            "priority": 1,
-                            "weight": 1000,
-                            "enabled": true
-                        }
-                    }
-                ],
-                "originGroups": [
-                    {
-                        "name": "blob-origin-group",
-                        "properties": {
-                            "origins": [
-                                {
-                                    "id": "[resourceId('Microsoft.Cdn/profiles/endpoints/origins', parameters('cdnProfileName'), parameters('cdnEndPointName'), 'sampleword0ab37a5082-blob-core-windows-net')]"
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "name": "app-origin-group",
-                        "properties": {
-                            "origins": [
-                                {
-                                    "id": "[resourceId('Microsoft.Cdn/profiles/endpoints/origins', parameters('cdnProfileName'), parameters('cdnEndPointName'), 'sample-wordpress-app-hvgxd6frewgccwas-australiacentral-01-azurewebsites-net')]"
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "defaultOriginGroup": {
-                    "id": "[resourceId('Microsoft.Cdn/profiles/endpoints/originGroups', parameters('cdnProfileName'), parameters('cdnEndPointName'), 'blob-origin-group')]"
-                },
-                "geoFilters": [],
-                "deliveryPolicy": {
-                    "rules": [
-                        {
-                            "name": "originOverrideRule",
-                            "order": 1,
-                            "conditions": [
-                                {
-                                    "name": "UrlPath",
-                                    "parameters": {
-                                        "typeName": "DeliveryRuleUrlPathMatchConditionParameters",
-                                        "operator": "BeginsWith",
-                                        "negateCondition": true,
-                                        "matchValues": [
-                                            "[concat(parameters('blobContainerName'), '/wp-content/uploads/')]"
-                                        ],
-                                        "transforms": [
-                                            "Lowercase"
-                                        ]
-                                    }
-                                }
-                            ],
-                            "actions": [
-                                {
-                                    "name": "OriginGroupOverride",
-                                    "parameters": {
-                                        "typeName": "DeliveryRuleOriginGroupOverrideActionParameters",
-                                        "originGroup": {
-                                            "id": "[resourceId('Microsoft.Cdn/profiles/endpoints/originGroups', parameters('cdnProfileName'), parameters('cdnEndPointName'), 'app-origin-group')]"
-                                        }
-                                    }
-                                },
-                                {
-                                    "name": "UrlRewrite",
-                                    "parameters": {
-                                        "typeName": "DeliveryRuleUrlRewriteActionParameters",
-                                        "sourcePattern": "[concat('/', parameters('blobContainerName'), '/')]",
-                                        "destination": "/",
-                                        "preserveUnmatchedPath": true
-                                    }
-                                },
-                                {
-                                    "name": "ModifyResponseHeader",
-                                    "parameters": {
-                                        "typeName": "DeliveryRuleHeaderActionParameters",
-                                        "headerAction": "Overwrite",
-                                        "headerName": "Access-Control-Allow-Origin",
-                                        "value": "https://sample-wordpress-app-hvgxd6frewgccwas.australiacentral-01.azurewebsites.net"
-                                    }
-                                }
-                            ]
-                        }
-                    ]
-                }
-            },
-            "dependsOn": [
-                "[concat('Microsoft.Cdn/profiles/', parameters('cdnProfileName'))]",
-                "[resourceId('Microsoft.Web/Sites', parameters('name'))]",
-                "[resourceId('Microsoft.Resources/deployments', 'Storage_Resources')]"
-            ]
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "name": "staging_cdn_endpoint_deployment",
-            "apiVersion": "[variables('resourceDeploymentApiVersion')]",
-            "dependsOn": [
-                "[concat('Microsoft.Cdn/profiles/', parameters('cdnProfileName'))]",
-                "[resourceId('Microsoft.Web/Sites', parameters('name'))]",
-                "[resourceId('Microsoft.Resources/deployments', 'Storage_Resources')]",
-                "[resourceId('Microsoft.Web/sites/slots', parameters('name'), 'staging')]"
-            ],
-            "properties": {
-                "mode": "Incremental",
-                "template": {
-                    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-                    "contentVersion": "1.0.0.1",
-                    "parameters": {},
-                    "variables": {},
-                    "resources": [
-                        {
-                            "apiVersion": "[variables('cdnApiVersion')]",
-                            "type": "Microsoft.Cdn/profiles/endpoints",
-                            "name": "[concat(parameters('cdnProfileName'),'/',parameters('stagingCdnEndpointName'))]",
-                            "location": "Global",
-                            "tags": {
-                                "AppProfile": "Wordpress"
-                            },
-                            "properties": {
-                                "isHttpAllowed": true,
-                                "isHttpsAllowed": true,
-                                "isCompressionEnabled": true,
-                                "contentTypesToCompress": [
-                                    "application/eot",
-                                    "application/font",
-                                    "application/font-sfnt",
-                                    "application/javascript",
-                                    "application/json",
-                                    "application/opentype",
-                                    "application/otf",
-                                    "application/pkcs7-mime",
-                                    "application/truetype",
-                                    "application/ttf",
-                                    "application/vnd.ms-fontobject",
-                                    "application/xhtml+xml",
-                                    "application/xml",
-                                    "application/xml+rss",
-                                    "application/x-font-opentype",
-                                    "application/x-font-truetype",
-                                    "application/x-font-ttf",
-                                    "application/x-httpd-cgi",
-                                    "application/x-javascript",
-                                    "application/x-mpegurl",
-                                    "application/x-opentype",
-                                    "application/x-otf",
-                                    "application/x-perl",
-                                    "application/x-ttf",
-                                    "font/eot",
-                                    "font/ttf",
-                                    "font/otf",
-                                    "font/opentype",
-                                    "image/svg+xml",
-                                    "text/css",
-                                    "text/csv",
-                                    "text/html",
-                                    "text/javascript",
-                                    "text/js",
-                                    "text/plain",
-                                    "text/richtext",
-                                    "text/tab-separated-values",
-                                    "text/xml",
-                                    "text/x-script",
-                                    "text/x-component",
-                                    "text/x-java-source"
-                                ],
-                                "origins": [
-                                    {
-                                        "name": "sample-wordpress-app-staging-g8gbgbgwfvc2fkad-australiacentral-01-azurewebsites-net",
-                                        "properties": {
-                                            "hostName": "sample-wordpress-app-staging-g8gbgbgwfvc2fkad.australiacentral-01.azurewebsites.net",
-                                            "httpPort": 80,
-                                            "httpsPort": 443,
-                                            "originHostHeader": "sample-wordpress-app-staging-g8gbgbgwfvc2fkad.australiacentral-01.azurewebsites.net",
-                                            "priority": 1,
-                                            "weight": 1000,
-                                            "enabled": true
-                                        }
-                                    },
-                                    {
-                                        "name": "sampleword0ab37a5082-blob-core-windows-net",
-                                        "properties": {
-                                            "hostName": "sampleword0ab37a5082.blob.core.windows.net",
-                                            "httpPort": 80,
-                                            "httpsPort": 443,
-                                            "originHostHeader": "sampleword0ab37a5082.blob.core.windows.net",
-                                            "priority": 1,
-                                            "weight": 1000,
-                                            "enabled": true
-                                        }
-                                    }
-                                ],
-                                "originGroups": [
-                                    {
-                                        "name": "blob-origin-group",
-                                        "properties": {
-                                            "origins": [
-                                                {
-                                                    "id": "[resourceId('Microsoft.Cdn/profiles/endpoints/origins', parameters('cdnProfileName'), parameters('stagingCdnEndpointName'), 'sampleword0ab37a5082-blob-core-windows-net')]"
-                                                }
-                                            ]
-                                        }
-                                    },
-                                    {
-                                        "name": "app-origin-group",
-                                        "properties": {
-                                            "origins": [
-                                                {
-                                                    "id": "[resourceId('Microsoft.Cdn/profiles/endpoints/origins', parameters('cdnProfileName'), parameters('stagingCdnEndpointName'), 'sample-wordpress-app-staging-g8gbgbgwfvc2fkad-australiacentral-01-azurewebsites-net')]"
-                                                }
-                                            ]
-                                        }
-                                    }
-                                ],
-                                "defaultOriginGroup": {
-                                    "id": "[resourceId('Microsoft.Cdn/profiles/endpoints/originGroups', parameters('cdnProfileName'), parameters('stagingCdnEndpointName'), 'blob-origin-group')]"
-                                },
-                                "geoFilters": [],
-                                "deliveryPolicy": {
-                                    "rules": [
-                                        {
-                                            "name": "originOverrideRule",
-                                            "order": 1,
-                                            "conditions": [
-                                                {
-                                                    "name": "UrlPath",
-                                                    "parameters": {
-                                                        "typeName": "DeliveryRuleUrlPathMatchConditionParameters",
-                                                        "operator": "BeginsWith",
-                                                        "negateCondition": true,
-                                                        "matchValues": [
-                                                            "[concat(parameters('stagingBlobContainerName'), '/wp-content/uploads/')]"
-                                                        ],
-                                                        "transforms": [
-                                                            "Lowercase"
-                                                        ]
-                                                    }
-                                                }
-                                            ],
-                                            "actions": [
-                                                {
-                                                    "name": "OriginGroupOverride",
-                                                    "parameters": {
-                                                        "typeName": "DeliveryRuleOriginGroupOverrideActionParameters",
-                                                        "originGroup": {
-                                                            "id": "[resourceId('Microsoft.Cdn/profiles/endpoints/originGroups', parameters('cdnProfileName'), parameters('stagingCdnEndpointName'), 'app-origin-group')]"
-                                                        }
-                                                    }
-                                                },
-                                                {
-                                                    "name": "UrlRewrite",
-                                                    "parameters": {
-                                                        "typeName": "DeliveryRuleUrlRewriteActionParameters",
-                                                        "sourcePattern": "[concat('/', parameters('stagingBlobContainerName'), '/')]",
-                                                        "destination": "/",
-                                                        "preserveUnmatchedPath": true
-                                                    }
-                                                },
-                                                {
-                                                    "name": "ModifyResponseHeader",
-                                                    "parameters": {
-                                                        "typeName": "DeliveryRuleHeaderActionParameters",
-                                                        "headerAction": "Overwrite",
-                                                        "headerName": "Access-Control-Allow-Origin",
-                                                        "value": "https://sample-wordpress-app-staging-g8gbgbgwfvc2fkad.australiacentral-01.azurewebsites.net"
-                                                    }
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
                             }
                         }
                     ]
@@ -1375,8 +1071,8 @@
                 "[resourceId('Microsoft.DBforMySQL/flexibleServers', parameters('serverName'))]",
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
             ],
-            "resourceGroup": "rajneesh-experiments",
-            "subscriptionId": "9801ce74-29e4-4846-9d02-5010413d1042",
+            "resourceGroup": "[parameters('serverFarmResourceGroup')]",
+            "subscriptionId": "[subscription().subscriptionId]",
             "properties": {
                 "mode": "Incremental",
                 "template": {
@@ -1434,8 +1130,8 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Resources/deployments', 'Storage_Resources')]"
             ],
-            "resourceGroup": "rajneesh-experiments",
-            "subscriptionId": "9801ce74-29e4-4846-9d02-5010413d1042",
+            "resourceGroup": "[parameters('serverFarmResourceGroup')]",
+            "subscriptionId": "[subscription().subscriptionId]",
             "properties": {
                 "mode": "Incremental",
                 "template": {
@@ -1467,9 +1163,6 @@
         "databaseVersion": "8.0.21",
         "vnetDeploymentApiVersion": "2020-07-01",
         "privateDnsApiVersion": "2018-09-01",
-        "privateEndpointApiVersion": "2021-03-01",
-        "vnetAddress": "10.0.0.0/23",
-        "cdnApiVersion": "2020-04-15",
         "blobApiVersion": "2021-08-01",
         "storageAccountId": "[resourceId(parameters('storageAccountResourceGroup'),'Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
         "emailApiVersion": "2023-03-31",

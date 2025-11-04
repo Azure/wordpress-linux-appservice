@@ -119,18 +119,6 @@
         "wpLocaleCode": {
             "value": "en_US"
         },
-        "cdnProfileName": {
-            "value": "sampleword-39b8672c593dc95a-cdnprofile"
-        },
-        "cdnEndpointName": {
-            "value": "sampleword-39b8672c593dc95a-endpoint"
-        },
-        "cdnType": {
-            "value": "Standard_Microsoft"
-        },
-        "stagingCdnEndpointName": {
-            "value": "sampleword-39b8672c593dc95a-endpoint-staging"
-        },
         "storageAccountName": {
             "value": "sampleword0ab37a5082"
         },
@@ -208,6 +196,24 @@
         },
         "managedIdentityName": {
             "value": "sampleword-49dff026e4-wpidentity"
+        },
+        "useExistingVnet": {
+            "value": false
+        },
+        "createSubnets": {
+            "value": true
+        },
+        "vnetAddressPrefix": {
+            "value": "10.0.0.0/16"
+        },
+        "subnetAddressForApp": {
+            "value": "10.0.0.0/24"
+        },
+        "subnetAddressForDb": {
+            "value": "10.0.1.0/24"
+        },
+        "useExistingPrivateDnsZone": {
+            "value": false
         }
     }
 }
