@@ -203,17 +203,11 @@
         "createSubnets": {
             "value": true
         },
-        "vnetAddressPrefix": {
-            "value": "10.0.0.0/16"
-        },
         "subnetAddressForApp": {
             "value": "10.0.0.0/24"
         },
         "subnetAddressForDb": {
             "value": "10.0.1.0/24"
-        },
-        "useExistingPrivateDnsZone": {
-            "value": false
         }
     }
 }

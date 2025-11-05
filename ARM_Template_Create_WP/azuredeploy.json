@@ -210,34 +210,6 @@
             "metadata": {
                 "description": "Set to false to skip subnet creation (useful when subnets already exist)"
             }
-        },
-        "vnetAddressPrefix": {
-            "type": "string",
-            "defaultValue": "10.0.0.0/16",
-            "metadata": {
-                "description": "Address space for the VNet (e.g., 10.0.0.0/16)"
-            }
-        },
-        "subnetAddressForApp": {
-            "type": "string",
-            "defaultValue": "10.0.0.0/24",
-            "metadata": {
-                "description": "Address prefix for the App Service subnet (e.g., 10.0.0.0/24)"
-            }
-        },
-        "subnetAddressForDb": {
-            "type": "string",
-            "defaultValue": "10.0.1.0/24",
-            "metadata": {
-                "description": "Address prefix for the Database subnet (e.g., 10.0.1.0/24)"
-            }
-        },
-        "useExistingPrivateDnsZone": {
-            "type": "bool",
-            "defaultValue": false,
-            "metadata": {
-                "description": "Set to true to use an existing Private DNS Zone instead of creating a new one"
-            }
         }
     },
     "resources": [
@@ -427,7 +399,7 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Network/privateDnsZones/virtualNetworkLinks', parameters('privateDnsZoneNameForDb'), format('{0}-vnetlink', parameters('privateDnsZoneNameForDb')))]",
                 "[concat('Microsoft.ManagedIdentity/userAssignedIdentities/', parameters('managedIdentityName'))]",
-                "[if(parameters('createSubnets'), resourceId('Microsoft.Resources/deployments', 'subnet_Resources'), if(parameters('useExistingVnet'), resourceId('Microsoft.Resources/deployments', 'update_existing_subnets'), resourceId('Microsoft.Network/virtualNetworks/', parameters('vnetName'))))]"
+                "[if(parameters('createSubnets'), resourceId('Microsoft.Resources/deployments', 'subnet_Resources'), if(parameters('useExistingVnet'), resourceId('Microsoft.Resources/deployments', 'add_delegations'), resourceId('Microsoft.Network/virtualNetworks/', parameters('vnetName'))))]"
             ],
             "identity": {
                 "type": "UserAssigned",
@@ -555,7 +527,7 @@
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
-                        "[parameters('vnetAddressPrefix')]"
+                        "[variables('vnetAddress')]"
                     ]
                 },
                 "subnets": []
@@ -569,8 +541,6 @@
             "condition": "[parameters('createSubnets')]",
             "dependsOn": [
             ],
-            "resourceGroup": "[parameters('serverFarmResourceGroup')]",
-            "subscriptionId": "[subscription().subscriptionId]",
             "properties": {
                 "mode": "Incremental",
                 "template": {
@@ -584,7 +554,7 @@
                             "apiVersion": "2021-03-01",
                             "name": "[format('{0}/{1}', parameters('vnetName'), parameters('subnetForApp'))]",
                             "properties": {
-                                "addressPrefix": "[parameters('subnetAddressForApp')]",
+                                "addressPrefix": "[variables('subnetAddressForApp')]",
                                 "delegations": [
                                     {
                                         "name": "dlg-appService",
@@ -600,7 +570,7 @@
                             "apiVersion": "2021-03-01",
                             "name": "[format('{0}/{1}',parameters('vnetName'), parameters('subnetForDb'))]",
                             "properties": {
-                                "addressPrefix": "[parameters('subnetAddressForDb')]",
+                                "addressPrefix": "[variables('subnetAddressForDb')]",
                                 "delegations": [
                                     {
                                         "name": "dlg-appService",
@@ -620,13 +590,11 @@
         },
         {
             "type": "Microsoft.Resources/deployments",
-            "name": "update_existing_subnets",
+            "name": "add_delegations",
             "apiVersion": "[variables('resourceDeploymentApiVersion')]",
             "condition": "[and(parameters('useExistingVnet'), not(parameters('createSubnets')))]",
             "dependsOn": [
             ],
-            "resourceGroup": "[parameters('serverFarmResourceGroup')]",
-            "subscriptionId": "[subscription().subscriptionId]",
             "properties": {
                 "mode": "Incremental",
                 "template": {
@@ -640,7 +608,7 @@
                             "apiVersion": "2021-03-01",
                             "name": "[format('{0}/{1}', parameters('vnetName'), parameters('subnetForApp'))]",
                             "properties": {
-                                "addressPrefix": "[parameters('subnetAddressForApp')]",
+                                "addressPrefix": "[reference(resourceId(parameters('serverFarmResourceGroup'), 'Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), parameters('subnetForApp')), '2021-03-01').addressPrefix]",
                                 "delegations": [
                                     {
                                         "name": "dlg-appService",
@@ -656,7 +624,7 @@
                             "apiVersion": "2021-03-01",
                             "name": "[format('{0}/{1}',parameters('vnetName'), parameters('subnetForDb'))]",
                             "properties": {
-                                "addressPrefix": "[parameters('subnetAddressForDb')]",
+                                "addressPrefix": "[reference(resourceId(parameters('serverFarmResourceGroup'), 'Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), parameters('subnetForDb')), '2021-03-01').addressPrefix]",
                                 "delegations": [
                                     {
                                         "name": "dlg-mysql",
@@ -701,7 +669,7 @@
             ],
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks/', parameters('vnetName'))]",
-                "[if(parameters('createSubnets'), resourceId('Microsoft.Resources/deployments', 'subnet_Resources'), if(parameters('useExistingVnet'), resourceId('Microsoft.Resources/deployments', 'update_existing_subnets'), resourceId('Microsoft.Network/virtualNetworks/', parameters('vnetName'))))]"
+                "[if(parameters('createSubnets'), resourceId('Microsoft.Resources/deployments', 'subnet_Resources'), if(parameters('useExistingVnet'), resourceId('Microsoft.Resources/deployments', 'add_delegations'), resourceId('Microsoft.Network/virtualNetworks/', parameters('vnetName'))))]"
             ]
         },
         {
@@ -1163,6 +1131,9 @@
         "databaseVersion": "8.0.21",
         "vnetDeploymentApiVersion": "2020-07-01",
         "privateDnsApiVersion": "2018-09-01",
+        "vnetAddress": "10.0.0.0/23",
+        "subnetAddressForApp": "10.0.0.0/24",
+        "subnetAddressForDb": "10.0.1.0/24",
         "blobApiVersion": "2021-08-01",
         "storageAccountId": "[resourceId(parameters('storageAccountResourceGroup'),'Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
         "emailApiVersion": "2023-03-31",
