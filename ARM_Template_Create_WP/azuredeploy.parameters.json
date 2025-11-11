@@ -203,11 +203,8 @@
         "createSubnets": {
             "value": true
         },
-        "subnetAddressForApp": {
-            "value": "10.0.0.0/24"
-        },
-        "subnetAddressForDb": {
-            "value": "10.0.1.0/24"
+        "vnetResourceGroup": {
+            "value": null
         }
     }
 }
