@@ -547,7 +547,7 @@
             "apiVersion": "[variables('resourceDeploymentApiVersion')]",
             "condition": "[or(not(parameters('useExistingVnet')), parameters('createSubnets'))]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]"
+                "[if(not(parameters('useExistingVnet')), resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName')), 'dummy')]"
             ],
             "resourceGroup": "[parameters('vnetResourceGroup')]",
             "subscriptionId": "[subscription().subscriptionId]",
@@ -673,14 +673,14 @@
                     ],
                     "properties": {
                         "virtualNetwork": {
-                            "id": "[resourceId('Microsoft.Network/virtualNetworks/', parameters('vnetName'))]"
+                            "id": "[resourceId(parameters('vnetResourceGroup'), 'Microsoft.Network/virtualNetworks/', parameters('vnetName'))]"
                         },
                         "registrationEnabled": false
                     }
                 }
             ],
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks/', parameters('vnetName'))]",
+                "[resourceId(parameters('vnetResourceGroup'), 'Microsoft.Network/virtualNetworks/', parameters('vnetName'))]",
                 "[if(or(not(parameters('useExistingVnet')), parameters('createSubnets')), resourceId('Microsoft.Resources/deployments', 'subnet_Resources'), resourceId('Microsoft.Resources/deployments', 'add_delegations'))]"
             ]
         },
@@ -689,7 +689,7 @@
             "type": "Microsoft.Web/sites/networkConfig",
             "name": "[format('{0}/{1}', parameters('name'), 'virtualNetwork')]",
             "properties": {
-                "subnetResourceId": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), parameters('subnetForApp'))]"
+                "subnetResourceId": "[resourceId(parameters('vnetResourceGroup'), 'Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), parameters('subnetForApp'))]"
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Web/Sites', parameters('name'))]",
@@ -1144,8 +1144,8 @@
         "vnetDeploymentApiVersion": "2020-07-01",
         "privateDnsApiVersion": "2018-09-01",
         "vnetAddress": "10.0.0.0/23",
-        "subnetAddressForApp": "10.0.0.0/24",
-        "subnetAddressForDb": "10.0.1.0/24",
+        "subnetAddressForApp": "10.0.0.0/25",
+        "subnetAddressForDb": "10.0.1.0/25",
         "blobApiVersion": "2021-08-01",
         "storageAccountId": "[resourceId(parameters('storageAccountResourceGroup'),'Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
         "emailApiVersion": "2023-03-31",
