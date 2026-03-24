@@ -194,7 +194,7 @@ resource appServiceStorageContainer 'Microsoft.Storage/storageAccounts/blobServi
 }
 
 @description('Wordpress Web App Settings')
-resource appServiceWebApp 'Microsoft.Web/sites@2024-04-01' = {
+resource appServiceWebApp 'Microsoft.Web/sites@2025-03-01' = {
   name: appServiceWebAppName
   location: location
   tags: tags
@@ -292,7 +292,7 @@ resource appServiceWebApp 'Microsoft.Web/sites@2024-04-01' = {
 }
 
 @description('WordPress sitecontainer definition')
-resource appServiceSiteContainer 'Microsoft.Web/sites/sitecontainers@2024-04-01' = {
+resource appServiceSiteContainer 'Microsoft.Web/sites/sitecontainers@2025-03-01' = {
   parent: appServiceWebApp
   name: 'main'
   properties: {
@@ -304,7 +304,7 @@ resource appServiceSiteContainer 'Microsoft.Web/sites/sitecontainers@2024-04-01'
 }
 
 @description('App service hostingplan')
-resource appServiceHostingPlan 'Microsoft.Web/serverfarms@2024-04-01' = {
+resource appServiceHostingPlan 'Microsoft.Web/serverfarms@2025-03-01' = {
   name: appServicePlanName
   location: location
   kind: kind
@@ -430,7 +430,7 @@ resource privateDnsZoneMySqlVnetlink 'Microsoft.Network/privateDnsZones/virtualN
 }
 
 @description('Configure the Web app to use the Subnet')
-resource appServiceVNetConfig 'Microsoft.Web/sites/networkConfig@2024-04-01' = {
+resource appServiceVNetConfig 'Microsoft.Web/sites/networkConfig@2025-03-01' = {
   parent: appServiceWebApp
   name: 'virtualNetwork'
   properties: {
@@ -442,7 +442,7 @@ resource appServiceVNetConfig 'Microsoft.Web/sites/networkConfig@2024-04-01' = {
 }
 
 @description('Web app configuration')
-resource appServiceSiteConfig 'Microsoft.Web/sites/config@2024-04-01' = {
+resource appServiceSiteConfig 'Microsoft.Web/sites/config@2025-03-01' = {
   parent: appServiceWebApp
   name: 'web'
   properties: {
