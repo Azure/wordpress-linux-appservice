@@ -47,8 +47,9 @@ param numberOfWorkers int = 1
 param kind string = 'linux'
 param reserved bool = true
 param alwaysOn bool = true
-param linuxFxVersion string = 'DOCKER|mcr.microsoft.com/appsvc/wordpress-debian-php:8.4'
-param dockerRegistryUrl string = 'https://mcr.microsoft.com'
+param linuxFxVersion string = 'sitecontainers'
+param wpContainerImage string = 'mcr.microsoft.com/appsvc/wordpress-debian-php:8.4'
+param wpContainerTargetPort string = '80'
 param storageSizeGB int = 128
 
 /*
@@ -201,10 +202,6 @@ resource appServiceWebApp 'Microsoft.Web/sites@2022-03-01' = {
     siteConfig: {
       appSettings: [
         {
-          name: 'DOCKER_REGISTRY_SERVER_URL'
-          value: dockerRegistryUrl
-        }  
-        {
           name: 'DATABASE_HOST'
           value: '${serverName}.mysql.database.azure.com'
         }
@@ -278,7 +275,7 @@ resource appServiceWebApp 'Microsoft.Web/sites@2022-03-01' = {
         }
         {
           name: 'WEBSITES_ENABLE_APP_SERVICE_STORAGE'
-          value: '${deployAzureStorage}'
+          value: 'true'
         }
       ]
       connectionStrings: []
@@ -292,6 +289,18 @@ resource appServiceWebApp 'Microsoft.Web/sites@2022-03-01' = {
     mySQLserver
     wordpressDatabase
   ]
+}
+
+@description('WordPress sitecontainer definition')
+resource appServiceSiteContainer 'Microsoft.Web/sites/sitecontainers@2024-04-01' = {
+  parent: appServiceWebApp
+  name: 'main'
+  properties: {
+    image: wpContainerImage
+    targetPort: wpContainerTargetPort
+    isMain: true
+    authType: 'Anonymous'
+  }
 }
 
 @description('App service hostingplan')
