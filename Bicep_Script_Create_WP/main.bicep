@@ -1,18 +1,10 @@
 /*
 SUMMARY:      Deploys a WordPress site hosted on Azure AppServices
-DESCRIPTION:  Deploys a fully functional Wordpress site hosted on an Azure App service with a MySQL Flexible server back end with a CDN front end. 
+DESCRIPTION:  Deploys a fully functional Wordpress site hosted on an Azure App service with a MySQL Flexible server back end with an optional Azure Front Door front end. 
               Approx. time to deploy 12 minutes - with AFD and Storage account.
 REFERENCE:    https://techcommunity.microsoft.com/t5/apps-on-azure-blog/a-lowered-cost-and-more-performant-wordpress-on-azure-appservice/ba-p/3647860
               https://github.com/Azure/wordpress-linux-appservice/blob/main/WordPress/wordpress_migration_linux_appservices.md
               https://github.com/Azure/wordpress-linux-appService
-AUTHOR/S:     aaron.saikovski@microsoft.com
-VERSION:      1.2.1
-
-VERSION HISTORY:
-  1.0.0 - Initial version release
-  1.1.0 - Added storage account to host content external to WordPress instance, tags and param switches
-  1.2.0 - Added Azure Front Door and CDN modules
-  1.2.1 - Minor AFD dependency fixes and web app parameter changes. updated readme.md
 */
 
 // ================ //
@@ -90,12 +82,6 @@ param wordpressPassword string
 
 
 /*
-CDN Parameters
-*/
-param cdnProfileName string
-param cdnEndpointName string
-
-/*
 Azure Front Door Policy vars
 */
 param afdProfileName string = 'wp-appsvc-afdprofile'
@@ -133,8 +119,7 @@ param appServiceStorageSku string = 'Standard_LRS'
 Conditional Deployment Params
 */
 param deployAzureStorage bool = false
-param deployCDN bool          = false //If true then FrontDoor MUST be false
-param deployFrontDoor bool    = false //If true then CDN MUST be false
+param deployFrontDoor bool    = false
 
 /*
 Local Variables for storage account
@@ -244,14 +229,6 @@ resource appServiceWebApp 'Microsoft.Web/sites@2025-03-01' = {
         {
           name: 'SETUP_PHPMYADMIN'
           value: 'true'
-        }
-        {
-          name: 'CDN_ENABLED'
-          value: '${deployCDN}'
-        }
-        {
-          name: 'CDN_ENDPOINT'
-          value: '${cdnEndpointName}.azureedge.net'
         }
         {
           name: 'BLOB_CONTAINER_NAME'
@@ -450,21 +427,6 @@ resource appServiceSiteConfig 'Microsoft.Web/sites/config@2025-03-01' = {
   }
   dependsOn: [
     appServiceVNetConfig
-  ]
-}
-
-@description('CDN Profile and Endpoint Module')
-module cdnProfile './modules/cdn.bicep' = if (deployCDN) {
-  name: cdnProfileName
-  params:{
-    tags: tags
-    cdnProfileName:cdnProfileName
-    cdnEndpointName:cdnEndpointName
-    appServiceWebAppName:appServiceWebAppName
-  }
-  dependsOn: [
-    mySQLserver
-    appServiceWebApp
   ]
 }
 

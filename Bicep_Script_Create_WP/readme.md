@@ -10,8 +10,7 @@ It deploys the following resources:
 * Virtual Network - Deploys a virtual network with a default address space of 10.0.0.0/16.
 * Private DNS Zone for the MySQL database private link connection.
 * Azure storage account - Used by Wordpress for storing assets such as images and BLOBs and Wordpress will automatically make use of this if enabled - User configurable
-* CDN Profile - Deploys a CDN profile (Standard Microsoft SKU) endpoint with compression enabled - User configurable and cannot be deployed if Azure Frontdoor is used.
-* Azure Front Door Profile - Deploys an Azure Frontdoor (Standard AzureFrontDoor SKU) CDN profile endpoint with compression enabled - User configurable and cannot be deployed if Azure CDN is used.
+* Azure Front Door Profile - Deploys an Azure Front Door (Standard AzureFrontDoor SKU) profile endpoint with compression enabled - User configurable.
   
 
 ## Overview
