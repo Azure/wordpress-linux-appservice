@@ -1,18 +1,10 @@
 /*
 SUMMARY:      Deploys a WordPress site hosted on Azure AppServices
-DESCRIPTION:  Deploys a fully functional Wordpress site hosted on an Azure App service with a MySQL Flexible server back end with a CDN front end. 
+DESCRIPTION:  Deploys a fully functional Wordpress site hosted on an Azure App service with a MySQL Flexible server back end with an optional Azure Front Door front end. 
               Approx. time to deploy 12 minutes - with AFD and Storage account.
 REFERENCE:    https://techcommunity.microsoft.com/t5/apps-on-azure-blog/a-lowered-cost-and-more-performant-wordpress-on-azure-appservice/ba-p/3647860
               https://github.com/Azure/wordpress-linux-appservice/blob/main/WordPress/wordpress_migration_linux_appservices.md
               https://github.com/Azure/wordpress-linux-appService
-AUTHOR/S:     aaron.saikovski@microsoft.com
-VERSION:      1.2.1
-
-VERSION HISTORY:
-  1.0.0 - Initial version release
-  1.1.0 - Added storage account to host content external to WordPress instance, tags and param switches
-  1.2.0 - Added Azure Front Door and CDN modules
-  1.2.1 - Minor AFD dependency fixes and web app parameter changes. updated readme.md
 */
 
 // ================ //
@@ -47,8 +39,9 @@ param numberOfWorkers int = 1
 param kind string = 'linux'
 param reserved bool = true
 param alwaysOn bool = true
-param linuxFxVersion string = 'DOCKER|mcr.microsoft.com/appsvc/wordpress-debian-php:8.4'
-param dockerRegistryUrl string = 'https://mcr.microsoft.com'
+param linuxFxVersion string = 'sitecontainers'
+param wpContainerImage string = 'mcr.microsoft.com/appsvc/wordpress-debian-php:8.4'
+param wpContainerTargetPort string = '80'
 param storageSizeGB int = 128
 
 /*
@@ -89,12 +82,6 @@ param wordpressPassword string
 
 
 /*
-CDN Parameters
-*/
-param cdnProfileName string
-param cdnEndpointName string
-
-/*
 Azure Front Door Policy vars
 */
 param afdProfileName string = 'wp-appsvc-afdprofile'
@@ -132,8 +119,7 @@ param appServiceStorageSku string = 'Standard_LRS'
 Conditional Deployment Params
 */
 param deployAzureStorage bool = false
-param deployCDN bool          = false //If true then FrontDoor MUST be false
-param deployFrontDoor bool    = false //If true then CDN MUST be false
+param deployFrontDoor bool    = false
 
 /*
 Local Variables for storage account
@@ -193,17 +179,13 @@ resource appServiceStorageContainer 'Microsoft.Storage/storageAccounts/blobServi
 }
 
 @description('Wordpress Web App Settings')
-resource appServiceWebApp 'Microsoft.Web/sites@2022-03-01' = {
+resource appServiceWebApp 'Microsoft.Web/sites@2025-03-01' = {
   name: appServiceWebAppName
   location: location
   tags: tags
   properties: {
     siteConfig: {
       appSettings: [
-        {
-          name: 'DOCKER_REGISTRY_SERVER_URL'
-          value: dockerRegistryUrl
-        }  
         {
           name: 'DATABASE_HOST'
           value: '${serverName}.mysql.database.azure.com'
@@ -249,14 +231,6 @@ resource appServiceWebApp 'Microsoft.Web/sites@2022-03-01' = {
           value: 'true'
         }
         {
-          name: 'CDN_ENABLED'
-          value: '${deployCDN}'
-        }
-        {
-          name: 'CDN_ENDPOINT'
-          value: '${cdnEndpointName}.azureedge.net'
-        }
-        {
           name: 'BLOB_CONTAINER_NAME'
           value: appServiceStorageContainerName
         }
@@ -278,7 +252,7 @@ resource appServiceWebApp 'Microsoft.Web/sites@2022-03-01' = {
         }
         {
           name: 'WEBSITES_ENABLE_APP_SERVICE_STORAGE'
-          value: '${deployAzureStorage}'
+          value: 'true'
         }
       ]
       connectionStrings: []
@@ -294,8 +268,20 @@ resource appServiceWebApp 'Microsoft.Web/sites@2022-03-01' = {
   ]
 }
 
+@description('WordPress sitecontainer definition')
+resource appServiceSiteContainer 'Microsoft.Web/sites/sitecontainers@2025-03-01' = {
+  parent: appServiceWebApp
+  name: 'main'
+  properties: {
+    image: wpContainerImage
+    targetPort: wpContainerTargetPort
+    isMain: true
+    authType: 'Anonymous'
+  }
+}
+
 @description('App service hostingplan')
-resource appServiceHostingPlan 'Microsoft.Web/serverfarms@2022-03-01' = {
+resource appServiceHostingPlan 'Microsoft.Web/serverfarms@2025-03-01' = {
   name: appServicePlanName
   location: location
   kind: kind
@@ -421,7 +407,7 @@ resource privateDnsZoneMySqlVnetlink 'Microsoft.Network/privateDnsZones/virtualN
 }
 
 @description('Configure the Web app to use the Subnet')
-resource appServiceVNetConfig 'Microsoft.Web/sites/networkConfig@2022-03-01' = {
+resource appServiceVNetConfig 'Microsoft.Web/sites/networkConfig@2025-03-01' = {
   parent: appServiceWebApp
   name: 'virtualNetwork'
   properties: {
@@ -433,7 +419,7 @@ resource appServiceVNetConfig 'Microsoft.Web/sites/networkConfig@2022-03-01' = {
 }
 
 @description('Web app configuration')
-resource appServiceSiteConfig 'Microsoft.Web/sites/config@2022-03-01' = {
+resource appServiceSiteConfig 'Microsoft.Web/sites/config@2025-03-01' = {
   parent: appServiceWebApp
   name: 'web'
   properties: {
@@ -441,21 +427,6 @@ resource appServiceSiteConfig 'Microsoft.Web/sites/config@2022-03-01' = {
   }
   dependsOn: [
     appServiceVNetConfig
-  ]
-}
-
-@description('CDN Profile and Endpoint Module')
-module cdnProfile './modules/cdn.bicep' = if (deployCDN) {
-  name: cdnProfileName
-  params:{
-    tags: tags
-    cdnProfileName:cdnProfileName
-    cdnEndpointName:cdnEndpointName
-    appServiceWebAppName:appServiceWebAppName
-  }
-  dependsOn: [
-    mySQLserver
-    appServiceWebApp
   ]
 }
 
