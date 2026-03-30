@@ -19,5 +19,5 @@
     |    DATABASE_HOST               |
     |    DATABASE_USERNAME           |
     |    DATABASE_PASSWORD           |
-
+## Note: If you are using Managed Idenity, do not use the application setting DATABASE_PASSWORD, follow this document to configure: [Enabling Managed Identity with Azure MySQL for WordPress App Service](https://github.com/Azure/wordpress-linux-appservice/blob/main/WordPress/wordpress_enable_managed_identity_with_mysql.md)
 **Reference**: [WordPress Application Settings](./wordpress_application_settings.md)
